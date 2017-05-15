@@ -127,7 +127,36 @@ public class TextUI {
         } //while
 
     } //uiWaitBeginning    
-
+    
+    public void uiAwaitSpellOption(){
+        Scanner sc = new Scanner(System.in);
+        int num;
+        int numSpells = game.getPlayer().getSpells().size();
+        
+        if(numSpells == 1){
+        
+            do {
+            System.out.println("Select Option: ");
+            System.out.println("1 - Use spell " + game.getPlayer().getSpells().get(1) );
+            System.out.println("2 - Don't Use Spell ");
+            System.out.print("\nYour option : ");
+            num = sc.nextInt();
+        } while (num < 1 || num > 2);
+        game.setSpellOption(num);
+        }
+        else{
+        
+            do {
+            System.out.println("Select Option: ");
+            System.out.println("1 - Use spell " + game.getPlayer().getSpells().get(1) );
+            System.out.println("2 - Use spell " + game.getPlayer().getSpells().get(2) );
+            System.out.println("3 - Don't Use Spell ");
+            System.out.print("\nYour option : ");
+            num = sc.nextInt();
+        } while (num < 1 || num > 3);
+        game.setSpellOption(num);
+    }
+    }
     public void uiAWaitCardSelection() {
         Scanner sc = new Scanner(System.in);
         int flipCard;
@@ -321,7 +350,12 @@ public class TextUI {
                 uiAWaitDiceOption();
             }
         }
+    }  
+
+            }else if (state instanceof AwaitSpellOption) {
+                uiAWaitTrading();
+        }
+    }
     }
 
-    
 }

@@ -99,8 +99,9 @@ public class StateAdapter implements IStates{
         return this;
     }
 
-    @Override
-    public IStates spellSelected(int option) {
+    
+       @Override
+    public IStates rollDice() {
         return this;
     }
 
@@ -109,4 +110,8 @@ public class StateAdapter implements IStates{
         return this;
     }
     
+        @Override
+    public IStates setSpellOption(int option) {
+        return this;
+    }
 }

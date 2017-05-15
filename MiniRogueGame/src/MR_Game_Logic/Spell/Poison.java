@@ -19,6 +19,6 @@ public class Poison extends Spells{
     
     @Override
     public void effect(){
-        gamedata.getPlayer().setDmg(5);
+        gamedata.getPlayer().setDmg(gamedata.getPlayer().getDmg() + 5);
     }
 }
