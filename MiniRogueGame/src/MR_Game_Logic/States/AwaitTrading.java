@@ -22,6 +22,7 @@ public class AwaitTrading extends StateAdapter implements Constants {
     @Override
     public IStates skip() {
         getGame().checkCardEnd();
+        getGame();
         return new AwaitCardSelection(getGame());
 
     }
