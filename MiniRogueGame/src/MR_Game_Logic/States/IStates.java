@@ -29,6 +29,7 @@ public interface IStates {
     public IStates spellSelected(int option);
     public IStates sellOption(int option);
     public IStates buyOption(int option);
-    
+    //AwaitDiceOption
+    public IStates checkAttack();
     public IStates endGame();
 }

@@ -26,6 +26,9 @@ public class Card implements Serializable{
     public String name;
     public List<Card> cards;
     public List<Card> cardsBoss;
+    public int dmg;
+    public int reward;
+    public int hp;
     
     public Card(){
         cards = new ArrayList<>();
@@ -45,7 +48,7 @@ public class Card implements Serializable{
     public List<Card> getCardsBoss(int level){
         shuffleCardsBoss(level);
         return cardsBoss;
-    }
+    }   
     
     public void fillDeck(){
         cards.add(new Event());
@@ -82,4 +85,30 @@ public class Card implements Serializable{
     public Card getPos(int i){
         return cardsBoss.get(i);
     }
+
+    public int getDmg() {
+        return dmg;
+    }
+
+    public void setDmg(int dmg) {
+        this.dmg = dmg;
+    }
+
+    public int getReward() {
+        return reward;
+    }
+
+    public void setReward(int reward) {
+        this.reward = reward;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+    
+    
 }

@@ -98,7 +98,7 @@ public class AwaitTrading extends StateAdapter implements Constants {
 
     @Override
     public IStates spellSelected(int option) {
-
+        
         return this;
     }
 

@@ -299,6 +299,10 @@ public class TextUI {
                 break;
         }
     }
+    
+    private void uiAWaitDiceOption() {
+        
+    }
 
     public void run() {
         while (!quit) {
@@ -313,6 +317,11 @@ public class TextUI {
             } else if (state instanceof AwaitTrading) {
                 uiAWaitTrading();
             }
+            else if (state instanceof AwaitDiceOption) {
+                uiAWaitDiceOption();
+            }
         }
     }
+
+    
 }

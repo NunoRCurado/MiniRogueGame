@@ -103,5 +103,10 @@ public class StateAdapter implements IStates{
     public IStates spellSelected(int option) {
         return this;
     }
+
+    @Override
+    public IStates checkAttack() {
+        return this;
+    }
     
 }

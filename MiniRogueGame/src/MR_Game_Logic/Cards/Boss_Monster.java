@@ -11,9 +11,8 @@ import MR_Game_Logic.Card;
  * @author pedri
  */
 public class Boss_Monster extends Card {
-    public int dmg;
-    public int reward;
-    public int hp;
+
+
 
     public Boss_Monster(){
         this.name = "Boss Monster";
@@ -73,4 +72,9 @@ public class Boss_Monster extends Card {
         this.hp = hp;
     }
     
+    public String bossMonsterToString(){
+        String stats ="";
+        stats = "NAME " + name + " | HP " + hp + " | Damage " + dmg;
+        return stats;
+    }
 }

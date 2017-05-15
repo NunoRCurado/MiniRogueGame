@@ -30,6 +30,7 @@ public class GameData {
     private String currentCard;
     private int column;
     private String playerStats;
+    private Card card;
     
     public GameData(){
         dice = new Dice();
@@ -49,6 +50,7 @@ public class GameData {
         dungeon.createDungeon();
         player = new Player(difficulty, player.getName());
         currentCard = getDungeon().currentCard(arena, level, arenaLevel);
+        card = getDungeon().Card(arena, level, arenaLevel);
         uiText = "";
         return true;
     }
@@ -62,6 +64,7 @@ public class GameData {
         column = 1;
         dungeon.createDungeon();
         currentCard = getDungeon().currentCard(arena, level, arenaLevel);
+        card = getDungeon().Card(arena, level, arenaLevel);
         player = new Player(difficulty, player.getName());
         uiText = "";
         return true;
@@ -301,6 +304,14 @@ public class GameData {
         this.currentCard = currentCard;
     }
 
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
+    
     public int getColumn() {
         return column;
     }

@@ -82,6 +82,22 @@ public class Dungeon {
         return null;
     }
     
+    public Card Card(int area, int level, int areaLevel){
+        switch(level){
+            case 1:
+                return level1.get(area).get(areaLevel);
+            case 2:
+                return level2.get(area).get(areaLevel);
+            case 3:
+                return level3.get(area).get(areaLevel);
+            case 4:
+                return level4.get(area).get(areaLevel);
+            case 5:
+                return level5.get(area).get(areaLevel);               
+        }
+        return null;
+    }
+    
     public int currentColumn(int areaLevel){
         if(areaLevel == 0)
             return 1;

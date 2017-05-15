@@ -160,9 +160,9 @@ public class AwaitCardSelection extends StateAdapter{
         if(card == "Merchant")
             return new AwaitTrading(getGame());
         if(card == "Monster")
-            return this;
+            return new AwaitDiceOption(getGame());
         if(card == "Boss Monster")
-            return this;
+            return new AwaitDiceOption(getGame());
         return this;
     }
 }
