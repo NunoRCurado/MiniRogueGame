@@ -24,6 +24,8 @@ public class AwaitDiceOption extends StateAdapter{
         if( playerDmg >= monsterHp){
             getGame().setUiText("Matou o monstro");
             getGame().getPlayer().setXp(getGame().getPlayer().getXp() + getGame().getCard().getReward());
+            getGame().checkCardEnd();
+            getGame().checkLevelUp();
             return new AwaitCardSelection(getGame());
         }
         getGame().setUiText("Tem " + playerDmg + " de dano");

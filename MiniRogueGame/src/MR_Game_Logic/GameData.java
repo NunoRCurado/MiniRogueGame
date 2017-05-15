@@ -125,8 +125,9 @@ public class GameData {
             setColumn(getColumn() + 1);
             return;
         }
-        if (column == 4 && arena == 4 ||column == 4 && arena == 7 ||column == 4 && arena == 10 ||column == 4 && arena == 14) {
-            //falta boss-monster
+        if (column == 4 && arena == 2 ||column == 4 && arena == 4 ||column == 4 && arena == 7 ||column == 4 && arena == 10 ||column == 4 && arena == 14) {
+            setArenaLevel(getArenaLevel() + 1);
+            return;
         }
         if (column == 4){
             if (player.getFood() == 0) {

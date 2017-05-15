@@ -36,6 +36,8 @@ public class AwaitSpellOption extends StateAdapter {
         if( playerDmg >= monsterHp){
             getGame().setUiText("Matou o monstro");
             getGame().getPlayer().setXp(getGame().getPlayer().getXp() + getGame().getCard().getReward());
+            getGame().checkLevelUp();
+            getGame().checkCardEnd();
             return new AwaitCardSelection(getGame());
         }else{
             getGame().getPlayer().setHp(playerHealth - monsterDmg);
