@@ -27,10 +27,11 @@ public class AwaitDiceRoll extends StateAdapter {
           roll = getGame().getDice().getRoll();
           
           if(roll == 1){
-              //no dmg e discard
+              getGame().getPlayer().setDmg(getGame().getPlayer().getDmg() + 0);
+              //discard dice
           }
           else if(roll == 6){
-              getGame().getPlayer().setDmg(getGame().getPlayer().getDmg() + 6);
+              getGame().getPlayer().setDmg(getGame().getPlayer().getDmg() + roll);
           }
           else{
               getGame().getPlayer().setDmg(getGame().getPlayer().getDmg() + roll);
