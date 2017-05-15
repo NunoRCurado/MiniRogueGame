@@ -140,6 +140,10 @@ public class MR_Game
     public void setRestOption(int option){
         setState(getState().setRestOption(option));
     }
+    
+     public void setSpellOption(int option){
+        setState(getState().setSpellOption(option));
+    }
    
     public void skip(){
         setState(getState().skip());

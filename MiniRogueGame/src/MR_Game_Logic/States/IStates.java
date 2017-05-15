@@ -25,10 +25,11 @@ public interface IStates {
     //AwaitRest
     public IStates setRestOption(int option);
     //AwaitTrading
+    public IStates spellSelected();
     public IStates skip();
-    public IStates spellSelected(int option);
     public IStates sellOption(int option);
     public IStates buyOption(int option);
+    public IStates rollDice();
     
     public IStates endGame();
 }
