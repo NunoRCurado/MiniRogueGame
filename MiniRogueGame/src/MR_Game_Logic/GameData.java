@@ -98,7 +98,7 @@ public class GameData {
     
     public String dungeonToString(){
         String dungeon="";
-        dungeon = "LEVEL " + level + "|ARENA " + arena;
+        dungeon = "LEVEL " + level + "|ARENA " + arena + "|Coluna " + column;
         return dungeon;
     }
     

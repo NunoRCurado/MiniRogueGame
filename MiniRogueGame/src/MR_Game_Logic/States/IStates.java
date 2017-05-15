@@ -33,7 +33,7 @@ public interface IStates {
     //AwaitDiceOption
     public IStates checkAttack();
     public IStates rollDice();
-    
-
+    public IStates attack();
+    public IStates setSpellOption(int option);
     public IStates endGame();
 }

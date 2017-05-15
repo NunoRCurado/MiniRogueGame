@@ -110,5 +110,7 @@ public class Card implements Serializable{
         this.hp = hp;
     }
     
-    
+    public String toString(){
+        return "Card";
+    }
 }

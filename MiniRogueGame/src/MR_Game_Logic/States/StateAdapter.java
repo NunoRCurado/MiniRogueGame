@@ -110,8 +110,18 @@ public class StateAdapter implements IStates{
         return this;
     }
     
-        @Override
+    @Override
     public IStates setSpellOption(int option) {
+        return this;
+    }
+
+    @Override
+    public IStates spellSelected() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IStates attack() {
         return this;
     }
 }

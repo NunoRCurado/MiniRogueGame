@@ -48,31 +48,7 @@ public class Boss_Monster extends Card {
         }
     }
     
-    public int getDmg() {
-        return dmg;
-    }
-
-    public void setDmg(int dmg) {
-        this.dmg = dmg;
-    }
-
-    public int getReward() {
-        return reward;
-    }
-
-    public void setReward(int reward) {
-        this.reward = reward;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-    
-    public String bossMonsterToString(){
+    public String toString(){
         String stats ="";
         stats = "NAME " + name + " | HP " + hp + " | Damage " + dmg;
         return stats;

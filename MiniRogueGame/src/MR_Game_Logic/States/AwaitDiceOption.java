@@ -26,6 +26,7 @@ public class AwaitDiceOption extends StateAdapter{
             getGame().getPlayer().setXp(getGame().getPlayer().getXp() + getGame().getCard().getReward());
             return new AwaitCardSelection(getGame());
         }
+        getGame().setUiText("Tem " + playerDmg + " de dano");
         return new AwaitSpellOption(getGame());
     }
     //senao mando para spells

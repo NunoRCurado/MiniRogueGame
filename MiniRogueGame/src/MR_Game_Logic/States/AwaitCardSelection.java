@@ -6,6 +6,7 @@
 package MR_Game_Logic.States;
 
 import MR_Game_Logic.*;
+import MR_Game_Logic.Cards.*;
 import MR_Game_Logic.Spell.Fireball;
 import MR_Game_Logic.Spell.Healing;
 import MR_Game_Logic.Spell.Ice;
@@ -31,42 +32,42 @@ public class AwaitCardSelection extends StateAdapter{
             getGame().setUiText("Ganhou 1 de Gold");
             p.setGold(p.getGold() + 1);
         }
-        if (roll2 >= 5) {
+        if (roll >= 5) {
             switch (roll2) {
                 case 1:
                     p.setArmor(p.getArmor() + 1);
-                    getGame().setUiText("Ganhou 1 de Armor");
+                    getGame().setUiText(getGame().getUiText() + " e Ganhou 1 de Armor");
                     break;
                 case 2:
                     p.setXp(p.getXp() + 2);
-                    getGame().setUiText("Ganhou 2 de Xp");
+                    getGame().setUiText(getGame().getUiText() + " e Ganhou 2 de Xp");
                     break;
                 case 3:
                     if (p.spells.size() == 2) {
                         getGame().removesSpell();
                     }
-                    getGame().setUiText("Ganhou 1 Spell FireBall");
+                    getGame().setUiText(getGame().getUiText() + " e Ganhou 1 Spell FireBall");
                     p.spells.add(new Fireball());
                     break;
                 case 4:
                     if (p.spells.size() == 2) {
                         getGame().removesSpell();
                     }
-                    getGame().setUiText("Ganhou 1 Spell Ice");
+                    getGame().setUiText(getGame().getUiText() + " e Ganhou 1 Spell Ice");
                     p.spells.add(new Ice());
                     break;
                 case 5:
                     if (p.spells.size() == 2) {
                         getGame().removesSpell();
                     }
-                    getGame().setUiText("Ganhou 1 Spell Poison");
+                    getGame().setUiText(getGame().getUiText() + " e Ganhou 1 Spell Poison");
                     p.spells.add(new Poison());
                     break;
                 case 6:
                     if (p.spells.size() == 2) {
                         getGame().removesSpell();
                     }
-                    getGame().setUiText("Ganhou 1 Spell Healing");
+                    getGame().setUiText(getGame().getUiText() + " e Ganhou 1 Spell Healing");
                     p.spells.add(new Healing());
                     break;
             }
@@ -142,12 +143,11 @@ public class AwaitCardSelection extends StateAdapter{
                 getGame().setUiText("Ganhou 2 de Armor");
                 break;
             case 6:
-                //Fazer combate
-                //HP = dice + arena
-                //DMG = leveldungeon * 2
-                //REWARD = 2xp
                 getGame().setUiText("Fase de Combate");
-                break;
+                getGame().getDice().roll();
+                int rollDice = getGame().getDice().getRoll();
+                getGame().setCard(new Monster(getGame().getLevel(),getGame().getArena() , rollDice, true));
+                return new AwaitDiceRoll(getGame());
         }
         getGame().checkCardEnd();
         return this;
@@ -159,10 +159,16 @@ public class AwaitCardSelection extends StateAdapter{
             return new AwaitRest(getGame());
         if(card == "Merchant")
             return new AwaitTrading(getGame());
-        if(card == "Monster")
-            return new AwaitDiceOption(getGame());
-        if(card == "Boss Monster")
-            return new AwaitDiceOption(getGame());
+        if(card == "Monster"){
+            getGame().getDice().roll();
+            int rollDice = getGame().getDice().getRoll();
+            getGame().setCard(new Monster(getGame().getLevel(),getGame().getArena() , rollDice));
+            return new AwaitDiceRoll(getGame());
+        }
+        if(card == "Boss Monster"){
+            getGame().setCard(new Boss_Monster(getGame().getLevel()));
+            return new AwaitDiceRoll(getGame());
+        }
         return this;
     }
 }

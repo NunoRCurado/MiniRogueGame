@@ -128,35 +128,32 @@ public class TextUI {
 
     } //uiWaitBeginning    
     
-    public void uiAwaitSpellOption(){
+    public void uiAwaitSpellOption() {
         Scanner sc = new Scanner(System.in);
         int num;
         int numSpells = game.getPlayer().getSpells().size();
+
+        System.out.println(game.getUiText());
         
-        if(numSpells == 1){
-        
+        if (numSpells == 0) {
+            System.out.println("Nao tem spells para usar");
+            game.attack();
+        } else {
             do {
-            System.out.println("Select Option: ");
-            System.out.println("1 - Use spell " + game.getPlayer().getSpells().get(1) );
-            System.out.println("2 - Don't Use Spell ");
-            System.out.print("\nYour option : ");
-            num = sc.nextInt();
-        } while (num < 1 || num > 2);
-        game.setSpellOption(num);
+                System.out.println("Select Option: ");
+                System.out.println("1 - Use spell ");
+                System.out.println("2 - Don't Use Spell ");
+                System.out.print("\nYour option : ");
+                num = sc.nextInt();
+            } while (num < 1 || num > 2);
+            if (num == 1) {
+                game.setSpellOption(num);
+            } else {
+                game.attack();
+            }
         }
-        else{
-        
-            do {
-            System.out.println("Select Option: ");
-            System.out.println("1 - Use spell " + game.getPlayer().getSpells().get(1) );
-            System.out.println("2 - Use spell " + game.getPlayer().getSpells().get(2) );
-            System.out.println("3 - Don't Use Spell ");
-            System.out.print("\nYour option : ");
-            num = sc.nextInt();
-        } while (num < 1 || num > 3);
-        game.setSpellOption(num);
     }
-    }
+    
     public void uiAWaitCardSelection() {
         Scanner sc = new Scanner(System.in);
         int flipCard;
@@ -329,10 +326,24 @@ public class TextUI {
         }
     }
     
-    private void uiAWaitDiceOption() {
-        
+    public void uiAWaitDiceOption() {
+        game.checkAttack();
     }
 
+    public void uiAWaitDiceRoll() {
+        Scanner sc = new Scanner(System.in);
+        int num;
+        do {
+            System.out.println(game.getPlayerStats());
+            System.out.println(game.cardToString());
+            System.out.println("1 - Comecar Ataque ");
+            System.out.print("\nYour option : ");
+            num = sc.nextInt();
+
+        } while (num != 1);
+            game.rollDice();
+    }
+    
     public void run() {
         while (!quit) {
             IStates state = game.getState();
@@ -346,14 +357,14 @@ public class TextUI {
             } else if (state instanceof AwaitTrading) {
                 uiAWaitTrading();
             }
+            else if (state instanceof AwaitDiceRoll) {
+                uiAWaitDiceRoll();
+            }
             else if (state instanceof AwaitDiceOption) {
                 uiAWaitDiceOption();
             }
-        }
-    }  
-
-            }else if (state instanceof AwaitSpellOption) {
-                uiAWaitTrading();
+            else if (state instanceof AwaitSpellOption) {
+                uiAwaitSpellOption();
         }
     }
     }

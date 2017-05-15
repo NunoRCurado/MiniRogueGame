@@ -48,31 +48,14 @@ public class Monster extends Card{
         }
     }
     
-    public int getDmg() {
-        return dmg;
+    public Monster(int level , int area, int dice, boolean event){
+        this.name = "Monster";
+        this.hp = area + dice;
+        this.dmg = level * 2;
+        this.reward = 2;
     }
 
-    public void setDmg(int dmg) {
-        this.dmg = dmg;
-    }
-
-    public int getReward() {
-        return reward;
-    }
-
-    public void setReward(int reward) {
-        this.reward = reward;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-    
-    public String monsterToString(){
+    public String toString(){
         String stats ="";
         stats = "NAME " + name + " | HP " + hp + " | Damage " + dmg;
         return stats;

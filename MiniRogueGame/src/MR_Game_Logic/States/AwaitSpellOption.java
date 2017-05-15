@@ -26,4 +26,29 @@ public class AwaitSpellOption extends StateAdapter {
   
        return this;
     }
+    
+    @Override
+    public IStates attack() {
+        int playerDmg = getGame().getPlayer().getDmg();
+        int monsterHp = getGame().getCard().getHp();
+        int monsterDmg = getGame().getCard().getDmg();
+        int playerHealth = getGame().getPlayer().getHp() + getGame().getPlayer().getArmor();
+        if( playerDmg >= monsterHp){
+            getGame().setUiText("Matou o monstro");
+            getGame().getPlayer().setXp(getGame().getPlayer().getXp() + getGame().getCard().getReward());
+            return new AwaitCardSelection(getGame());
+        }else{
+            getGame().getPlayer().setHp(playerHealth - monsterDmg);
+            if(monsterDmg >= getGame().getPlayer().getArmor()){
+                getGame().getPlayer().setArmor(0);
+            }
+            if(getGame().isDead()){
+                getGame().setUiText("Morreu e perdeu o jogo");
+                return new AwaitBeginning(getGame());
+            }
+            getGame().getCard().setHp(monsterHp - playerDmg);
+        return new AwaitDiceRoll(getGame());
+    }
+    
+    }
 }

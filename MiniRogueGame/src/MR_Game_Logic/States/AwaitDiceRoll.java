@@ -19,7 +19,8 @@ public class AwaitDiceRoll extends StateAdapter {
     
     @Override
     public IStates rollDice(){
-        int roll;
+       
+       int roll;
        getGame().getPlayer().setDmg(0);
        for(int i = 1; i<= getGame().getPlayer().getRank(); i++){
           roll = 0;
@@ -36,6 +37,6 @@ public class AwaitDiceRoll extends StateAdapter {
           }
        }
         
-        return new AwaitDiceOption(g);
+        return new AwaitDiceOption(getGame());
     }
 }

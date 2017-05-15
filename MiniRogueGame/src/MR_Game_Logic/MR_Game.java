@@ -105,6 +105,10 @@ public class MR_Game
      public void setUiText(String clear){
          gameData.setUiText(clear);
      }
+     
+     public String cardToString(){
+         return gameData.getCard().toString();
+     }
     // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
     
 
@@ -169,4 +173,15 @@ public class MR_Game
         setState(getState().resolveCard(card));
     }
     
+    public void rollDice(){
+        setState(getState().rollDice());
+    }
+    
+    public void checkAttack(){
+        setState(getState().checkAttack());
+    }
+    
+    public void attack(){
+        setState(getState().attack());
+    }
 }
