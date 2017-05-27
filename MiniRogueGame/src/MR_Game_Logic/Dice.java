@@ -13,9 +13,11 @@ import java.io.Serializable;
  */
 public class Dice implements Serializable{
     Integer roll;
+    Boolean status;
 
     public Dice(){
         roll = 0;
+        status = false;
     }
     
     public void roll(){
@@ -25,4 +27,18 @@ public class Dice implements Serializable{
     public Integer getRoll(){
         return roll;
     }
+
+    public void setRoll(int roll) {
+        this.roll = roll;
+    }
+    
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+    
+    
 }

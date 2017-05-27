@@ -5,11 +5,11 @@ package MR_Text_UI;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author pedri
  */
+import MR_Game_Logic.FileManager;
 import MR_Game_Logic.MR_Game;
 import MR_Game_Logic.States.AwaitBeginning;
 import MR_Game_Logic.States.*;
@@ -22,12 +22,66 @@ public class TextUI {
 
     private MR_Game game;
     private boolean quit = false;
+    private FileManager fm;
+    private boolean flag = false;
+    
 
     public TextUI(MR_Game game) {
         this.game = game;
+        fm = new FileManager();
     }
 
-    public void uiAwaitBeginning() {
+    public void uiAwaitFirstBeginning() {
+        Scanner sc = new Scanner(System.in);
+        String option;
+        char c;
+        String name;
+        if (!flag) {
+            while (true) {
+                do {
+                    System.out.println();
+                    System.out.println("0 - Quit");
+                    System.out.println("1 - Load Game");
+                    System.out.println("2 - New Game");
+                    System.out.print("\nYour option : ");
+                    option = sc.next();
+
+                    if (option.length() >= 1) {
+                        c = option.charAt(0);
+                    } else {
+                        c = ' ';
+                    }
+
+                } while (c < '0' || c > '2');
+
+                switch (c) {
+                    case '0':
+                        quit = true;
+                        return;
+
+                    case '1':
+                        System.out.println("\nSave File Name: ");
+                        name = sc.next();
+                        if (fm.loadGame(this.game, name)) {
+                            this.game.loadGame();
+                        }
+                        return;
+                    case '2':
+                        flag = true;
+                        uiAwaitSecondBeginning();
+                    default:
+                        return;
+
+                } //switch
+
+            } //while
+        } else {
+            uiAwaitSecondBeginning();
+        }
+
+    } //uiWaitBeginning
+
+    public void uiAwaitSecondBeginning() {
         Scanner sc = new Scanner(System.in);
         BufferedReader bin = new BufferedReader(new InputStreamReader(System.in));
         String option;
@@ -38,7 +92,6 @@ public class TextUI {
         while (true) {
             do {
                 System.out.println();
-                System.out.println("0 - Quit");
                 System.out.println("1 - Set difficulty");
                 System.out.println("2 - Set the starting area");
                 System.out.println("3 - Start");
@@ -51,13 +104,9 @@ public class TextUI {
                     c = ' ';
                 }
 
-            } while (c < '0' || c > '3');
+            } while (c < '1' || c > '3');
 
             switch (c) {
-                case '0':
-                    quit = true;
-                    return;
-
                 case '1':
                     char o;
                     do {
@@ -127,14 +176,14 @@ public class TextUI {
         } //while
 
     } //uiWaitBeginning    
-    
+
     public void uiAwaitSpellOption() {
         Scanner sc = new Scanner(System.in);
         int num;
         int numSpells = game.getPlayer().getSpells().size();
 
         System.out.println(game.getUiText());
-        
+
         if (numSpells == 0) {
             System.out.println("Nao tem spells para usar");
             game.attack();
@@ -147,32 +196,44 @@ public class TextUI {
                 num = sc.nextInt();
             } while (num < 1 || num > 2);
             if (num == 1) {
+                
                 game.setSpellOption(num);
             } else {
                 game.attack();
             }
         }
     }
-    
+
     public void uiAWaitCardSelection() {
         Scanner sc = new Scanner(System.in);
         int flipCard;
         int cardChoosed;
-        game.getDice().roll();
         String card2;
+        String name;
         String card = game.getDungeon().currentCard(game.getArena(), game.getLevel(), game.getArenaLevel());
         int column = game.getColumn();
-        int roll = game.getDice().getRoll();
         System.out.println(game.getUiText());
         game.setUiText("");
-        System.out.println(game.getPlayerStats());      
+        System.out.println(game.getPlayerStats());
         System.out.println("\nFlip next card ?");
         System.out.println("\n1 - Yes");
         System.out.println("\n2 - No");
         System.out.print("\nYour option : ");
         flipCard = sc.nextInt();
         if (flipCard == 2) {
-            quit = true;
+            System.out.println("\nSave Game ?");
+            System.out.println("\n1 - Yes");
+            System.out.println("\n2 - No");
+            System.out.print("\nYour option : ");
+            flipCard = sc.nextInt();
+            if (flipCard == 1) {
+                System.out.println("\nSave File Name: ");
+                name = sc.next();
+                fm.saveGame(game, name);
+                quit = true;
+            } else {
+                quit = true;
+            }
         } else {
             System.out.println(game.getDungeonStats());
             if (column == 2) {
@@ -189,7 +250,7 @@ public class TextUI {
                 System.out.println("\n2 - " + card2);
                 System.out.print("\nYour option : ");
                 cardChoosed = sc.nextInt();
-                if(cardChoosed == 2){
+                if (cardChoosed == 2) {
                     card = card2;
                 }
             }
@@ -202,13 +263,13 @@ public class TextUI {
                 System.out.println("\n=== Card 2 === \n");
                 System.out.println(card2);
                 System.out.println("\n============ \n");
-                
+
                 System.out.println("\nChoose card");
                 System.out.println("\n1 - " + card);
                 System.out.println("\n2 - " + card2);
                 System.out.print("\nYour option : ");
                 cardChoosed = sc.nextInt();
-                if(cardChoosed == 2){
+                if (cardChoosed == 2) {
                     card = card2;
                 }
             }
@@ -216,50 +277,8 @@ public class TextUI {
             System.out.println("\n=== Card === \n");
             System.out.println(card);
             System.out.println("\n============ \n");
-            if (card == "Trap") {
-                System.out.println("First Roll : " + roll);
-                game.getDice().roll();
-                int skill = game.getDice().getRoll();
-                System.out.println("Skill Check Roll : " + skill);
 
-                System.out.println("1 - Mold Miasma (-1 Food)");
-                System.out.println("2 - Tripwire (-1 Gold) ");
-                System.out.println("3 - Acid Mist (-1 Armor) ");
-                System.out.println("4 - Spring Blades (-1 Hp) ");
-                System.out.println("5 - Moving Walls (-1 Xp) ");
-                System.out.println("6 - Pit ");
-
-                game.resolveTrapCard(roll, skill);
-            }
-            if (card == "Event") {
-                System.out.println("Roll : " + roll);
-                System.out.println("1 - Found Ration (+1 Food)");
-                System.out.println("2 - Found Health Potion (+2 Health) ");
-                System.out.println("3 - Found Loot (+2 Gold) ");
-                System.out.println("4 - Found Whetstone (+2Xp) ");
-                System.out.println("5 - Found Armor (+1 Armor) ");
-                System.out.println("6 - Monster ");
-                game.resolveEventCard(roll);
-            }
-            if (card == "Treasure") {
-                System.out.println("Roll : " + roll);
-                game.getDice().roll();
-                int roll2 = game.getDice().getRoll();
-                if (roll >= 5) {
-                    System.out.println("Roll maior que 5, recebe um item");
-                    System.out.println("Second Roll : " + roll2);
-                    System.out.println("1 - Armor Piece (+1 Armor)");
-                    System.out.println("2 - Better Weapon (+2 Xp) ");
-                    System.out.println("3 - Firebal Spell ");
-                    System.out.println("4 - Ice Spell ");
-                    System.out.println("5 - Poison Spell ");
-                    System.out.println("6 - Healing Spell ");
-                    game.resolveTreasureCard(roll, roll2);
-                } else {
-                    game.resolveTreasureCard(roll, roll2);
-                }
-            }
-            game.resolveCard(card);
+            game.resolveCard(card);       
         }
     }
 
@@ -320,53 +339,75 @@ public class TextUI {
                 game.sellOption(option);
                 break;
             case 3:
-                System.out.println("|=========Card Skipped========|");
+                System.out.println("\n|=========Card Skipped========|\n");
                 game.skip();
                 break;
         }
     }
-    
+
     public void uiAWaitDiceOption() {
+        System.out.println(game.getDicesString());
         game.checkAttack();
     }
 
     public void uiAWaitDiceRoll() {
         Scanner sc = new Scanner(System.in);
         int num;
+        if (!game.checkCrits()) {
+            do {
+                System.out.println(game.getPlayerStats());
+                System.out.println(game.cardToString());
+                System.out.println("1 - Atacar ");
+                System.out.print("\nYour option : ");
+                num = sc.nextInt();
+
+            } while (num != 1);
+            game.rollDice();
+        } else {
+            uiCriticalDice();
+        }
+    }
+
+    public void uiCriticalDice() {
+        Scanner sc = new Scanner(System.in);
+        int num;
+        
         do {
-            System.out.println(game.getPlayerStats());
-            System.out.println(game.cardToString());
-            System.out.println("1 - Comecar Ataque ");
+            System.out.println(game.getDicesString());
+            System.out.println("Reroll Critical Dice");
+            System.out.println("1 - Yes");
+            System.out.println("2 - No");
             System.out.print("\nYour option : ");
             num = sc.nextInt();
 
-        } while (num != 1);
+        } while (num < 1 || num > 2);
+        //if (num == 1) {
+            game.critDices(num);
+       // } else {
             game.rollDice();
+        //}
     }
-    
+
     public void run() {
         while (!quit) {
             IStates state = game.getState();
 
             if (state instanceof AwaitBeginning) {
-                uiAwaitBeginning();
+                uiAwaitFirstBeginning();
             } else if (state instanceof AwaitCardSelection) {
                 uiAWaitCardSelection();
             } else if (state instanceof AwaitRest) {
                 uiAWaitRest();
             } else if (state instanceof AwaitTrading) {
                 uiAWaitTrading();
-            }
-            else if (state instanceof AwaitDiceRoll) {
+            } else if (state instanceof AwaitDiceRoll) {
                 uiAWaitDiceRoll();
-            }
-            else if (state instanceof AwaitDiceOption) {
+            } else if (state instanceof AwaitDiceOption) {
                 uiAWaitDiceOption();
-            }
-            else if (state instanceof AwaitSpellOption) {
+            } else if (state instanceof AwaitSpellOption) {
                 uiAwaitSpellOption();
+            }
         }
-    }
     }
 
 }

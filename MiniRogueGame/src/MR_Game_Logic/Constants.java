@@ -34,5 +34,12 @@ public interface Constants {
     public static final int BUY = 1;
     public static final int SELL = 2;
     public static final int SKIP = 3;
+    
+    //COMBAT FASE
+    public static final int DEFAULTDICE = 0;
+    public static final int CRITICAL = 1;
+    public static final int FEAT = 2;
+    public static final int MISS = 3;
+    public static final int NORMALDICE = 3;
    
 }

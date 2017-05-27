@@ -7,16 +7,19 @@ package MR_Game_Logic;
 
 import MR_Game_Logic.Cards.*;
 import static MR_Game_Logic.Constants.CASUAL;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.HashMap;
+import static MR_Game_Logic.Constants.DEFAULTDICE;
 
 /**
  *
  * @author pedri
  */
-public class GameData {
+public class GameData implements Serializable{
     private Player player;
     private Dungeon dungeon;
     private int level;
@@ -25,12 +28,13 @@ public class GameData {
     private int difficulty;
     private Dice dice;
     private boolean fight;
-    private int arenaLevel;
+    private int cardPosition;
     private String uiText;
     private String currentCard;
     private int column;
     private String playerStats;
     private Card card;
+    private boolean crit = false;
     
     public GameData(){
         dice = new Dice();
@@ -44,27 +48,27 @@ public class GameData {
         level = 1;
         numDices = 1;
         arena = 1;
-        arenaLevel = 0;
+        cardPosition = 0;
         fight = false;
         column = 1;
         dungeon.createDungeon();
         player = new Player(difficulty, player.getName());
-        currentCard = getDungeon().currentCard(arena, level, arenaLevel);
-        card = getDungeon().Card(arena, level, arenaLevel);
+        currentCard = getDungeon().currentCard(arena, level, cardPosition);
+        card = getDungeon().Card(arena, level, cardPosition);
         uiText = "";
         return true;
     }
     
     public boolean initializeOnArea(int area){
         arena = area;
-        arenaLevel = 0;
+        cardPosition = 0;
         setLevelByArena(area);
         numDices = 1;
         fight = false;
         column = 1;
         dungeon.createDungeon();
-        currentCard = getDungeon().currentCard(arena, level, arenaLevel);
-        card = getDungeon().Card(arena, level, arenaLevel);
+        currentCard = getDungeon().currentCard(arena, level, cardPosition);
+        card = getDungeon().Card(arena, level, cardPosition);
         player = new Player(difficulty, player.getName());
         uiText = "";
         return true;
@@ -74,18 +78,21 @@ public class GameData {
         if(player.getXp() >= 6 && player.getRank() == 1){
             player.setXp(player.getXp() - 6);
             player.setRank(2);
+            player.dices.add(new Dice());
             numDices = 2;
             return true;
         }
         if(player.getXp() >= 12 && player.getRank() == 2){
             player.setXp(player.getXp() - 12);
             player.setRank(3);
+            player.dices.add(new Dice());
             numDices = 3;
             return true;
         }
         if(player.getXp() >= 18 && player.getRank() == 3){
             player.setXp(player.getXp() - 18);
             player.setRank(4);
+            player.dices.add(new Dice());
             numDices = 4;
             return true;
         }
@@ -115,18 +122,39 @@ public class GameData {
         }
         return false;
     }
+
+    public boolean isCrit() {
+        return crit;
+    }
+
+    public void setCrit(boolean crit) {
+        this.crit = crit;
+    }
+    
+    public boolean checkCrits(){
+        for (int i = 0; i < player.dices.size(); i++) {
+            if(player.dices.get(i).getStatus())
+                return true;
+        }
+        return false;
+    }
     
     public void checkCardEnd() {
         if (column == 2) {
-            if(arenaLevel == 1)
-                setArenaLevel(getArenaLevel() + 2);
+            if(cardPosition == 1)
+                setCardPosition(getCardPosition() + 2);
             else
-                setArenaLevel(getArenaLevel() + 1);
+                setCardPosition(getCardPosition() + 1);
             setColumn(getColumn() + 1);
             return;
         }
-        if (column == 4 && arena == 2 ||column == 4 && arena == 4 ||column == 4 && arena == 7 ||column == 4 && arena == 10 ||column == 4 && arena == 14) {
-            setArenaLevel(getArenaLevel() + 1);
+        if (column == 4 && arena == 2 || column == 4 && arena == 4 ||column == 4 && arena == 7 ||column == 4 && arena == 10 ||column == 4 && arena == 14) {
+            //falta boss-monster
+            setColumn(getColumn() + 1);
+             if(cardPosition == 4)
+                setCardPosition(getCardPosition() + 2);
+            else
+                setCardPosition(getCardPosition() + 1);
             return;
         }
         if (column == 4){
@@ -136,11 +164,24 @@ public class GameData {
                 player.setFood(player.getFood() - 1);
             }
             setArena(getArena() + 1);
-            setArenaLevel(0);
+            setCardPosition(0);
             setColumn(1);
             return;
         }
-        setArenaLevel(getArenaLevel() + 1);
+        if (column == 5){
+            if (player.getFood() == 0) {
+                player.setHp(player.getHp() - 2);
+            } else {
+                player.setFood(player.getFood() - 1);
+            }
+            setArena(getArena() + 1);
+            setCardPosition(0);
+            setColumn(1);
+            setLevel(getLevel() + 1);
+            return;
+        }
+        
+        setCardPosition(getCardPosition() + 1);
         setColumn(getColumn() + 1);
     }
     
@@ -159,42 +200,62 @@ public class GameData {
             case 1:
                 setArena(3);
                 setLevel(2);
+                setCardPosition(0);
+                setColumn(1);
                 break;
             case 2:
                 setArena(4);
                 setLevel(2);
+                setCardPosition(0);
+                setColumn(1);
                 break;
             case 3:
                 setArena(5);
                 setLevel(3);
+                setCardPosition(0);
+                setColumn(1);
                 break;
             case 4:
                 setLevel(3);
                 setArena(6);
+                setCardPosition(0);
+                setColumn(1);
                 break;
             case 5:
                 setLevel(4);
                 setArena(8);
+                setCardPosition(0);
+                setColumn(1);
                 break;
             case 6:
                 setArena(9);
                 setLevel(4);
+                setCardPosition(0);
+                setColumn(1);
                 break;
             case 7:
                 setArena(10);
                 setLevel(4);
+                setCardPosition(0);
+                setColumn(1);
                 break;
             case 8:
                 setArena(11);
                 setLevel(5);
+                setCardPosition(0);
+                setColumn(1);
                 break;
             case 9:
                 setArena(12);
                 setLevel(5);
+                setCardPosition(0);
+                setColumn(1);
                 break;
             case 10:
                 setArena(13);
                 setLevel(5);
+                setCardPosition(0);
+                setColumn(1);
                 break;
         }
     }
@@ -273,12 +334,12 @@ public class GameData {
         this.dice = dice;
     }
 
-    public int getArenaLevel() {
-        return arenaLevel;
+    public int getCardPosition() {
+        return cardPosition;
     }
 
-    public void setArenaLevel(int arenaLevel) {
-        this.arenaLevel = arenaLevel;
+    public void setCardPosition(int cardPosition) {
+        this.cardPosition = cardPosition;
     }
     
     public boolean isFight() {

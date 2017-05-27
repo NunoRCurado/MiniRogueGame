@@ -46,9 +46,10 @@ public class AwaitTrading extends StateAdapter implements Constants {
                 getGame().setUiText("Nao tem spells para vender");
                 return this;
             }
-            if(getGame().getPlayer().findSpell("fire")){
-                getGame().getPlayer().removeSpell("fire");
-                getGame().setUiText("Vendeu o spell Fireball");
+            if(getGame().getPlayer().findSpell("fireball")){
+                getGame().getPlayer().removeSpell("fireball");
+                p.setGold(pGold + 4);
+                getGame().setUiText("Vendeu o spell Fireball e ganhou 4 de Gold");
             }
             else{
                 getGame().setUiText("Nao tem este spell");
@@ -61,7 +62,8 @@ public class AwaitTrading extends StateAdapter implements Constants {
             }
             if(getGame().getPlayer().findSpell("ice")){
                 getGame().getPlayer().removeSpell("ice");
-                getGame().setUiText("Vendeu o spell Ice");
+                p.setGold(pGold + 4);
+                getGame().setUiText("Vendeu o spell Ice e ganhou 4 de Gold");
             }
             else{
                 getGame().setUiText("Nao tem este spell");
@@ -74,7 +76,8 @@ public class AwaitTrading extends StateAdapter implements Constants {
             }
             if(getGame().getPlayer().findSpell("poison")){
                 getGame().getPlayer().removeSpell("poison");
-                getGame().setUiText("Vendeu o spell Poison");
+                p.setGold(pGold + 4);
+                getGame().setUiText("Vendeu o spell Poison e ganhou 4 de Gold");
             }
             else{
                 getGame().setUiText("Nao tem este spell");
@@ -87,7 +90,8 @@ public class AwaitTrading extends StateAdapter implements Constants {
             }
             if(getGame().getPlayer().findSpell("healing")){
                 getGame().getPlayer().removeSpell("healing");
-                getGame().setUiText("Vendeu o spell Healing");
+                p.setGold(pGold + 4);
+                getGame().setUiText("Vendeu o spell Healing e ganhou 4 de Gold");
             }
             else{
                 getGame().setUiText("Nao tem este spell");
@@ -111,6 +115,7 @@ public class AwaitTrading extends StateAdapter implements Constants {
                     getGame().setUiText("Nao tem Gold suficiente");
                     break;
                 }
+                getGame().setUiText("Comprou Ration e ganhou 1 de Food");
                 p.setGold(pGold - 1);
                 p.setFood(pFood + 1);
                 break;
@@ -119,6 +124,7 @@ public class AwaitTrading extends StateAdapter implements Constants {
                     getGame().setUiText("Nao tem Gold suficiente");
                     break;
                 }
+                getGame().setUiText("Comprou Health Potion e ganhou 1 de Hp");
                 p.setGold(pGold - 1);
                 p.setHp(pHealth + 1);
                 break;
@@ -127,6 +133,7 @@ public class AwaitTrading extends StateAdapter implements Constants {
                     getGame().setUiText("Nao tem Gold suficiente");
                     break;
                 }
+                getGame().setUiText("Comprou Big Health Potion e ganhou 4 de Hp");
                 p.setGold(pGold - 3);
                 p.setHp(pHealth + 4);
                 break;
@@ -135,6 +142,7 @@ public class AwaitTrading extends StateAdapter implements Constants {
                     getGame().setUiText("Nao tem Gold suficiente");
                     break;
                 }
+                getGame().setUiText("Comprou Armor Piece e ganhou 1 de Armor");
                 p.setGold(pGold - 6);
                 p.setArmor(pArmor + 1);
                 break;
@@ -147,6 +155,7 @@ public class AwaitTrading extends StateAdapter implements Constants {
                 if (pSpell.size() == 2) {
                     pSpell.remove(0);
                 }
+                getGame().setUiText("Comprou Fireball Spell");
                 pSpell.add(new Fireball());
                 break;
             case 6://ice
@@ -158,6 +167,7 @@ public class AwaitTrading extends StateAdapter implements Constants {
                 if (pSpell.size() == 2) {
                     pSpell.remove(0);
                 }
+                getGame().setUiText("Comprou Ice Spell");
                 pSpell.add(new Ice());
                 break;
             case 7://poison
@@ -169,6 +179,7 @@ public class AwaitTrading extends StateAdapter implements Constants {
                 if (pSpell.size() == 2) {
                     pSpell.remove(0);
                 }
+                getGame().setUiText("Comprou Poison Spell");
                 pSpell.add(new Poison());
                 break;
             case 8://Heal
@@ -180,6 +191,7 @@ public class AwaitTrading extends StateAdapter implements Constants {
                 if (pSpell.size() == 2) {
                     pSpell.remove(0);
                 }
+                getGame().setUiText("Comprou Healing Spell");
                 pSpell.add(new Healing());
                 break;
         }

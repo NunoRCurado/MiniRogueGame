@@ -5,14 +5,16 @@
  */
 package MR_Game_Logic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  *
  * @author pedri
  */
-public class Player implements Constants{
+public class Player implements Constants, Serializable{
     public int hp;
     public int gold;
     public int food;
@@ -22,6 +24,8 @@ public class Player implements Constants{
     public int xp;
     public String name;
     public int dmg;
+    public List<Dice> dices;
+    public String dicesString;
     
     public Player(){
         
@@ -38,6 +42,9 @@ public class Player implements Constants{
                 this.rank = 1;
                 this.xp = 0;
                 this.spells = new ArrayList<>();
+                this.dices = new ArrayList<>();
+                this.dices.add(new Dice());
+                this.dmg = 0;
                 break;
             case HARD:
                 this.name = name;
@@ -48,6 +55,9 @@ public class Player implements Constants{
                 this.rank = 1;
                 this.xp = 0;
                 this.spells = new ArrayList<>();
+                this.dices = new ArrayList<>();
+                this.dices.add(new Dice());
+                this.dmg = 0;
                 break;
             case IMPOSSIBLE:
                 this.name = name;
@@ -57,17 +67,23 @@ public class Player implements Constants{
                 this.food = 3;
                 this.rank = 1;
                 this.xp = 0;
+                this.dices = new ArrayList<>();
+                this.dices.add(new Dice());
                 this.spells = new ArrayList<>();
+                this.dmg = 0;
                 break;
             default: //CASUAL
                 this.name = name;
-                this.hp = 5;
+                this.hp = 200;
                 this.armor = 1;
                 this.gold = 8;
                 this.food = 6;
                 this.rank = 1;
                 this.xp = 0;
+                this.dices = new ArrayList<>();
+                this.dices.add(new Dice());
                 this.spells = new ArrayList<>();
+                this.dmg = 0;
                 break;
         }
     }
@@ -143,6 +159,14 @@ public class Player implements Constants{
     public void setDmg(int dmg) {
         this.dmg = dmg;
     }
+
+    public List<Dice> getDices() {
+        return dices;
+    }
+
+    public void setDices(List<Dice> dices) {
+        this.dices = dices;
+    }
     
     public Boolean findSpell(String spellName) {
         for (int i = 0; i < this.spells.size(); i++) {
@@ -177,4 +201,12 @@ public class Player implements Constants{
         return stats;
     }
     
+    public String dicesToString(){
+       
+        String dices ="Dices : ";
+        for (int i = 0; i < this.dices.size(); i++) {
+            dices += this.dices.get(i).getRoll() + " ";
+        }
+        return dices;
+    }
 }

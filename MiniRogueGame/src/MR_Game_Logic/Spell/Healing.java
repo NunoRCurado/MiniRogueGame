@@ -5,6 +5,7 @@
  */
 package MR_Game_Logic.Spell;
 
+import MR_Game_Logic.GameData;
 import MR_Game_Logic.Spells;
 
 /**
@@ -18,7 +19,7 @@ public class Healing extends Spells{
     }
     
     @Override
-    public void effect(){
-        gamedata.getPlayer().setHp(gamedata.getPlayer().getHp() + 8);
+    public void effect(GameData gameData){
+        gameData.getPlayer().setHp(gameData.getPlayer().getHp() + 8);
     }
 }

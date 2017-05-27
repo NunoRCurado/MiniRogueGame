@@ -6,7 +6,7 @@
 package MR_Game_Logic;
 
 import MR_Game_Logic.Card;
-import MR_Game_Logic.Cards.Boss_Monster;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author pedri
  */
-public class Dungeon {
+public class Dungeon implements Serializable{
     Card card;
     List<Card> cards;
     List<Card> cardsBoss;

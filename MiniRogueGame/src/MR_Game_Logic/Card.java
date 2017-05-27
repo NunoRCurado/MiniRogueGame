@@ -5,7 +5,6 @@
  */
 package MR_Game_Logic;
 
-import MR_Game_Logic.Cards.Boss_Monster;
 import MR_Game_Logic.Cards.Event;
 import MR_Game_Logic.Cards.Merchant;
 import MR_Game_Logic.Cards.Monster;
@@ -26,10 +25,7 @@ public class Card implements Serializable{
     public String name;
     public List<Card> cards;
     public List<Card> cardsBoss;
-    public int dmg;
-    public int reward;
-    public int hp;
-    
+
     public Card(){
         cards = new ArrayList<>();
         cardsBoss = new ArrayList<>();
@@ -74,43 +70,22 @@ public class Card implements Serializable{
        long seed = System.nanoTime();
        Collections.shuffle(cardsBoss, new Random(seed));
        for(int i = 0; i < cardsBoss.size(); i++){
-           if( getPos(i) instanceof Boss_Monster){
-               cardsBoss.remove(i);
-               break;
+           if( getPos(i) instanceof Monster){
+               if (getPos(i).getName() == "Boss Monster") {
+                cardsBoss.remove(i);
+                break;   
+               }
            }
        }
-       cardsBoss.add(new Boss_Monster(level));
+       cardsBoss.add(new Monster(level));
     }
     
     public Card getPos(int i){
         return cardsBoss.get(i);
     }
-
-    public int getDmg() {
-        return dmg;
-    }
-
-    public void setDmg(int dmg) {
-        this.dmg = dmg;
-    }
-
-    public int getReward() {
-        return reward;
-    }
-
-    public void setReward(int reward) {
-        this.reward = reward;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
     
     public String toString(){
         return "Card";
     }
+    
 }

@@ -31,7 +31,7 @@ public class AwaitBeginning extends StateAdapter{
     @Override
     public IStates setStartingArea(int area){
         getGame().setArena(area);
-        getGame().setArenaLevel(area);
+        getGame().setCardPosition(area);
         return this;
     }
     
@@ -46,4 +46,10 @@ public class AwaitBeginning extends StateAdapter{
         
         return this;
     }
+    
+    @Override
+    public IStates loadGame(){
+        return new AwaitCardSelection(getGame());
+    }
+    
 }

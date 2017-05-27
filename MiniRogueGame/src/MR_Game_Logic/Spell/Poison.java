@@ -5,6 +5,7 @@
  */
 package MR_Game_Logic.Spell;
 
+import MR_Game_Logic.GameData;
 import MR_Game_Logic.Spells;
 
 /**
@@ -18,7 +19,7 @@ public class Poison extends Spells{
     }
     
     @Override
-    public void effect(){
-        gamedata.getPlayer().setDmg(gamedata.getPlayer().getDmg() + 5);
+    public void effect(GameData gameData){
+        gameData.getPlayer().setDmg(gameData.getPlayer().getDmg() + 5);
     }
 }

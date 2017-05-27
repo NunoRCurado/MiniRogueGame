@@ -16,4 +16,5 @@ public class Merchant extends Card{
     public Merchant(){
         this.name = "Merchant";
     }
+    
 }

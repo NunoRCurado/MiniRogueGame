@@ -17,11 +17,9 @@ public interface IStates {
     public IStates setDifficulty(int difficulty);
     public IStates setStartingArea(int area);
     public IStates startGame();
+    public IStates loadGame();
     //AwaitCardSelection
     public IStates resolveCard(String card);
-    public IStates resolveTreasureCard(int roll, int roll2);
-    public IStates resolveTrapCard(int firstRoll, int SecondRoll);
-    public IStates resolveEventCard(int option);
     //AwaitRest
     public IStates setRestOption(int option);
     //AwaitTrading
@@ -33,6 +31,7 @@ public interface IStates {
     //AwaitDiceOption
     public IStates checkAttack();
     public IStates rollDice();
+    public IStates critDices(int num);
     public IStates attack();
     public IStates setSpellOption(int option);
     public IStates endGame();

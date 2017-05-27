@@ -26,7 +26,9 @@ public class AwaitRest extends StateAdapter{
         if(option == 1){
             p.setXp(pXp + 1);
             getGame().setUiText("Ganhou 1 de Xp");
-            getGame().checkLevelUp();
+            if(getGame().checkLevelUp()){
+                        getGame().setUiText(getGame().getUiText() + "\n||=== Evoluiu para o Rank " + getGame().getPlayer().getRank() + "===||");
+                    }
         }
         if(option == 2){
             getGame().setUiText("Ganhou 1 de Food");

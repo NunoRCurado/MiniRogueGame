@@ -1,20 +1,21 @@
 package MR_Game_Logic;
 
 import MR_Game_Logic.States.*;
+import java.io.Serializable;
 
 /**
  *
  * @author pedri
  */
 
-public class MR_Game
+public class MR_Game implements Serializable
 {    
     private GameData gameData;
     private IStates state; 
     
     public MR_Game()
     {
-        gameData = new GameData();
+        this.gameData = new GameData();
         setState(new AwaitBeginning(gameData));
     }
 
@@ -52,7 +53,7 @@ public class MR_Game
     
     public int getArenaLevel()
     {
-        return gameData.getArenaLevel();
+        return gameData.getCardPosition();
     }
     
     public int getColumn()
@@ -95,9 +96,23 @@ public class MR_Game
         return gameData.getUiText();
     }
     
+    public boolean isCrit(){
+        return gameData.isCrit();
+    }
+    
+    public boolean checkCrits(){
+        return gameData.checkCrits();
+    }
+    
     public String getPlayerStats(){
        return gameData.getPlayer().playerToString();
     }
+    
+    public String getDicesString(){
+       return gameData.getPlayer().dicesToString();
+    }
+    
+    
      public String getDungeonStats(){
        return gameData.dungeonToString();
      }
@@ -129,16 +144,8 @@ public class MR_Game
         setState(getState().startGame());
     }
 
-    public void resolveTreasureCard(int roll, int roll2){
-        setState(getState().resolveTreasureCard(roll, roll2));
-    }
-    
-    public void resolveTrapCard(int firstRoll, int SecondRoll){
-        setState(getState().resolveTrapCard(firstRoll, SecondRoll));
-    }
-    
-    public void resolveEventCard(int option){
-        setState(getState().resolveEventCard(option));
+    public void loadGame(){
+        setState(getState().loadGame());
     }
     
     public void setRestOption(int option){
@@ -175,6 +182,10 @@ public class MR_Game
     
     public void rollDice(){
         setState(getState().rollDice());
+    }
+    
+    public void critDices(int num){
+        setState(getState().critDices(num));
     }
     
     public void checkAttack(){

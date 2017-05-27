@@ -17,8 +17,4 @@ public class Ice extends Spells{
         this.name = "Ice";
     }
     
-    @Override
-    public void effect(){
-        
-    }
 }

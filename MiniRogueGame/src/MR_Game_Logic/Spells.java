@@ -7,16 +7,14 @@ package MR_Game_Logic;
 
 import java.util.ArrayList;
 import java.util.List;
-import MR_Game_Logic.GameData;
-import MR_Game_Logic.Player;
+import MR_Game_Logic.*;
+import java.io.Serializable;
 /**
  *
  * @author Foca
  */
-public class Spells {
+public class Spells implements Serializable{
     public String name;
-    public Player player;
-    public GameData gamedata;
     
     
     public Spells(){
@@ -30,10 +28,10 @@ public class Spells {
         this.name = name;
     }
 
-    public void effect(){
+    public void effect(GameData gameData){
     }
     
-    public void removeEffect(){
+    public void removeEffect(GameData gameData){
         
     }
 }

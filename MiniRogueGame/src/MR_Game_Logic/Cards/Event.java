@@ -17,4 +17,15 @@ public class Event extends Card implements Constants{
     public Event(){
         this.name = "Event";
     }
+    
+    public String toString(){
+        String toString;
+        toString = "1 - Found Ration (+1 Food)\n" +
+                "2 - Found Health Potion (+2 Health)\n" +
+                "3 - Found Loot (+2 Gold)\n" +
+                "4 - Found Whetstone (+2Xp)\n" +
+                "5 - Found Armor (+1 Armor)\n" +
+                "6 - Monster\n";
+        return toString;
+    }
 }
