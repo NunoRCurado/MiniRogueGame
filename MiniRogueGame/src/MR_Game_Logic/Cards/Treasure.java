@@ -15,7 +15,7 @@ public class Treasure extends Card{
     public Treasure(){
         this.name = "Treasure";
     }
-    
+    @Override
     public String toString(){
         String toString = "";
         toString = "1 - Armor Piece (+1 Armor)\n"+

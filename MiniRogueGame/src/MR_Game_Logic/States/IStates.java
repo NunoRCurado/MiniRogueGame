@@ -31,8 +31,9 @@ public interface IStates {
     //AwaitDiceOption
     public IStates checkAttack();
     public IStates rollDice();
-    public IStates critDices(int num);
+    public IStates critDices(int num, int option);
     public IStates attack();
     public IStates setSpellOption(int option);
     public IStates endGame();
+    public IStates performFeat(int num, int option);
 }

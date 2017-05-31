@@ -179,7 +179,7 @@ public class TextUI {
 
     public void uiAwaitSpellOption() {
         Scanner sc = new Scanner(System.in);
-        int num;
+        int num, spell;
         int numSpells = game.getPlayer().getSpells().size();
 
         System.out.println(game.getUiText());
@@ -194,10 +194,14 @@ public class TextUI {
                 System.out.println("2 - Don't Use Spell ");
                 System.out.print("\nYour option : ");
                 num = sc.nextInt();
-            } while (num < 1 || num > 2);
-            if (num == 1) {
-                
-                game.setSpellOption(num);
+            } while (num < 1 || num > 2);//Fazer igual ao feat
+            if (num != 2) {
+                do {
+                    System.out.println(game.getValidSpellsToString());
+                    System.out.print("\nYour option : ");
+                    spell = sc.nextInt();
+                } while (spell < 1 || spell > 2);
+                game.setSpellOption(spell - 1);
             } else {
                 game.attack();
             }
@@ -346,6 +350,7 @@ public class TextUI {
     }
 
     public void uiAWaitDiceOption() {
+        System.out.println("A Atacar ");
         System.out.println(game.getDicesString());
         game.checkAttack();
     }
@@ -353,10 +358,10 @@ public class TextUI {
     public void uiAWaitDiceRoll() {
         Scanner sc = new Scanner(System.in);
         int num;
+        System.out.println(game.getPlayerStats());
+        System.out.println(game.cardToString());
         if (!game.checkCrits()) {
             do {
-                System.out.println(game.getPlayerStats());
-                System.out.println(game.cardToString());
                 System.out.println("1 - Atacar ");
                 System.out.print("\nYour option : ");
                 num = sc.nextInt();
@@ -370,8 +375,7 @@ public class TextUI {
 
     public void uiCriticalDice() {
         Scanner sc = new Scanner(System.in);
-        int num;
-        
+        int num, option = 0;
         do {
             System.out.println(game.getDicesString());
             System.out.println("Reroll Critical Dice");
@@ -379,13 +383,44 @@ public class TextUI {
             System.out.println("2 - No");
             System.out.print("\nYour option : ");
             num = sc.nextInt();
-
         } while (num < 1 || num > 2);
-        //if (num == 1) {
-            game.critDices(num);
-       // } else {
-            game.rollDice();
-        //}
+        if(num != 2){
+        do {
+            System.out.println(game.getDicesString());
+            System.out.println("Select Crit Dice: ");
+            System.out.println(game.getCritDicesString());
+            System.out.print("\nYour option : ");
+            option = sc.nextInt();
+        } while (option < 1 || option > 4);
+            game.critDices(num, option - 1);
+        }else
+            game.critDices(num, option - 1);
+    }
+    
+    public void uiPerformFeat() {
+        int num, option;
+        Scanner sc = new Scanner(System.in);
+        System.out.println(game.getUiText());
+        do {
+            System.out.println(game.getDicesString());
+            System.out.println("Select Dice For Feat: ");
+            System.out.println(game.getFeatDicesString()); //Dados com feats possiveis
+            System.out.println("5 - Skip ");
+            System.out.print("\nYour option : ");
+            num = sc.nextInt();
+        } while (num < 1 || num > 5);
+        if (num != 5) {
+        do {
+            System.out.println("Select Pay Method: ");
+            System.out.println("1 - Hp ");
+            System.out.println("2 - Xp ");
+            System.out.print("\nYour option : ");
+            option = sc.nextInt();
+        } while (option < 1 || option > 2);
+            game.performFeat(num - 1, option);
+        }else {
+            uiAWaitDiceOption();
+        }
     }
 
     public void run() {
@@ -403,7 +438,7 @@ public class TextUI {
             } else if (state instanceof AwaitDiceRoll) {
                 uiAWaitDiceRoll();
             } else if (state instanceof AwaitDiceOption) {
-                uiAWaitDiceOption();
+                uiPerformFeat();
             } else if (state instanceof AwaitSpellOption) {
                 uiAwaitSpellOption();
             }

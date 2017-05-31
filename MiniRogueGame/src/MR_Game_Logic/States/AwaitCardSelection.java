@@ -28,7 +28,7 @@ public class AwaitCardSelection extends StateAdapter {
             getGame().getDice().roll();
             int roll = getGame().getDice().getRoll();
             getGame().getDice().roll();
-            getGame().setUiText(getGame().getCard().toString());
+            getGame().setUiText(getGame().getDungeon().Card(getGame().getArena(), getGame().getLevel(), getGame().getCardPosition()).toString());
             getGame().setUiText(getGame().getUiText() + "\nPrimeiro Dado: " + roll);
             int roll2 = getGame().getDice().getRoll();
             getGame().setUiText(getGame().getUiText() + "\n");
@@ -38,24 +38,52 @@ public class AwaitCardSelection extends StateAdapter {
             if (!getGame().skillCheck(roll2)) {
                 switch (roll) {
                     case 1:
-                        p.setFood(p.getFood() - 1);
-                        getGame().setUiText(getGame().getUiText() + "Perdeu 1 de Food");
+                        if (p.getFood() == 0) {
+                            getGame().setUiText(getGame().getUiText() + "Ja nao tem comida para perder");
+                        } else {
+                            p.setFood(p.getFood() - 1);
+                            getGame().setUiText(getGame().getUiText() + "Perdeu 1 de Food");
+                        }
                         break;
                     case 2:
-                        p.setGold(p.getGold() - 1);
-                        getGame().setUiText(getGame().getUiText() + "Perdeu 1 de Gold");
+                        if (p.getGold() == 0) {
+                            getGame().setUiText(getGame().getUiText() + "Ja nao tem gold para perder");
+                        } else {
+                            p.setGold(p.getGold() - 1);
+                            getGame().setUiText(getGame().getUiText() + "Perdeu 1 de Gold");
+                        }
+
                         break;
                     case 3:
-                        p.setArmor(p.getArmor() - 1);
-                        getGame().setUiText(getGame().getUiText() + "Perdeu 1 de Armor");
+                        if (p.getArmor() == 0) {
+                            getGame().setUiText(getGame().getUiText() + "Ja nao tem armor para perder");
+                        } else {
+                            p.setArmor(p.getArmor() - 1);
+                            getGame().setUiText(getGame().getUiText() + "Perdeu 1 de Armor");
+                        }
+
                         break;
                     case 4:
-                        p.setHp(p.getHp() - 1);
-                        getGame().setUiText(getGame().getUiText() + "Perdeu 1 de Hp");
+                        if (p.getHp() == 0) {
+                            getGame().setUiText(getGame().getUiText() + "Ja nao tem hp para perder");
+                        } else {
+                            p.setHp(p.getHp() - 1);
+                            if (getGame().isDead()) {
+                                getGame().setUiText(getGame().getUiText() + "Perdeu 1 de Hp \n Nao tem mais Hp e perdeu o Jogo");
+                                return new AwaitBeginning(getGame());
+                            }
+                            getGame().setUiText(getGame().getUiText() + "Perdeu 1 de Hp");
+                        }
                         break;
                     case 5:
-                        p.setXp(p.getXp() - 1);
-                        getGame().setUiText(getGame().getUiText() + "Perdeu 1 de Xp");
+                        if (p.getXp() == 0 && p.getRank() == 1) {
+                            getGame().setUiText(getGame().getUiText() + "Ja nao tem xp para perder");
+                        } else {
+
+                            p.setXp(p.getXp() - 1);
+                            getGame().checkLevelDown();
+                            getGame().setUiText(getGame().getUiText() + "Perdeu 1 de Xp");
+                        }
                         break;
                     case 6:
                         p.setHp(p.getHp() - 2);
@@ -76,7 +104,7 @@ public class AwaitCardSelection extends StateAdapter {
             getGame().getDice().roll();
             int roll = getGame().getDice().getRoll();
             getGame().getDice().roll();
-            getGame().setUiText(getGame().getCard().toString());
+            getGame().setUiText(getGame().getDungeon().Card(getGame().getArena(), getGame().getLevel(), getGame().getCardPosition()).toString());
             getGame().setUiText(getGame().getUiText() + "\nPrimeiro Dado: " + roll);
             int roll2 = getGame().getDice().getRoll();
             getGame().setUiText(getGame().getUiText() + "\n");
@@ -140,7 +168,7 @@ public class AwaitCardSelection extends StateAdapter {
         if (card == "Event") {
             getGame().getDice().roll();
             int roll = getGame().getDice().getRoll();
-            getGame().setUiText(getGame().getCard().toString());
+            getGame().setUiText(getGame().getDungeon().Card(getGame().getArena(), getGame().getLevel(), getGame().getCardPosition()).toString());
             getGame().setUiText(getGame().getUiText() + "\nPrimeiro Dado: " + roll);
             getGame().setUiText(getGame().getUiText() + "\n");
             Player p = getGame().getPlayer();

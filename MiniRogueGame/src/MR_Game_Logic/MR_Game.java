@@ -112,6 +112,13 @@ public class MR_Game implements Serializable
        return gameData.getPlayer().dicesToString();
     }
     
+    public String getFeatDicesString(){
+       return gameData.getPlayer().featDicesToString();
+    }
+    
+    public String getCritDicesString(){
+       return gameData.getPlayer().critDicesToString();
+    }
     
      public String getDungeonStats(){
        return gameData.dungeonToString();
@@ -124,6 +131,47 @@ public class MR_Game implements Serializable
      public String cardToString(){
          return gameData.getCard().toString();
      }
+     
+     public boolean checkFeats(int num){
+         return gameData.checkFeats(num);
+     }
+     
+     public boolean checkValidDice(int num){
+         return gameData.checkValidDice(num);
+     }
+     
+     public boolean featXp(){
+         return gameData.featXp();
+     }
+     
+     public boolean featHp(){
+         return gameData.featHp();
+     }
+     
+     public int monsterHp(){
+         return gameData.monsterHp();
+     }
+     
+     public boolean hasFireball(){
+         return gameData.hasFireball();
+     }
+     
+     public boolean hasHealing(){
+         return gameData.hasHealling();
+     }
+     
+     public boolean hasIce(){
+         return gameData.hasIce();
+     }
+     
+     public boolean hasPoison(){
+         return gameData.hasPoison();
+     }
+     
+     public String getValidSpellsToString(){
+         return gameData.validSpellsToString();
+     }
+     
     // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
     
 
@@ -184,8 +232,8 @@ public class MR_Game implements Serializable
         setState(getState().rollDice());
     }
     
-    public void critDices(int num){
-        setState(getState().critDices(num));
+    public void critDices(int num, int option){
+        setState(getState().critDices(num, option));
     }
     
     public void checkAttack(){
@@ -194,5 +242,9 @@ public class MR_Game implements Serializable
     
     public void attack(){
         setState(getState().attack());
+    }
+    
+    public void performFeat(int num, int option){
+        setState(getState().performFeat(num, option));
     }
 }

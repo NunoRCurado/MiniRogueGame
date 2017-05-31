@@ -26,7 +26,7 @@ public class Monster extends Card{
         switch(level){
             case 1:
                 this.dmg = 2;
-                this.hp = area + dice ;
+                this.hp = area + dice;
                 this.reward = 6;
                 break;
             case 2:
@@ -90,6 +90,7 @@ public class Monster extends Card{
         }
     }
 
+    @Override
     public String toString(){
         String stats ="";
         stats = "NAME " + name + " | HP " + hp + " | Damage " + dmg;

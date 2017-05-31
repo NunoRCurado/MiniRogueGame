@@ -31,7 +31,4 @@ public class Spells implements Serializable{
     public void effect(GameData gameData){
     }
     
-    public void removeEffect(GameData gameData){
-        
-    }
 }

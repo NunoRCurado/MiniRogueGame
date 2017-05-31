@@ -75,21 +75,21 @@ public class GameData implements Serializable{
     }
     
     public boolean checkLevelUp(){
-        if(player.getXp() >= 6 && player.getRank() == 1){
+        if(player.getXp() >= 7 && player.getRank() == 1){
             player.setXp(player.getXp() - 6);
             player.setRank(2);
             player.dices.add(new Dice());
             numDices = 2;
             return true;
         }
-        if(player.getXp() >= 12 && player.getRank() == 2){
+        if(player.getXp() >= 13 && player.getRank() == 2){
             player.setXp(player.getXp() - 12);
             player.setRank(3);
             player.dices.add(new Dice());
             numDices = 3;
             return true;
         }
-        if(player.getXp() >= 18 && player.getRank() == 3){
+        if(player.getXp() >= 19 && player.getRank() == 3){
             player.setXp(player.getXp() - 18);
             player.setRank(4);
             player.dices.add(new Dice());
@@ -101,6 +101,15 @@ public class GameData implements Serializable{
             return true;
         }
         return false;
+    }
+    
+    public void checkLevelDown(){
+        if(player.getXp() <= 6 && player.getRank() > 1)
+            player.setRank(1);
+        if(player.getXp() <= 12 && player.getRank() > 2)
+            player.setRank(2);
+        if(player.getXp() <= 18 && player.getRank() > 3)
+            player.setRank(3);
     }
     
     public String dungeonToString(){
@@ -137,6 +146,18 @@ public class GameData implements Serializable{
                 return true;
         }
         return false;
+    }
+    
+    public boolean checkFeats(int value){
+        return player.dices.get(value - 1).getStatus(); 
+    }
+    
+    public boolean checkValidDice(int num){
+        if(num - 1 > player.dices.size()){
+            return false;
+        }
+        else
+            return true;
     }
     
     public void checkCardEnd() {
@@ -388,5 +409,63 @@ public class GameData implements Serializable{
     public void setPlayerStats(String playerStats) {
         this.playerStats = playerStats;
     }
+    
+    public boolean featHp(){
+        if(player.getHp() > 2){
+            player.setHp(player.getHp() - 2);
+            return true;
+        }
+        else 
+            return false;
+    }
+    
+    public boolean featXp(){
+        if(player.getXp() >= 1){
+            player.setXp(player.getXp() - 1);
+            return true;
+        }
+        else 
+            return false;
+    }
 
+    public int monsterHp(){
+        return ((Monster) card).getHp();
+    }
+    
+    public boolean hasFireball(){
+        for(int i = 0 ; i < player.spells.size() ; i++){
+            if(player.spells.get(i).equals("Fireball")){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean hasHealling(){
+        for(int i = 0 ; i < player.spells.size() ; i++){
+            if(player.spells.get(i).equals("Healing")){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean hasIce(){
+        for(int i = 0 ; i < player.spells.size() ; i++){
+            if(player.spells.get(i).equals("Ice")){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean hasPoison(){
+        for(int i = 0 ; i < player.spells.size() ; i++){
+            if(player.spells.get(i).equals("Poison")){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public String validSpellsToString(){
+        return player.validSpellsToString();
+    }
 }

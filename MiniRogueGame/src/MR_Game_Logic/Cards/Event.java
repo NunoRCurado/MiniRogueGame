@@ -17,7 +17,7 @@ public class Event extends Card implements Constants{
     public Event(){
         this.name = "Event";
     }
-    
+    @Override
     public String toString(){
         String toString;
         toString = "1 - Found Ration (+1 Food)\n" +

@@ -25,22 +25,13 @@ public class AwaitDiceRoll extends StateAdapter implements Constants {
     public IStates rollDice() {
         int roll, dmg = 0;
         List<Dice> dicesOut = getGame().getPlayer().getDices();
-//        if (num == 2 && getGame().checkCrits()) {
-//            for (int i = 0; i < getGame().getNumDices(); i++) {
-//                if (dicesOut.get(i).getStatus()) {
-//                    dicesOut.get(i).setStatus(false);
-//                }
-//            }
-//            getGame().setUiText("O seu dano e de: " + dmg);
-//            return new AwaitDiceOption(getGame());
-//        }
         if (!getGame().checkCrits()) {
             for (int i = 0; i < getGame().getNumDices(); i++) {
                 getGame().getDice().roll();
-                roll = 6;
+                roll = getGame().getDice().getRoll();
                 if (roll == 1) {
                     dicesOut.get(i).setStatus(false);
-                    dicesOut.get(i).setRoll(roll);
+                    dicesOut.get(i).setRoll(0);
                 } else if (roll == 6) {
                     dicesOut.get(i).setStatus(true);
                     dicesOut.get(i).setRoll(roll);
@@ -59,52 +50,53 @@ public class AwaitDiceRoll extends StateAdapter implements Constants {
                 return this;
             }
         }
-        getGame().setUiText("O seu dano e de: " + dmg);
+        for (int i = 0; i < getGame().getNumDices(); i++) {
+                dmg += dicesOut.get(i).getRoll();
+        }
+        getGame().getPlayer().setDmg(getGame().getPlayer().getDmg() + dmg);
+        //getGame().setUiText("O seu dano e de: " + dmg);
         return new AwaitDiceOption(getGame());
 
     }
 
     @Override
-    public IStates critDices(int num) {
+    public IStates critDices(int num, int option) {
         int roll, rollc, dmg = 0;
         List<Dice> dicesOut = getGame().getPlayer().getDices();
         if (num == 1) {
-            for (int i = 0; i < getGame().getNumDices(); i++) {
-                if (dicesOut.get(i).getStatus()) { //encontrou dado critico
+            if (option <= dicesOut.size()) {
+                if (dicesOut.get(option).getRoll() == 6 && dicesOut.get(option).getStatus()) {
                     getGame().getDice().roll();
-                    roll = 6;
+                    roll = getGame().getDice().getRoll();
                     if (roll == 1) {
-                        dicesOut.get(i).setStatus(false);
-                        dicesOut.get(i).setRoll(0);
-                        break;
+                        dicesOut.get(option).setStatus(false);
+                        dicesOut.get(option).setRoll(0);
                     } else if (roll == 6) {
-                        dicesOut.get(i).setRoll(dicesOut.get(i).getRoll() + roll);
-                        dicesOut.get(i).setStatus(false);
+                        dicesOut.get(option).setRoll(dicesOut.get(option).getRoll() + roll);
+                        dicesOut.get(option).setStatus(false);
                         do {
                             getGame().getDice().roll();
                             rollc = getGame().getDice().getRoll();
                             if (rollc == 1) {
-                                dicesOut.get(i).setStatus(false);
-                                dicesOut.get(i).setRoll(0);
-                                break;
+                                dicesOut.get(option).setStatus(false);
+                                dicesOut.get(option).setRoll(0);
                             } else {
-                                dicesOut.get(i).setRoll(dicesOut.get(i).getRoll() + rollc);
+                                dicesOut.get(option).setRoll(dicesOut.get(option).getRoll() + rollc);
                             }
                         } while (rollc == 6);
-                        break;
                     } else {
-                        dicesOut.get(i).setStatus(false);
-                        dicesOut.get(i).setRoll(dicesOut.get(i).getRoll() + roll);
-                        break;
+                        dicesOut.get(option).setStatus(false);
+                        dicesOut.get(option).setRoll(dicesOut.get(option).getRoll() + roll);
                     }
                 }
+            } else {
+                getGame().setUiText("Numero de Dado Invalido");
+                return this;
             }
         } else {
             for (int i = 0; i < getGame().getNumDices(); i++) {
                 if (dicesOut.get(i).getStatus() == true) {
                     dicesOut.get(i).setStatus(false);
-                    dicesOut.get(i).setRoll(dicesOut.get(i).getRoll());
-                    break;
                 }
             }
         }
@@ -112,7 +104,6 @@ public class AwaitDiceRoll extends StateAdapter implements Constants {
             dmg += dicesOut.get(i).getRoll();
         }
         getGame().getPlayer().setDmg(dmg);
-        getGame().setUiText("O seu dano e de: " + dmg + " com dados criticos");
         if (getGame().checkCrits()) {
             return this;
         }

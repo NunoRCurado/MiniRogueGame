@@ -26,6 +26,7 @@ public class Player implements Constants, Serializable{
     public int dmg;
     public List<Dice> dices;
     public String dicesString;
+    public boolean poison = false;
     
     public Player(){
         
@@ -74,9 +75,9 @@ public class Player implements Constants, Serializable{
                 break;
             default: //CASUAL
                 this.name = name;
-                this.hp = 200;
+                this.hp = 5;
                 this.armor = 1;
-                this.gold = 8;
+                this.gold = 5;
                 this.food = 6;
                 this.rank = 1;
                 this.xp = 0;
@@ -209,4 +210,47 @@ public class Player implements Constants, Serializable{
         }
         return dices;
     }
+    
+    public String featDicesToString(){
+       
+        String dices ="Valid Dices : \n";
+        for (int i = 0; i < this.dices.size(); i++) {
+            if(!this.dices.get(i).getStatus())
+                dices += i + 1 +" -> " + this.dices.get(i).getRoll() + "\n";
+        }
+        return dices;
+    }
+    
+    public String critDicesToString(){
+       
+        String dices ="Valid Dices : \n";
+        for (int i = 0; i < this.dices.size(); i++) {
+            if(this.dices.get(i).roll == 6)
+                dices += i + 1 +" -> " + this.dices.get(i).getRoll() + "\n";
+        }
+        return dices;
+    }
+    
+    public String validSpellsToString(){
+       String stats = "";
+        if(spells.isEmpty()){
+            stats = stats + "Valid Spells : Nao tem nenhum spell";
+        }else{
+            if(spells.size() == 1)
+                stats = stats + "Valid Spells: 1 -> " + spells.get(0).getName();
+            if(spells.size() == 2)
+                stats = stats + "Valid Spells: 1-> " + spells.get(0).getName() + " \n 2->" + spells.get(1).getName();
+        }
+        return stats;
+    }
+
+    public boolean isPoison() {
+        return poison;
+    }
+
+    public void setPoison(boolean poison) {
+        this.poison = poison;
+    }
+    
+    
 }

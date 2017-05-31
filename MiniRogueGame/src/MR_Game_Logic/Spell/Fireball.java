@@ -5,6 +5,7 @@
  */
 package MR_Game_Logic.Spell;
 
+import MR_Game_Logic.Cards.Monster;
 import MR_Game_Logic.GameData;
 import MR_Game_Logic.Spells;
 
@@ -21,11 +22,8 @@ public class Fireball extends Spells{
     
     @Override
     public void effect(GameData gameData){
-        gameData.getPlayer().setDmg(gameData.getPlayer().getDmg() + 8);
+        int monsterHp = ((Monster)gameData.getCard()).getHp();
+        ((Monster)gameData.getCard()).setHp(monsterHp - 8);
     }
     
-    public void removeEffect(GameData gameData){
-        if(gameData.getPlayer().getDmg() >= 8)
-            gameData.getPlayer().setDmg(gameData.getPlayer().getDmg() - 8);
-    }
 }

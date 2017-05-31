@@ -95,7 +95,7 @@ public class StateAdapter implements IStates{
     }
 
     @Override
-    public IStates critDices(int num){
+    public IStates critDices(int num, int option){
         return this;
     }
     
@@ -111,11 +111,16 @@ public class StateAdapter implements IStates{
 
     @Override
     public IStates spellSelected() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this;
     }
 
     @Override
     public IStates attack() {
         return this;
     }
+    
+    @Override
+     public IStates performFeat(int num, int option){
+         return this;
+     }
 }

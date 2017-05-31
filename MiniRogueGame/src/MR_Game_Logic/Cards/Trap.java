@@ -16,6 +16,7 @@ public class Trap extends Card {
         this.name = "Trap";
     }
     
+    @Override
     public String toString(){      
         String toString= "";
         toString = "1 - Mold Miasma (-1 Food)\n" +
