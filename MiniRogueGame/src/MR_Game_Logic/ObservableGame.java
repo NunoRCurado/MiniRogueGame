@@ -6,6 +6,7 @@
 package MR_Game_Logic;
 
 import MR_Game_Logic.States.IStates;
+import java.util.List;
 import java.util.Observable;
 
 
@@ -60,6 +61,9 @@ public class ObservableGame extends Observable{
       return g.getGameData().getPlayer().getFood();
    }
       
+      public List<Card> getCurrentDeck(){
+         return g.getGameData().currentListArray();
+     }
         
       public int getGold(){
       return g.getGameData().getPlayer().getGold();
