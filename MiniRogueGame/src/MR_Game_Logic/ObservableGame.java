@@ -74,6 +74,10 @@ public class ObservableGame extends Observable{
       return g.getGameData().getPlayer().getXp();
    }
       
+          public int getDifficulty(){
+      return g.getGameData().getDifficulty();
+   }
+      
      
       
       public void startGame(){

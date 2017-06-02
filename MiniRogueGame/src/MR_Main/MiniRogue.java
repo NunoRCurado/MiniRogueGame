@@ -5,7 +5,9 @@
  */
 package MR_Main;
 
+import FrontEndGraphic.GraphicalUserInterface;
 import MR_Game_Logic.MR_Game;
+import MR_Game_Logic.ObservableGame;
 import MR_Text_UI.TextUI;
 
 /**
@@ -18,8 +20,8 @@ public class MiniRogue {
      * @param args the command line arguments
      */
     public static void main(String[] args){
-        TextUI textUI = new TextUI(new MR_Game());
-        textUI.run();
+        GraphicalUserInterface ui=new GraphicalUserInterface(new ObservableGame());
+        
     
     }
     
