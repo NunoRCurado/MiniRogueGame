@@ -6,11 +6,12 @@
 package MR_Game_Logic.States;
 
 import MR_Game_Logic.GameData;
+import java.io.Serializable;
 /**
  *
  * @author pedri
  */
-public class StateAdapter implements IStates{
+public class StateAdapter implements IStates, Serializable{
 
     GameData game;
 
@@ -51,11 +52,6 @@ public class StateAdapter implements IStates{
 
     @Override
     public IStates startGame() {
-        return this;
-    }
-
-    @Override
-    public IStates loadGame(GameData game){
         return this;
     }
     

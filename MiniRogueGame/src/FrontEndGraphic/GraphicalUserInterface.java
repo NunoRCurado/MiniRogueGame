@@ -141,11 +141,11 @@ public class GraphicalUserInterface extends JFrame implements Observer{
                 
                 dificuldade = Integer.parseInt(JOptionPane.showInputDialog(null,"Escolha a dificuldade: "));
                 game.setDifficulty(dificuldade);
-                
+                dificuldade  = game.getDifficulty();
                 nome = JOptionPane.showInputDialog(null,"Nome do jogador: ");
                 game.setName(nome);
                 
-                 System.out.println("dificuldade = " + game.getDifficulty());
+                System.out.println("dificuldade = " + game.getDifficulty());
             }
         });
         
@@ -153,7 +153,7 @@ public class GraphicalUserInterface extends JFrame implements Observer{
          menuStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                   
+                   game.startGame();
                   
             }
         });

@@ -15,26 +15,23 @@ public class FileManager {
     String localDirectory = "Saves\\";
     String extension = ".mse";
     
-    public Boolean loadGame(MR_Game game, String name){
+    public MR_Game loadGame( String name){
 
         try{
             System.out.println("\nLoad file name: " + name);
             File f = new File(fullPath(name));
 
             if(f.exists()){
-                deserializeGameModel(new FileInputStream(f), game);
+                return deserializeGameModel(new FileInputStream(f));
             } else{
                 System.out.println("\nFile doesn't exist!\n");
-                return false;
+                return null;
             }
         }catch(IOException e){
             System.out.println("\nCouldn't open file for reading!\n");
-            return false;
+            return null;
         }
-        
-        return true;
     }
-    
     public Boolean saveGame(MR_Game game, String name){
 
         File f = new File(localDirectory);
@@ -70,7 +67,7 @@ public class FileManager {
         
         try{
             oos = new ObjectOutputStream(file);
-            oos.writeObject(game.getGameData());
+            oos.writeObject(game);
             oos.close();
             
             System.out.println("\nSave successful!");
@@ -79,17 +76,20 @@ public class FileManager {
         }
     }
     
-    public void deserializeGameModel(FileInputStream file, MR_Game game){
-        ObjectInputStream ois;
-        
+    public MR_Game deserializeGameModel(FileInputStream file) throws IOException{
+        ObjectInputStream ois = null;
+        MR_Game game2 = null;
         try{
             ois = new ObjectInputStream(file);
-            game.setGameData((GameData) ois.readObject());
-            ois.close();
+            game2  = (MR_Game) ois.readObject();
             
             System.out.println("\nLoad successful!");
+            return game2;
         } catch(IOException | ClassNotFoundException e){
             System.out.println("\nException -> Files.java deserializeGameModel(): " + e.getMessage() + "\n");
+        }finally{
+            ois.close();
         }
+        return null;
     }
 }

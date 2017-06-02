@@ -54,7 +54,6 @@ public class AwaitDiceRoll extends StateAdapter implements Constants {
                 dmg += dicesOut.get(i).getRoll();
         }
         game.getPlayer().setDmg(game.getPlayer().getDmg() + dmg);
-        //getGame().setUiText("O seu dano e de: " + dmg);
         return new AwaitDiceOption(game);
 
     }

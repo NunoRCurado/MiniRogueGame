@@ -200,10 +200,6 @@ public class MR_Game implements Serializable
     public void startGame(){
         setState(getState().startGame());
     }
-
-    public void loadGame(GameData game){
-        setState(getState().loadGame(game));
-    }
     
     public void setRestOption(int option){
         setState(getState().setRestOption(option));

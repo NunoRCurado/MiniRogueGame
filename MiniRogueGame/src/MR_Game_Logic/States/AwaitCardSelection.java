@@ -11,12 +11,13 @@ import MR_Game_Logic.Spell.Fireball;
 import MR_Game_Logic.Spell.Healing;
 import MR_Game_Logic.Spell.Ice;
 import MR_Game_Logic.Spell.Poison;
+import java.io.Serializable;
 
 /**
  *
  * @author pedri
  */
-public class AwaitCardSelection extends StateAdapter {
+public class AwaitCardSelection extends StateAdapter{
 
     public AwaitCardSelection(GameData game) {
         super(game);
@@ -24,7 +25,7 @@ public class AwaitCardSelection extends StateAdapter {
 
     @Override
     public IStates resolveCard(String card) {
-        if (card == "Trap") {
+        if (card.equals("Trap")) {
             game.getDice().roll();
             int roll = game.getDice().getRoll();
             game.getDice().roll();
@@ -100,7 +101,7 @@ public class AwaitCardSelection extends StateAdapter {
             game.checkCardEnd();
             return this;
         }
-        if (card == "Treasure") {
+        if (card.equals("Treasure")) {
             game.getDice().roll();
             int roll = game.getDice().getRoll();
             game.getDice().roll();
@@ -165,7 +166,7 @@ public class AwaitCardSelection extends StateAdapter {
             return this;
         }
 
-        if (card == "Event") {
+        if (card.equals("Event")) {
             game.getDice().roll();
             int roll = game.getDice().getRoll();
             game.setUiText(game.getDungeon().Card(game.getArena(), game.getLevel(), game.getCardPosition()).toString());
@@ -207,13 +208,13 @@ public class AwaitCardSelection extends StateAdapter {
             return this;
         }
 
-        if (card == "Resting") {
+        if (card.equals("Resting")) {
             return new AwaitRest(game);
         }
-        if (card == "Merchant") {
+        if (card.equals("Merchant")) {
             return new AwaitTrading(game);
         }
-        if (card == "Monster") {
+        if (card.equals("Monster")) {
             game.getDice().roll();
             int rollDice = game.getDice().getRoll();
             game.setCard(new Monster(game.getLevel(), game.getArena(), rollDice));

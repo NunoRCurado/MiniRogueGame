@@ -19,7 +19,7 @@ public class ObservableGame extends Observable{
     
     public ObservableGame(){
         g=new MR_Game();
-        g.startGame();
+        //g.getGameData().initialize();
     }
     
     public IStates getState(){
@@ -104,7 +104,7 @@ public class ObservableGame extends Observable{
      
       
       public void startGame(){
-          g = new MR_Game();
+          g.startGame();
           setChanged();
           notifyObservers();
       }

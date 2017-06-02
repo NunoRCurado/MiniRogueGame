@@ -27,7 +27,7 @@ public class Monster extends Card{
             case 1:
                 this.dmg = 2;
                 this.hp = area + dice;
-                this.reward = 6;
+                this.reward = 1;
                 break;
             case 2:
                 this.dmg = 4;

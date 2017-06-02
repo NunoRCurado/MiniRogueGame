@@ -64,8 +64,9 @@ public class TextUI {
                     case '1':
                         System.out.println("\nSave File Name: ");
                         name = sc.next();
-                        if (fm.loadGame(this.game, name)) {
-                            this.game.loadGame(game.getGameData());
+                        MR_Game outro = fm.loadGame(name);
+                        if (outro != null) {
+                            game = outro;
                         }
                         return;
                     case '2':
@@ -218,7 +219,6 @@ public class TextUI {
         String name;
         String card = game.getDungeon().currentCard(game.getArena(), game.getLevel(), game.getArenaLevel());
         int column = game.getColumn();
-        List<Card> current = game.getCurrentDeck();
         System.out.println(game.getUiText());
         game.setUiText("");
         System.out.println(game.getPlayerStats());

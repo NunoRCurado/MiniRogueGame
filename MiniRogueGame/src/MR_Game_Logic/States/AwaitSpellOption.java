@@ -41,6 +41,7 @@ public class AwaitSpellOption extends StateAdapter {
                     case "Ice":
                         if (playerDmg >= monsterHp) {
                             game.getPlayer().setDmg(0);
+                            game.getPlayer().setPoison(false);
                             game.setUiText("Matou o monstro");
                             game.getPlayer().setXp(game.getPlayer().getXp() + ((Monster) game.getCard()).getReward());
                             if (game.checkLevelUp()) {
@@ -75,6 +76,7 @@ public class AwaitSpellOption extends StateAdapter {
         int playerHealth = game.getPlayer().getHp() + game.getPlayer().getArmor();
         if (playerDmg >= monsterHp) {
             game.getPlayer().setDmg(0);
+            game.getPlayer().setPoison(false);
             game.setUiText("Matou o monstro");
             game.getPlayer().setXp(game.getPlayer().getXp() + ((Monster) game.getCard()).getReward());
             if (game.checkLevelUp()) {

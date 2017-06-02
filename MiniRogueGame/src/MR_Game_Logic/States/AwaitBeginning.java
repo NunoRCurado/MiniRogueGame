@@ -46,11 +46,4 @@ public class AwaitBeginning extends StateAdapter{
         
         return this;
     }
-    
-    @Override
-    public IStates loadGame(GameData gameData){
-        game = gameData;
-        return new AwaitCardSelection(game);
-    }
-    
 }

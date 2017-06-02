@@ -37,6 +37,7 @@ public class AwaitDiceOption extends StateAdapter implements Constants{
         if( playerDmg >= monsterHp){
             //getGame().setUiText("O seu dano e de: " + playerDmg);
             game.getPlayer().setDmg(0);
+            game.getPlayer().setPoison(false);
             game.setUiText(game.getUiText() + "\nMatou o monstro");
             game.getPlayer().setXp(game.getPlayer().getXp() + ((Monster)game.getCard()).getReward());
             if(game.checkLevelUp()){
