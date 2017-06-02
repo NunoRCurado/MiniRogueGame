@@ -19,26 +19,26 @@ public class AwaitRest extends StateAdapter{
     
     @Override
     public IStates setRestOption(int option){
-        Player p = getGame().getPlayer();
+        Player p = game.getPlayer();
         int pXp = p.getXp();
         int pFood = p.getFood();
         int pHealth = p.getHp();
         if(option == 1){
             p.setXp(pXp + 1);
-            getGame().setUiText("Ganhou 1 de Xp");
-            if(getGame().checkLevelUp()){
-                        getGame().setUiText(getGame().getUiText() + "\n||=== Evoluiu para o Rank " + getGame().getPlayer().getRank() + "===||");
-                    }
+            game.setUiText("Ganhou 1 de Xp");
+            if(game.checkLevelUp()){
+                game.setUiText(game.getUiText() + "\n||=== Evoluiu para o Rank " + game.getPlayer().getRank() + "===||");
+            }
         }
         if(option == 2){
-            getGame().setUiText("Ganhou 1 de Food");
+            game.setUiText("Ganhou 1 de Food");
              p.setFood(pFood + 1); 
         }
         if(option == 3){
-            getGame().setUiText("Ganhou 2 de Hp");
+            game.setUiText("Ganhou 2 de Hp");
             p.setHp(pHealth + 2);
         }
-        getGame().checkCardEnd();
-        return new AwaitCardSelection(getGame());
+        game.checkCardEnd();
+        return new AwaitCardSelection(game);
     }
 }

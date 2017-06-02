@@ -23,44 +23,44 @@ public class AwaitSpellOption extends StateAdapter {
 
     @Override
     public IStates setSpellOption(int option) {
-        List<Spells> spells = getGame().getPlayer().getSpells();
+        List<Spells> spells = game.getPlayer().getSpells();
         if (option <= spells.size()) {
-            String spellName = getGame().getPlayer().getSpells().get(option).getName();
-            int playerDmg = getGame().getPlayer().getDmg();
-            int monsterHp = ((Monster) getGame().getCard()).getHp();
-            if (!getGame().getPlayer().getSpells().isEmpty()) {
+            String spellName = game.getPlayer().getSpells().get(option).getName();
+            int playerDmg = game.getPlayer().getDmg();
+            int monsterHp = ((Monster) game.getCard()).getHp();
+            if (!game.getPlayer().getSpells().isEmpty()) {
                 switch (spellName) {
                     case "Fireball":
-                        ((Fireball) getGame().getPlayer().getSpells().get(option)).effect(getGame());
-                        getGame().getPlayer().removeSpell(spellName);
+                        ((Fireball) game.getPlayer().getSpells().get(option)).effect(game);
+                        game.getPlayer().removeSpell(spellName);
                         break;
                     case "Healing":
-                        ((Healing) getGame().getPlayer().getSpells().get(option)).effect(getGame());
-                        getGame().getPlayer().removeSpell(spellName);
+                        ((Healing) game.getPlayer().getSpells().get(option)).effect(game);
+                        game.getPlayer().removeSpell(spellName);
                         break;
                     case "Ice":
                         if (playerDmg >= monsterHp) {
-                            getGame().getPlayer().setDmg(0);
-                            getGame().setUiText("Matou o monstro");
-                            getGame().getPlayer().setXp(getGame().getPlayer().getXp() + ((Monster) getGame().getCard()).getReward());
-                            if (getGame().checkLevelUp()) {
-                                getGame().setUiText(getGame().getUiText() + "\n||=== Evoluiu para o Rank " + getGame().getPlayer().getRank() + "===||");
+                            game.getPlayer().setDmg(0);
+                            game.setUiText("Matou o monstro");
+                            game.getPlayer().setXp(game.getPlayer().getXp() + ((Monster) game.getCard()).getReward());
+                            if (game.checkLevelUp()) {
+                                game.setUiText(game.getUiText() + "\n||=== Evoluiu para o Rank " + game.getPlayer().getRank() + "===||");
                             }
-                            getGame().checkCardEnd();
-                            return new AwaitCardSelection(getGame());
+                            game.checkCardEnd();
+                            return new AwaitCardSelection(game);
                         }
-                        ((Monster) getGame().getCard()).setHp(monsterHp - playerDmg);
-                        getGame().getPlayer().removeSpell(spellName);
-                        return new AwaitDiceRoll(getGame());
+                        ((Monster) game.getCard()).setHp(monsterHp - playerDmg);
+                        game.getPlayer().removeSpell(spellName);
+                        return new AwaitDiceRoll(game);
                     case "Poison":
-                        ((Poison) getGame().getPlayer().getSpells().get(option)).effect(getGame());
-                        getGame().getPlayer().removeSpell(spellName);
+                        ((Poison) game.getPlayer().getSpells().get(option)).effect(game);
+                        game.getPlayer().removeSpell(spellName);
                         break;
 
                 }
             }
         } else {
-            getGame().setUiText("Spell invalido");
+            game.setUiText("Spell invalido");
             return this;
         }
 
@@ -69,31 +69,31 @@ public class AwaitSpellOption extends StateAdapter {
 
     @Override
     public IStates attack() {
-        int playerDmg = getGame().getPlayer().getDmg();
-        int monsterHp = ((Monster) getGame().getCard()).getHp();
-        int monsterDmg = ((Monster) getGame().getCard()).getDmg();
-        int playerHealth = getGame().getPlayer().getHp() + getGame().getPlayer().getArmor();
+        int playerDmg = game.getPlayer().getDmg();
+        int monsterHp = ((Monster) game.getCard()).getHp();
+        int monsterDmg = ((Monster) game.getCard()).getDmg();
+        int playerHealth = game.getPlayer().getHp() + game.getPlayer().getArmor();
         if (playerDmg >= monsterHp) {
-            getGame().getPlayer().setDmg(0);
-            getGame().setUiText("Matou o monstro");
-            getGame().getPlayer().setXp(getGame().getPlayer().getXp() + ((Monster) getGame().getCard()).getReward());
-            if (getGame().checkLevelUp()) {
-                getGame().setUiText(getGame().getUiText() + "\n||=== Evoluiu para o Rank " + getGame().getPlayer().getRank() + "===||");
+            game.getPlayer().setDmg(0);
+            game.setUiText("Matou o monstro");
+            game.getPlayer().setXp(game.getPlayer().getXp() + ((Monster) game.getCard()).getReward());
+            if (game.checkLevelUp()) {
+                game.setUiText(game.getUiText() + "\n||=== Evoluiu para o Rank " + game.getPlayer().getRank() + "===||");
             }
-            getGame().checkCardEnd();
-            return new AwaitCardSelection(getGame());
+            game.checkCardEnd();
+            return new AwaitCardSelection(game);
         } else {
-            getGame().getPlayer().setHp(playerHealth - monsterDmg);
-            if (monsterDmg >= getGame().getPlayer().getArmor()) {
-                getGame().getPlayer().setArmor(0);
+            game.getPlayer().setHp(playerHealth - monsterDmg);
+            if (monsterDmg >= game.getPlayer().getArmor()) {
+                game.getPlayer().setArmor(0);
             }
-            if (getGame().isDead()) {
-                getGame().setUiText("Morreu e perdeu o jogo");
-                return new AwaitBeginning(getGame());
+            if (game.isDead()) {
+                game.setUiText("Morreu e perdeu o jogo");
+                return new AwaitBeginning(game);
             }
-            ((Monster) getGame().getCard()).setHp(monsterHp - playerDmg);
-            getGame().getPlayer().setDmg(0);
-            return new AwaitDiceRoll(getGame());
+            ((Monster) game.getCard()).setHp(monsterHp - playerDmg);
+            game.getPlayer().setDmg(0);
+            return new AwaitDiceRoll(game);
         }
 
     }

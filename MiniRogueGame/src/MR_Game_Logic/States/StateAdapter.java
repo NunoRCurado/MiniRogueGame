@@ -12,14 +12,14 @@ import MR_Game_Logic.GameData;
  */
 public class StateAdapter implements IStates{
 
-      private GameData game;
+    GameData game;
 
     public StateAdapter(GameData g)
     {
-        this.game =g;
+        this.game = g;
     }
 
-    public GameData getGame() 
+    public GameData getgame() 
     {
         return game;
     }
@@ -55,7 +55,7 @@ public class StateAdapter implements IStates{
     }
 
     @Override
-    public IStates loadGame(){
+    public IStates loadGame(GameData game){
         return this;
     }
     

@@ -2,6 +2,7 @@ package MR_Game_Logic;
 
 import MR_Game_Logic.States.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -176,6 +177,10 @@ public class MR_Game implements Serializable
          return gameData.getDungeon().currentCard(gameData.getArena(), gameData.getLevel(), gameData.getCardPosition()).toLowerCase();
      } 
      
+     public List<Card> getCurrentDeck(){
+         return gameData.currentListArray();
+     }
+     
     // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
     
 
@@ -196,8 +201,8 @@ public class MR_Game implements Serializable
         setState(getState().startGame());
     }
 
-    public void loadGame(){
-        setState(getState().loadGame());
+    public void loadGame(GameData game){
+        setState(getState().loadGame(game));
     }
     
     public void setRestOption(int option){

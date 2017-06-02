@@ -5,6 +5,8 @@
  */
 package MR_Game_Logic.States;
 
+import MR_Game_Logic.GameData;
+
 /**
  *
  * @author pedri
@@ -17,7 +19,7 @@ public interface IStates {
     public IStates setDifficulty(int difficulty);
     public IStates setStartingArea(int area);
     public IStates startGame();
-    public IStates loadGame();
+    public IStates loadGame(GameData game);
     //AwaitCardSelection
     public IStates resolveCard(String card);
     //AwaitRest

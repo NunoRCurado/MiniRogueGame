@@ -111,4 +111,21 @@ public class Dungeon implements Serializable{
             return 5;
         return 0;
     }
+
+    List<Card> getcurrentCards(int level, int arena) {
+         switch(level){
+            case 1:
+                return level1.get(arena);
+            case 2:
+                return level2.get(arena);
+            case 3:
+                return level3.get(arena);
+            case 4:
+                return level4.get(arena);
+            case 5:
+                return level5.get(arena);               
+         }
+         return null;
+    }
+    
 }

@@ -9,6 +9,7 @@ package MR_Text_UI;
  *
  * @author pedri
  */
+import MR_Game_Logic.Card;
 import MR_Game_Logic.FileManager;
 import MR_Game_Logic.MR_Game;
 import MR_Game_Logic.States.AwaitBeginning;
@@ -16,6 +17,7 @@ import MR_Game_Logic.States.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.Scanner;
 
 public class TextUI {
@@ -63,7 +65,7 @@ public class TextUI {
                         System.out.println("\nSave File Name: ");
                         name = sc.next();
                         if (fm.loadGame(this.game, name)) {
-                            this.game.loadGame();
+                            this.game.loadGame(game.getGameData());
                         }
                         return;
                     case '2':
@@ -216,6 +218,7 @@ public class TextUI {
         String name;
         String card = game.getDungeon().currentCard(game.getArena(), game.getLevel(), game.getArenaLevel());
         int column = game.getColumn();
+        List<Card> current = game.getCurrentDeck();
         System.out.println(game.getUiText());
         game.setUiText("");
         System.out.println(game.getPlayerStats());

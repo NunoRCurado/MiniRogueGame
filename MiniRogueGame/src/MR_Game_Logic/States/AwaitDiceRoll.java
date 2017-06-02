@@ -24,11 +24,11 @@ public class AwaitDiceRoll extends StateAdapter implements Constants {
     @Override
     public IStates rollDice() {
         int roll, dmg = 0;
-        List<Dice> dicesOut = getGame().getPlayer().getDices();
-        if (!getGame().checkCrits()) {
-            for (int i = 0; i < getGame().getNumDices(); i++) {
-                getGame().getDice().roll();
-                roll = getGame().getDice().getRoll();
+        List<Dice> dicesOut = game.getPlayer().getDices();
+        if (!game.checkCrits()) {
+            for (int i = 0; i < game.getNumDices(); i++) {
+                game.getDice().roll();
+                roll = game.getDice().getRoll();
                 if (roll == 1) {
                     dicesOut.get(i).setStatus(false);
                     dicesOut.get(i).setRoll(0);
@@ -40,34 +40,34 @@ public class AwaitDiceRoll extends StateAdapter implements Constants {
                     dicesOut.get(i).setRoll(roll);
                 }
             }
-            for (int i = 0; i < getGame().getNumDices(); i++) {
+            for (int i = 0; i < game.getNumDices(); i++) {
                 dmg += dicesOut.get(i).getRoll();
             }
 
-            getGame().getPlayer().setDmg(getGame().getPlayer().getDmg() + dmg);
+            game.getPlayer().setDmg(game.getPlayer().getDmg() + dmg);
 
-            if (getGame().checkCrits()) {
+            if (game.checkCrits()) {
                 return this;
             }
         }
-        for (int i = 0; i < getGame().getNumDices(); i++) {
+        for (int i = 0; i < game.getNumDices(); i++) {
                 dmg += dicesOut.get(i).getRoll();
         }
-        getGame().getPlayer().setDmg(getGame().getPlayer().getDmg() + dmg);
+        game.getPlayer().setDmg(game.getPlayer().getDmg() + dmg);
         //getGame().setUiText("O seu dano e de: " + dmg);
-        return new AwaitDiceOption(getGame());
+        return new AwaitDiceOption(game);
 
     }
 
     @Override
     public IStates critDices(int num, int option) {
         int roll, rollc, dmg = 0;
-        List<Dice> dicesOut = getGame().getPlayer().getDices();
+        List<Dice> dicesOut = game.getPlayer().getDices();
         if (num == 1) {
             if (option <= dicesOut.size()) {
                 if (dicesOut.get(option).getRoll() == 6 && dicesOut.get(option).getStatus()) {
-                    getGame().getDice().roll();
-                    roll = getGame().getDice().getRoll();
+                    game.getDice().roll();
+                    roll = game.getDice().getRoll();
                     if (roll == 1) {
                         dicesOut.get(option).setStatus(false);
                         dicesOut.get(option).setRoll(0);
@@ -75,8 +75,8 @@ public class AwaitDiceRoll extends StateAdapter implements Constants {
                         dicesOut.get(option).setRoll(dicesOut.get(option).getRoll() + roll);
                         dicesOut.get(option).setStatus(false);
                         do {
-                            getGame().getDice().roll();
-                            rollc = getGame().getDice().getRoll();
+                            game.getDice().roll();
+                            rollc = game.getDice().getRoll();
                             if (rollc == 1) {
                                 dicesOut.get(option).setStatus(false);
                                 dicesOut.get(option).setRoll(0);
@@ -90,23 +90,23 @@ public class AwaitDiceRoll extends StateAdapter implements Constants {
                     }
                 }
             } else {
-                getGame().setUiText("Numero de Dado Invalido");
+                game.setUiText("Numero de Dado Invalido");
                 return this;
             }
         } else {
-            for (int i = 0; i < getGame().getNumDices(); i++) {
+            for (int i = 0; i < game.getNumDices(); i++) {
                 if (dicesOut.get(i).getStatus() == true) {
                     dicesOut.get(i).setStatus(false);
                 }
             }
         }
-        for (int i = 0; i < getGame().getNumDices(); i++) {
+        for (int i = 0; i < game.getNumDices(); i++) {
             dmg += dicesOut.get(i).getRoll();
         }
-        getGame().getPlayer().setDmg(dmg);
-        if (getGame().checkCrits()) {
+        game.getPlayer().setDmg(dmg);
+        if (game.checkCrits()) {
             return this;
         }
-        return new AwaitDiceOption(getGame());
+        return new AwaitDiceOption(game);
     }
 }

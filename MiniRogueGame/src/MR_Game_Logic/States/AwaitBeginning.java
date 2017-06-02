@@ -18,38 +18,39 @@ public class AwaitBeginning extends StateAdapter{
     
     @Override
     public IStates setName(String name){
-        getGame().getPlayer().setName(name);
+        game.getPlayer().setName(name);
         return this;
     }
     
     @Override
     public IStates setDifficulty(int difficulty){
-        getGame().setDifficulty(difficulty);
+        game.setDifficulty(difficulty);
         return this;
     }
     
     @Override
     public IStates setStartingArea(int area){
-        getGame().setArena(area);
-        getGame().setCardPosition(area);
+        game.setArena(area);
+        game.setCardPosition(area);
         return this;
     }
     
     @Override
     public IStates startGame(){
-        if(getGame().getArena() != 1){
-            if(getGame().initializeOnArea(getGame().getArena()))
-                return new AwaitCardSelection(getGame());
+        if(game.getArena() != 1){
+            if(game.initializeOnArea(game.getArena()))
+                return new AwaitCardSelection(game);
         }
-        if(getGame().initialize())
-            return new AwaitCardSelection(getGame());
+        if(game.initialize())
+            return new AwaitCardSelection(game);
         
         return this;
     }
     
     @Override
-    public IStates loadGame(){
-        return new AwaitCardSelection(getGame());
+    public IStates loadGame(GameData gameData){
+        game = gameData;
+        return new AwaitCardSelection(game);
     }
     
 }

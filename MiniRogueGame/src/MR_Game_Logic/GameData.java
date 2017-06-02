@@ -468,4 +468,8 @@ public class GameData implements Serializable{
     public String validSpellsToString(){
         return player.validSpellsToString();
     }
+    
+    public List<Card> currentListArray(){
+        return getDungeon().getcurrentCards(level, arena);
+    }
 }

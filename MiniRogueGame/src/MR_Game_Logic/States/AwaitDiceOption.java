@@ -21,13 +21,13 @@ public class AwaitDiceOption extends StateAdapter implements Constants{
     //Falta fazer Feats
     @Override
     public IStates checkAttack() {
-        int playerDmg = getGame().getPlayer().getDmg();
-        if(getGame().getPlayer().isPoison()){
-            getGame().getPlayer().setDmg(playerDmg + 5);
+        int playerDmg = game.getPlayer().getDmg();
+        if(game.getPlayer().isPoison()){
+            game.getPlayer().setDmg(playerDmg + 5);
         }
-        int monsterHp = ((Monster)getGame().getCard()).getHp();
-        List<Dice> dicesOut = getGame().getPlayer().getDices();
-        for (int i = 0; i < getGame().getNumDices(); i++) {
+        int monsterHp = ((Monster)game.getCard()).getHp();
+        List<Dice> dicesOut = game.getPlayer().getDices();
+        for (int i = 0; i < game.getNumDices(); i++) {
                 if (dicesOut.get(i).getStatus() == true) {
                     dicesOut.get(i).setStatus(false);
                     dicesOut.get(i).setRoll(dicesOut.get(i).getRoll());
@@ -36,27 +36,27 @@ public class AwaitDiceOption extends StateAdapter implements Constants{
             }
         if( playerDmg >= monsterHp){
             //getGame().setUiText("O seu dano e de: " + playerDmg);
-            getGame().getPlayer().setDmg(0);
-            getGame().setUiText(getGame().getUiText() + "\nMatou o monstro");
-            getGame().getPlayer().setXp(getGame().getPlayer().getXp() + ((Monster)getGame().getCard()).getReward());
-            if(getGame().checkLevelUp()){
-                getGame().setUiText(getGame().getUiText() + "\n||=== Evoluiu para o Rank " + getGame().getPlayer().getRank() + "===||");
+            game.getPlayer().setDmg(0);
+            game.setUiText(game.getUiText() + "\nMatou o monstro");
+            game.getPlayer().setXp(game.getPlayer().getXp() + ((Monster)game.getCard()).getReward());
+            if(game.checkLevelUp()){
+                game.setUiText(game.getUiText() + "\n||=== Evoluiu para o Rank " + game.getPlayer().getRank() + "===||");
             }
-            getGame().checkCardEnd();
-            return new AwaitCardSelection(getGame());
+            game.checkCardEnd();
+            return new AwaitCardSelection(game);
         }
-        return new AwaitSpellOption(getGame());
+        return new AwaitSpellOption(game);
     }
     
     @Override
     public IStates performFeat(int num, int option) {
         //Meter na text ui os dados com feat possivel
         int roll, rollc, dmg = 0;
-        getGame().getDice().roll();
-        roll = getGame().getDice().getRoll();
-        List<Dice> dicesOut = getGame().getPlayer().getDices();
+        game.getDice().roll();
+        roll = game.getDice().getRoll();
+        List<Dice> dicesOut = game.getPlayer().getDices();
         if (option == 1) {
-            if (getGame().featHp()) {
+            if (game.featHp()) {
                 if (roll == 1) {
                     dicesOut.get(num).setStatus(true);
                     dicesOut.get(num).setRoll(0);
@@ -64,8 +64,8 @@ public class AwaitDiceOption extends StateAdapter implements Constants{
                     dicesOut.get(num).setStatus(true);
                     dicesOut.get(num).setRoll(roll);
                     do {
-                        getGame().getDice().roll();
-                        rollc = getGame().getDice().getRoll();
+                        game.getDice().roll();
+                        rollc = game.getDice().getRoll();
                         if (rollc == 1) {
                             dicesOut.get(num).setRoll(0);
                         } else {
@@ -78,12 +78,12 @@ public class AwaitDiceOption extends StateAdapter implements Constants{
                 }
             }
             else{
-                getGame().setUiText("Nao tem HP Suficiente");
+                game.setUiText("Nao tem HP Suficiente");
                 return this;
             }
         }
         if (option == 2) {
-            if (getGame().featXp()) {
+            if (game.featXp()) {
                 if (roll == 1) {
                     dicesOut.get(num).setStatus(true);
                     dicesOut.get(num).setRoll(0);
@@ -91,8 +91,8 @@ public class AwaitDiceOption extends StateAdapter implements Constants{
                     dicesOut.get(num).setStatus(true);
                     dicesOut.get(num).setRoll(roll);
                     do {
-                        getGame().getDice().roll();
-                        rollc = getGame().getDice().getRoll();
+                        game.getDice().roll();
+                        rollc = game.getDice().getRoll();
                         if (rollc == 1) {
                             dicesOut.get(num).setRoll(0);
                         } else {
@@ -105,15 +105,15 @@ public class AwaitDiceOption extends StateAdapter implements Constants{
                 }
             }
             else{
-                getGame().setUiText("Nao tem XP Suficiente");
+                game.setUiText("Nao tem XP Suficiente");
                 return this;
             }
         }
         
-        for (int i = 0; i < getGame().getNumDices(); i++) {
+        for (int i = 0; i < game.getNumDices(); i++) {
             dmg += dicesOut.get(i).getRoll();
         }
-        getGame().getPlayer().setDmg(dmg);
+        game.getPlayer().setDmg(dmg);
 
         return this;
     }
