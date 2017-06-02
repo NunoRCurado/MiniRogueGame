@@ -123,14 +123,14 @@ public class GraphicalUserInterface extends JFrame implements Observer{
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                JOptionPane.showMessageDialog(null, "\nNuno Curado - Nº21210595\nPedro Martins - Nº2123xxxx\n ISEC - DEIS", "Credits", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "\nNuno Curado - Nº21210595\nPedro Martins - Nº21230150\n ISEC - DEIS", "Credits", JOptionPane.INFORMATION_MESSAGE);
             }
         });
          
          menuLoad.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "\nNuno Curado - Nº21210595\nPedro Martins - Nº2123xxxx\n ISEC - DEIS", "Credits", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "\nNuno Curado - Nº21210595\nPedro Martins - Nº21230150 \n ISEC - DEIS", "Credits", JOptionPane.INFORMATION_MESSAGE);
             }
         });
          

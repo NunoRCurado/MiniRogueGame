@@ -73,8 +73,30 @@ public class ObservableGame extends Observable{
       public int getXp(){
       return g.getGameData().getPlayer().getXp();
    }
+      public boolean hasFire(){
+      return g.getGameData().hasFireball();
+   }
       
-          public int getDifficulty(){
+      public boolean hasIce(){
+      return g.getGameData().hasIce();
+   }
+      public boolean hasPoison(){
+      return g.getGameData().hasPoison();
+   }
+      public boolean hasHealling(){
+      return g.getGameData().hasHealling();
+   }
+      public boolean featHp(){
+      return g.getGameData().featHp();
+   }
+      public boolean featXp(){
+      return g.getGameData().featXp();
+   }
+      public int monsterHp(){
+      return g.getGameData().monsterHp();
+   }
+   
+      public int getDifficulty(){
       return g.getGameData().getDifficulty();
    }
       
@@ -162,14 +184,20 @@ public class ObservableGame extends Observable{
           setChanged();
           notifyObservers();
       }
-         public void critDices(int num){
-          g.critDices(num);
+         public void critDices(int num, int option){
+          g.critDices(num, option);
           setChanged();
           notifyObservers();
       }
          
          public void attack(){
           g.attack();
+          setChanged();
+          notifyObservers();
+      }
+         
+          public void performFeat(int num, int option){
+          g.performFeat(num, option);
           setChanged();
           notifyObservers();
       }
