@@ -280,32 +280,9 @@ public class PanelCartasEventos extends JPanel implements Observer {
             public void actionPerformed(ActionEvent e) {
                 
                 String nome;
-               int numero;
+              
                nome =  game.getCurrentDeck().get(6).getName();
-               numero = drawCard(nome);
-               switch(numero){
-                   case 7:
-                       jLabel6.setIcon(imageIcon5);
-                       break;
-                   case 6:
-                       jLabel6.setIcon(imageIcon1);
-                       break;
-                   case 5:
-                       jLabel6.setIcon(imageIcon7);
-                       break;
-                   case 4:
-                       jLabel6.setIcon(imageIcon3);
-                       break;
-                   case 3:
-                       jLabel6.setIcon(imageIcon4);
-                       break;
-                   case 2:
-                       jLabel6.setIcon(imageIcon2);
-                       break;
-                   case 1:
-                       jLabel6.setIcon(imageIcon6);
-                       break;
-               }
+               jLabel6.setIcon(imageIcon1);
                game.resolveCard(nome);
             }
         });
@@ -409,11 +386,18 @@ public class PanelCartasEventos extends JPanel implements Observer {
         add(button5,gridBag);
         
         //5
+        if(game.getArena()!=2 || game.getArena()!=4 || game.getArena()!=7 ||game.getArena()!= 10|| game.getArena()!= 14 ){
+             jLabel6.setVisible(false);
+             button6.setVisible(false);
+        }else{
+            jLabel6.setVisible(true);
+             button6.setVisible(true);
+        }
         gridBag.anchor=GridBagConstraints.SOUTH;
         gridBag.gridx=4;
         gridBag.gridy=2;
         add(jLabel6,gridBag);
-      
+       
         gridBag.anchor=GridBagConstraints.NORTH;
         gridBag.gridx=4;
         gridBag.gridy=3;
