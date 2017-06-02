@@ -43,7 +43,7 @@ public class PanelDungeon extends JPanel implements Observer{
         Rectangle r=getBounds();
         
         super.paintComponent(g);
-        g.drawImage(image,0,0,400,400,null);
+         g.drawImage(image,0,0,243,340,null);
         int xp = game.getXp(),armor = game.getArmor(), hp = game.getHP(), gold= game.getGold(), food= game.getFood();
         boolean fire = false;
         boolean ice = false;
@@ -55,7 +55,6 @@ public class PanelDungeon extends JPanel implements Observer{
         g2.setColor(Color.blue);
         g2.setStroke(new BasicStroke(3));
         y=41;
-        System.out.println("hp : " + game.getHP());
         switch (hp){
             case 1:
                 x= 93;
@@ -67,10 +66,10 @@ public class PanelDungeon extends JPanel implements Observer{
                 x= 93;
                 break;
             case 4:
-                x= 600;
+                 x= 93;
                 break;
             case 5:
-                x= 600;
+                 x= 93;
                 break;
             case 6:
                 x= 93;
@@ -95,7 +94,7 @@ public class PanelDungeon extends JPanel implements Observer{
         Rectangle r=getBounds();
         
         if(image!=null){
-            return new Dimension(200,200);
+            return new Dimension(260,260);
         }
         return super.getPreferredSize();
     }

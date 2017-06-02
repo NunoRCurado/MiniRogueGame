@@ -12,6 +12,7 @@ import MR_Game_Logic.States.AwaitDiceOption;
 import MR_Game_Logic.States.AwaitDiceRoll;
 import MR_Game_Logic.States.AwaitRest;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -38,6 +39,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -46,14 +48,17 @@ import javax.swing.border.Border;
 public class GraphicalUserInterface extends JFrame implements Observer{
 
     private ObservableGame game;
+    private PrincipalFrame pf;
  
+    
     private PanelCharacterStats panelCharacterStats;
     private PanelDungeon panelDungeon;
     private PanelRollDice panelRollDice;
     private PanelEvent panelEvent;
+    private PanelCartasEventos panelCartasEventos;
     
-    private ImageIcon imageIcon;
-    private JLabel  jLabel;
+    
+    
     private JMenuBar menuMain;
     private JMenu menuFile;
     private JMenu menuAbout;
@@ -75,27 +80,7 @@ public class GraphicalUserInterface extends JFrame implements Observer{
     public GraphicalUserInterface(ObservableGame g){
         super("MiniRogueGame");
         game = g;
-        setup();
         
-        setSize(1200,800);
-        setMinimumSize(new Dimension(1600,1200));
-        setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        validate();//?
-        game.addObserver(this); //?
-    }
-
-    private void setup() {
-        
-        panelCharacterStats = new PanelCharacterStats(game);
-        panelDungeon = new PanelDungeon(game);
-        panelRollDice = new PanelRollDice(game);
-        panelEvent = new PanelEvent(game);
-        
-        
-       // imageIcon = new ImageIcon(getClass().getResource("\\startcard.jpg"));
-       // jLabel = new JLabel(imageIcon);
-       // add(jLabel);
         menuMain = new JMenuBar();
         menuAbout = new JMenu("About");
         menuFile = new JMenu("File");
@@ -105,7 +90,6 @@ public class GraphicalUserInterface extends JFrame implements Observer{
         menuStart = new JMenuItem ("Start Game");
         menuCredits = new JMenuItem("Credits");
       
-        
         menuMain.add(menuFile);
         menuMain.add(menuAbout);
         menuFile.add(menuStart);
@@ -118,7 +102,8 @@ public class GraphicalUserInterface extends JFrame implements Observer{
         setJMenuBar(menuMain);
         
         
-         menuCredits.addActionListener(new ActionListener() {
+      
+          menuCredits.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
@@ -150,13 +135,41 @@ public class GraphicalUserInterface extends JFrame implements Observer{
         });
         
          
-         menuStart.addActionListener(new ActionListener() {
+        menuStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                   
-                  
+                  setup();
+                  game.startGame();
+ 
             }
         });
+        
+        
+        setSize(500,1000);
+        setMinimumSize(new Dimension(500,1000));
+        setVisible(true);
+       
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        validate();//?
+        game.addObserver(this); //?
+        
+    }
+
+     private void setup() {
+        
+        
+        
+        panelCharacterStats = new PanelCharacterStats(game);
+        panelDungeon = new PanelDungeon(game);
+        panelRollDice = new PanelRollDice(game);
+        panelEvent = new PanelEvent(game);
+        panelCartasEventos = new PanelCartasEventos(game);
+        
+        
+       // imageIcon = new ImageIcon(getClass().getResource("\\startcard.jpg"));
+       // jLabel = new JLabel(imageIcon);
+       // add(jLabel);
+       
                  
                  Container cp=getContentPane();
                  setLayout(new FlowLayout());
@@ -164,30 +177,41 @@ public class GraphicalUserInterface extends JFrame implements Observer{
                  cp.setLayout(new GridBagLayout());
                  GridBagConstraints gridBag=new GridBagConstraints();
                  gridBag.fill=GridBagConstraints.BOTH;
-
+                
+                 
+                 panelCharacterStats.setBorder(new LineBorder(Color.black));
                  gridBag.gridx=0;
                  gridBag.gridy=0;
-                 gridBag.weighty=1;
-                 gridBag.weightx=1;
-  
+                 gridBag.weighty=0.6;
+                 gridBag.weightx=0.5;
                  cp.add(panelCharacterStats,gridBag);
                  
+                 panelDungeon.setBorder(new LineBorder(Color.black));
                  gridBag.gridx=1;
                  gridBag.gridy=0;
-                 gridBag.weighty=1;
-                 gridBag.weightx=1;
+                 gridBag.weighty=0.6;
+                 gridBag.weightx=0.5;
                  cp.add(panelDungeon, gridBag);   
                  
-                 gridBag.gridx=2;
-                 gridBag.gridy=0;
-                 gridBag.weighty=1;
-                 gridBag.weightx=1;
-                 cp.add(panelEvent, gridBag);   
                  
+                 panelCartasEventos.setBorder(new LineBorder(Color.black));
                  gridBag.gridx=0;
                  gridBag.gridy=1;
+                 gridBag.weighty=0.3;
+                 gridBag.weightx=1;
+                 gridBag.gridwidth=2;
+                 cp.add(panelCartasEventos, gridBag);   
+                 
+                 panelRollDice.setBorder(new LineBorder(Color.black));
+                 gridBag.weighty=0.1;
+                 gridBag.weightx=1;
+                 gridBag.gridx=0;
+                 gridBag.gridy=2;
+                 gridBag.gridwidth=2;
                  cp.add(panelRollDice, gridBag);   
+    
+                 setVisible(true);
+                
     }
-
    
 }

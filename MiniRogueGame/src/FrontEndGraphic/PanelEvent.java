@@ -39,7 +39,7 @@ public class PanelEvent extends JPanel implements Observer{
     }
 
     private void setup() {
-        imageIcon = new ImageIcon(getClass().getResource("\\backcard.jpg"));
+        imageIcon = new ImageIcon(getClass().getResource("\\startcard.jpg"));
         jLabel = new JLabel(imageIcon);
         add(jLabel);
         
