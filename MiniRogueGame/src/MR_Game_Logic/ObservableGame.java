@@ -19,7 +19,7 @@ public class ObservableGame extends Observable{
     
     public ObservableGame(){
         g=new MR_Game();
-        //g.getGameData().initialize();
+        
     }
     
     public IStates getState(){
@@ -65,6 +65,13 @@ public class ObservableGame extends Observable{
       return g.getGameData().getPlayer().getGold();
    }
       
+       public String getCurrentCard(){
+        return g.getGameData().getDungeon().currentCard(g.getGameData().getArena(), g.getGameData().getLevel(), g.getGameData().getCardPosition()).toLowerCase();
+     } 
+       
+       public Dungeon getDungeon() {
+        return g.getGameData().getDungeon();
+    }
         
       public int getRank(){
       return g.getGameData().getPlayer().getRank();

@@ -41,7 +41,7 @@ public class PanelCharacterStats extends JPanel implements Observer{
         Rectangle r=getBounds();
         
         super.paintComponent(g);
-        g.drawImage(image,0,0,400,400,null);
+        g.drawImage(image,0,0,243,340,null);
         int rank = game.getRank(),
                 armor = game.getArmor(), 
                 hp = game.getHP(), 
@@ -57,45 +57,7 @@ public class PanelCharacterStats extends JPanel implements Observer{
         g2.setColor(Color.blue);
         g2.setStroke(new BasicStroke(3));
         
-        Graphics2D g3=(Graphics2D) g;
-        g3.setColor(Color.blue);
-        g3.setStroke(new BasicStroke(3));
-        
-         Graphics2D g4=(Graphics2D) g;
-        g4.setColor(Color.blue);
-        g4.setStroke(new BasicStroke(3));
-        
-          
-         Graphics2D g5=(Graphics2D) g;
-        g5.setColor(Color.blue);
-        g5.setStroke(new BasicStroke(3));
-        
-        Graphics2D g6=(Graphics2D) g;
-        g6.setColor(Color.blue);
-        g6.setStroke(new BasicStroke(3));
-        
-        
-        Graphics2D g7=(Graphics2D) g;
-        g7.setColor(Color.blue);
-        g7.setStroke(new BasicStroke(3));
-        
-         
-        Graphics2D g8=(Graphics2D) g;
-        g8.setColor(Color.blue);
-        g8.setStroke(new BasicStroke(3));
-        
-         
-        Graphics2D g9=(Graphics2D) g;
-        g9.setColor(Color.blue);
-        g9.setStroke(new BasicStroke(3));
-        
-         
-        Graphics2D g10=(Graphics2D) g;
-        g10.setColor(Color.blue);
-        g10.setStroke(new BasicStroke(3));
-        
-  
-        
+
         switch (hp){
             case 1:
                 x= 184;
@@ -266,7 +228,7 @@ public class PanelCharacterStats extends JPanel implements Observer{
                  y=24;
                 break;
         }
-        g3.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
+        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
         
         switch (food){
             case 0:
@@ -298,7 +260,7 @@ public class PanelCharacterStats extends JPanel implements Observer{
                 y=23;
                 break;
         }
-        g4.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
+        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
        
         switch (armor){
             case 0:
@@ -326,35 +288,34 @@ public class PanelCharacterStats extends JPanel implements Observer{
                y=23;
                 break;
         }
-        g5.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
+        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
       
         switch (rank){
          
             case 1:
                 x= 21;
-                y=92;
+                y=72;
                  break;
             case 2:
                 x= 21;
                 y=72;
                  break;
             case 3:
-                 x= 21;
+                x= 21;
                 y=50;
-                break;
+                 break;
             case 4:
                 x= 21;
                 y=25;
-                break;
+                 break;
         }
-        g6.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/7), (int) (r.height/15));
-       fire = true;
+        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/7), (int) (r.height/15));
+       
         if(fire==true){
             x= 98;
             y=106;
             g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
         }
-        
         
          if(ice==true){
             x= 98;
@@ -362,19 +323,17 @@ public class PanelCharacterStats extends JPanel implements Observer{
            g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
         }
         
-      
            if(poison==true){
             x= 98;
             y=127;
-            g9.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
+            g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
         }
         
       
-        
           if(heal==true){
             x= 98;
             y=137;
-            g10.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
+            g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
         }
         
     }
@@ -383,7 +342,7 @@ public class PanelCharacterStats extends JPanel implements Observer{
         Rectangle r=getBounds();
         
         if(image!=null){
-            return new Dimension(r.width,r.height);
+            return new Dimension(260,260);
         }
         return super.getPreferredSize();
     }
