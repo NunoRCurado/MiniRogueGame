@@ -20,9 +20,9 @@ public class MiniRogue {
      * @param args the command line arguments
      */
     public static void main(String[] args){
-        //GraphicalUserInterface ui=new GraphicalUserInterface(new ObservableGame());
-        TextUI tu = new TextUI(new MR_Game());
-        tu.run();
+        GraphicalUserInterface ui=new GraphicalUserInterface(new ObservableGame());
+       // TextUI tu = new TextUI(new MR_Game());
+       // tu.run();
     }
     
     

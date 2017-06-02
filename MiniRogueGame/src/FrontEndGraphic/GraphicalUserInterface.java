@@ -54,7 +54,6 @@ public class GraphicalUserInterface extends JFrame implements Observer{
     private PanelCharacterStats panelCharacterStats;
     private PanelDungeon panelDungeon;
     private PanelRollDice panelRollDice;
-    private PanelEvent panelEvent;
     private PanelCartasEventos panelCartasEventos;
     
     
@@ -162,7 +161,6 @@ public class GraphicalUserInterface extends JFrame implements Observer{
         panelCharacterStats = new PanelCharacterStats(game);
         panelDungeon = new PanelDungeon(game);
         panelRollDice = new PanelRollDice(game);
-        panelEvent = new PanelEvent(game);
         panelCartasEventos = new PanelCartasEventos(game);
         
         
