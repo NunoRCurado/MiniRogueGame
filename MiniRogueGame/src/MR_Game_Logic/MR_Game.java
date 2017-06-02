@@ -172,6 +172,10 @@ public class MR_Game implements Serializable
          return gameData.validSpellsToString();
      }
      
+     public String getCurrentCard(){
+         return gameData.getDungeon().currentCard(gameData.getArena(), gameData.getLevel(), gameData.getCardPosition()).toLowerCase();
+     } 
+     
     // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
     
 
