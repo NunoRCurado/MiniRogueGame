@@ -75,11 +75,10 @@ public class GraphicalUserInterface extends JFrame implements Observer{
     public GraphicalUserInterface(ObservableGame g){
         super("MiniRogueGame");
         game = g;
-        game.startGame();
         setup();
         
         setSize(1200,800);
-        setMinimumSize(new Dimension(1200,800));
+        setMinimumSize(new Dimension(1600,1200));
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         validate();//?
@@ -130,7 +129,7 @@ public class GraphicalUserInterface extends JFrame implements Observer{
          menuLoad.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "\nNuno Curado - Nº21210595\nPedro Martins - Nº21230150 \n ISEC - DEIS", "Credits", JOptionPane.INFORMATION_MESSAGE);
+                
             }
         });
          
@@ -145,6 +144,8 @@ public class GraphicalUserInterface extends JFrame implements Observer{
                 
                 nome = JOptionPane.showInputDialog(null,"Nome do jogador: ");
                 game.setName(nome);
+                
+                 System.out.println("dificuldade = " + game.getDifficulty());
             }
         });
         
@@ -152,8 +153,8 @@ public class GraphicalUserInterface extends JFrame implements Observer{
          menuStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                   game.startGame();
-                   System.out.println("dificuldade = " + game.getDifficulty());
+                   
+                  
             }
         });
                  

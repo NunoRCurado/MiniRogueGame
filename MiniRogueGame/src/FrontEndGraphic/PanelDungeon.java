@@ -12,8 +12,11 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,8 +28,8 @@ import javax.swing.JPanel;
 public class PanelDungeon extends JPanel implements Observer{
 
     private ObservableGame game;
-    private ImageIcon imageIcon;
-    private JLabel  jLabel;
+     private String imageFile="\\dungeon.jpg";
+    private BufferedImage image;
     
     
     public PanelDungeon(ObservableGame g){
@@ -40,6 +43,7 @@ public class PanelDungeon extends JPanel implements Observer{
         Rectangle r=getBounds();
         
         super.paintComponent(g);
+        g.drawImage(image,0,0,400,400,null);
         int xp = game.getXp(),armor = game.getArmor(), hp = game.getHP(), gold= game.getGold(), food= game.getFood();
         boolean fire = false;
         boolean ice = false;
@@ -90,8 +94,8 @@ public class PanelDungeon extends JPanel implements Observer{
     public Dimension getPreferredSize(){
         Rectangle r=getBounds();
         
-        if(imageIcon!=null){
-            return new Dimension(r.width,r.height);
+        if(image!=null){
+            return new Dimension(200,200);
         }
         return super.getPreferredSize();
     }
@@ -101,9 +105,11 @@ public class PanelDungeon extends JPanel implements Observer{
     }
 
     private void setup() {
-         imageIcon = new ImageIcon(getClass().getResource("\\dungeon.jpg"));
-        jLabel = new JLabel(imageIcon);
-        add(jLabel);
+           try {
+            image=ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+        } catch (IOException ex) {
+            System.out.println(ex);
+        } 
     }
     
 }

@@ -19,6 +19,7 @@ public class ObservableGame extends Observable{
     
     public ObservableGame(){
         g=new MR_Game();
+        g.startGame();
     }
     
     public IStates getState(){
