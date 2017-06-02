@@ -48,7 +48,7 @@ import javax.swing.border.LineBorder;
 public class GraphicalUserInterface extends JFrame implements Observer{
 
     private ObservableGame game;
-    private PrincipalFrame pf;
+   
  
     
     private PanelCharacterStats panelCharacterStats;
