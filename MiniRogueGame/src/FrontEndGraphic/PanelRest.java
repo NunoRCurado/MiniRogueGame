@@ -79,7 +79,9 @@ public class PanelRest extends JPanel implements Observer {
             }
             
         });
+       
 }
+    
     }
     
     

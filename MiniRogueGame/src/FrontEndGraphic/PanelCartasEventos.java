@@ -55,13 +55,13 @@ public class PanelCartasEventos extends JPanel implements Observer {
     private ImageIcon imageIcon6 = new ImageIcon(getClass().getResource("\\treasure.jpg"));
     private ImageIcon imageIcon7 = new ImageIcon(getClass().getResource("\\monster.jpg"));
     
-    private JLabel  jLabel;
-    private JLabel  jLabel1;
-    private JLabel  jLabel2;
-    private JLabel  jLabel3;
-    private JLabel  jLabel4;
-    private JLabel  jLabel5;
-    private JLabel  jLabel6;
+    private JLabel  jLabel = new JLabel(imageIcon);
+    private JLabel  jLabel1 = new JLabel(imageIcon);
+    private JLabel  jLabel2 = new JLabel(imageIcon);
+    private JLabel  jLabel3 = new JLabel(imageIcon);
+    private JLabel  jLabel4= new JLabel(imageIcon);
+    private JLabel  jLabel5= new JLabel(imageIcon);
+    private JLabel  jLabel6= new JLabel(imageIcon);
     
     
      
@@ -100,6 +100,9 @@ public class PanelCartasEventos extends JPanel implements Observer {
                 String nome;
                 nome =  game.getCurrentDeck().get(4).getName();
                 game.resolveCard(nome);
+                if(game.getArena()!=2 || game.getArena()!=4 || game.getArena()!=7 || game.getArena()!=10 || game.getArena()!=14){
+                    game.checkCardEndArenaGrafic();
+                }
             }
             
         });
@@ -110,6 +113,9 @@ public class PanelCartasEventos extends JPanel implements Observer {
                 String nome;
                 nome =  game.getCurrentDeck().get(5).getName();
                 game.resolveCard(nome);
+                if(game.getArena()!=2 || game.getArena()!=4 || game.getArena()!=7 || game.getArena()!=10 || game.getArena()!=14){
+                    game.checkCardEndArenaGrafic();
+                }
             }
             
         });
@@ -331,6 +337,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
                nome =  game.getCurrentDeck().get(6).getName();
                jLabel6.setIcon(imageIcon1);
                game.resolveCard(nome);
+               
             }
         });
     }
@@ -356,7 +363,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
     
         
         
-        drawEventosStandard();
+        //drawEventosStandard();
         
         
         setLayout(new GridBagLayout());

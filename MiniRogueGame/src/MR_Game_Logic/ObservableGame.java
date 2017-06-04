@@ -110,8 +110,33 @@ public class ObservableGame extends Observable{
    
       public int getDifficulty(){
       return g.getGameData().getDifficulty();
+      
+      
    }
       
+       public Player getPlayer()
+    {
+        return g.getGameData().getPlayer();
+    }
+      
+      public void checkCardEndMonsterGrafic(){
+        if (g.getPlayer().getFood() == 0) {
+            g.getPlayer().setHp(g.getPlayer().getHp() - 2);
+        } else {
+            g.getPlayer().setFood(g.getPlayer().getFood() - 1);
+        }
+        g.getGameData().setArena(g.getGameData().getArena() + 1);
+        g.getGameData().setLevel(g.getGameData().getLevel() + 1);
+    }
+      
+       public void checkCardEndArenaGrafic(){
+        if (g.getPlayer().getFood() ==  0) {
+            g.getPlayer().setHp(g.getPlayer().getHp()- 2);
+        } else {
+            g.getPlayer().setFood(g.getPlayer().getFood() - 1);
+        }
+         g.getGameData().setArena(g.getGameData().getArena() + 1);
+    }
      
       
       public void startGame(){

@@ -60,280 +60,279 @@ public class PanelCharacterStats extends JPanel implements Observer{
 
         switch (hp){
             case 1:
-                x= 184;
-                y=127;
+                x= 77;
+                y=206;
                 break;
             case 2:
-                x= 184;
-                y=117;
+                x= 77;
+                y=188;
                 break;
             case 3:
-                 x= 184;
-                y=106;
+                 x= 77;
+                y=170;
                 break;
             case 4:
-                 x= 184;
-                y=94;
+                 x= 77;
+                y=152;
                 break;
             case 5:
-                 x= 184;
-                y=83;
+                 x= 77;
+                y=134;
                 break;
             case 6:
-                 x= 184;
-                y=70;
+               x= 77;
+                y=115;
                 break;
             case 7:
-                 x= 184;
-                y=59;
+                x= 77;
+                y=95;
                 break;
             case 8:
-                 x= 184;
-                y=47;
+              x= 77;
+                y=75;
                 break;
             case 9:
-                 x= 184;
-                y=36;
+                x= 77;
+                y=59;
                 break;
             case 10:
-                 x= 184;
-                y=24;
+                x= 77;
+                y=39;
                 break;
             case 11:
-                x= 143;
-                y=127;
+                x= 60;
+                y=206;
                 break;
             case 12:
-                x= 143;
-                y=117;
+                x= 60;
+                y=188;
                 break;
             case 13:
-                x= 143;
-               y=106;
+               x= 60;
+               y=170;
                 break;
             case 14:
-               x= 143;
-                 y=94;
+               x= 60;
+                 y=152;
                 break;
             case 15:
-                x= 143;
-                y=83;
+                x= 60;;
+                y=134;
                 break;
             case 16:
-                x= 143;
-               y=70;
+                x= 60;
+               y=115;
                 break;
             case 17:
-                x= 143;
-                 y=59;
+                x= 60;;
+                y=95;
                 break;
             case 18:
-                x= 143;
-                y=47;
+                x= 60;
+                y=75;
                 break;
             case 19:
-                x= 143;
-                y=36;
+                x= 60;
+               y=59;
                 break;
             case 20:
-                x= 143;
-                 y=24;
+                x= 60;
+                y=39;
                 break;
         }
-        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
+        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/30), (int) (r.height/30));
        
         switch (gold){
             case 0:
-                 x= 267;
-                  y=140;
+                 x= 113;
+                  y=226;
                  break;
             case 1:
-                x= 267;
-                y=127;
+                x= 113;
+                y=206;
                 break;
             case 2:
-                 x= 267;
-                y=117;
+                x= 113;
+                y=188;
                 break;
             case 3:
-                 x= 267;
-                y=106;
+                x= 113;
+                y=170;
                 break;
             case 4:
-                 x= 267;
-                y=94;
+                x= 113;
+                y=152;
                 break;
             case 5:
-                 x= 267;
-                y=83;
+                x= 113;
+                y=134;
                 break;
             case 6:
-                 x= 267;
-                y=70;
+                x= 113;
+                y=115;
                 break;
             case 7:
-                 x= 267;
-                y=59;
+                x= 113;
+                y=95;
                 break;
             case 8:
-                 x= 267;
-                y=47;
+                x= 113;
+                y=75;
                 break;
             case 9:
-                 x= 267;
-                y=36;
+                x= 113;
+                 y=59;
                 break;
             case 10:
-                 x= 267;
-                y=24;
+                x= 113;
+               y=39;
                 break;
             case 11:
-               x= 229;
-                y=127;
+               x= 96;
+                y=206;
                 break;
             case 12:
-                x= 229;
-                y=117;
+                x= 96;
+                y=188;
                 break;
             case 13:
-                x= 229;
-               y=106;
+                x= 96;
+               y=170;
                 break;
             case 14:
-               x= 229;
-                 y=94;
+               x= 96;
+                y=152;
                 break;
             case 15:
-              x= 229;
-                y=83;
+              x= 96;
+                y=134;
                 break;
             case 16:
-                x= 229;
-               y=70;
+                x= 96;
+               y=115;
                 break;
             case 17:
-                x= 229;
-                 y=59;
+                x= 96;
+                y=95;
                 break;
             case 18:
-               x= 229;
-                y=47;
+               x= 96;
+                y=75;
                 break;
             case 19:
-                x= 229;
-                y=36;
-                break;
-            case 20:
-              x= 229;
-                 y=24;
-                break;
-        }
-        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
-        
-        switch (food){
-            case 0:
-                  x= 310;
-                  y=94;
-                 break;
-            case 1:
-                 x= 310;
-                 y=83;
-                break;
-            case 2:
-                 x= 310;
-                y=70;
-                break;
-            case 3:
-                  x= 310;
+                x= 96;
                  y=59;
                 break;
-            case 4:
-                  x= 310;
-                 y=47;
-                break;
-            case 5:
-                  x= 310;
-                y=36;
-                break;
-             case 6:
-                  x= 310;
-                y=23;
+            case 20:
+              x= 96;
+                y=39;
                 break;
         }
-        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
+        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/30), (int) (r.height/30));
        
-        switch (armor){
+        switch (food){
             case 0:
-                  x= 98;
-                   y=83;
+                  x= 133;
+                  y=152;
                  break;
             case 1:
-                x= 98;
-                 y=70;
+                 x= 133;
+                 y=134;
                 break;
             case 2:
-                 x= 98;
-                y=59;
+                 x= 133;
+                y=115;
                 break;
             case 3:
-                 x= 98;
-                 y=47;
+                x= 133;
+                y=95;
                 break;
             case 4:
-                 x= 98;
-                  y=36;
+                x= 133;
+                 y=75;
                 break;
             case 5:
-                x= 98;
-               y=23;
+                x= 133;
+                y=59;
+                break;
+             case 6:
+                 x= 133; 
+                y=39;
                 break;
         }
-        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
-      
+        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/30), (int) (r.height/30));
+   
+        switch (armor){
+            case 0:
+                  x= 40;
+                  y=134;
+                 break;
+            case 1:
+               x= 40;
+                 y=115;
+                break;
+            case 2:
+                 x= 40;
+                 y=95;
+                break;
+            case 3:
+                 x= 40;
+                  y=75;
+                break;
+            case 4:
+                 x= 40;
+                  y=59;;
+                break;
+            case 5:
+                x= 40;
+               y=39;
+                break;
+        }
+        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/30), (int) (r.height/30));
+  
         switch (rank){
          
             case 1:
-                x= 21;
-                y=72;
+                x= 5;
+                y=125;
                  break;
             case 2:
-                x= 21;
-                y=72;
+               x= 5;
+                y=125;
                  break;
             case 3:
-                x= 21;
-                y=50;
+                 x= 5;
+                y=85;
                  break;
             case 4:
-                x= 21;
-                y=25;
+                 x= 5;
+                y=45;
                  break;
         }
-        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/7), (int) (r.height/15));
+        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/15), (int) (r.height/15));
        
         if(fire==true){
-            x= 98;
-            y=106;
-            g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
+            x= 40;
+            y=170;
+        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/30), (int) (r.height/30));
         }
         
          if(ice==true){
-            x= 98;
-           y=117;
-           g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
+             x= 40;
+           y=190;
+        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/30), (int) (r.height/30));
         }
         
            if(poison==true){
-            x= 98;
-            y=127;
-            g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
+             x= 40;
+            y=209;
+        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/30), (int) (r.height/30));
         }
-        
       
           if(heal==true){
-            x= 98;
-            y=137;
-            g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/20), (int) (r.height/40));
+            x= 40;
+            y=228;
+        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/30), (int) (r.height/30));
         }
         
     }

@@ -453,7 +453,7 @@ public class GameData implements Serializable{
     
     public boolean hasFireball(){
         for(int i = 0 ; i < player.spells.size() ; i++){
-            if(player.spells.get(i).equals("Fireball")){
+            if(player.getSpells().get(i).equals("Fireball")){
                 return true;
             }
         }

@@ -73,6 +73,7 @@ public class GraphicalUserInterface extends JFrame implements Observer{
     @Override
     public void update(Observable o, Object o1) {
      
+        
      }
     
    
@@ -226,7 +227,7 @@ public class GraphicalUserInterface extends JFrame implements Observer{
                  gridBag.weightx=1;
                  gridBag.gridx=0;
                  gridBag.gridy=2;
-                 gridBag.gridwidth=2;
+                 gridBag.gridwidth=1;
                  cp.add(panelRollDice, gridBag);   
     
                  setVisible(true);
