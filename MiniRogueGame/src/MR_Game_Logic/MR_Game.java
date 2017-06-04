@@ -182,7 +182,7 @@ public class MR_Game implements Serializable
      }
      
      public void checkCardEndArenaGrafic(){
-         gameData.checkCardEndArenaGrafic();
+         gameData.checkCardEndArenaGrafic();  
      }
      
      public void checkCardEndMonsterGrafic(){
