@@ -453,7 +453,7 @@ public class GameData implements Serializable{
     
     public boolean hasFireball(){
         for(int i = 0 ; i < player.spells.size() ; i++){
-            if(player.getSpells().get(i).equals("Fireball")){
+            if(player.getSpells().get(i).getName().equals("Fireball")){
                 return true;
             }
         }
@@ -461,7 +461,7 @@ public class GameData implements Serializable{
     }
     public boolean hasHealling(){
         for(int i = 0 ; i < player.spells.size() ; i++){
-            if(player.spells.get(i).equals("Healing")){
+            if(player.spells.get(i).getName().equals("Healing")){
                 return true;
             }
         }
@@ -469,7 +469,7 @@ public class GameData implements Serializable{
     }
     public boolean hasIce(){
         for(int i = 0 ; i < player.spells.size() ; i++){
-            if(player.spells.get(i).equals("Ice")){
+            if(player.spells.get(i).getName().equals("Ice")){
                 return true;
             }
         }
@@ -477,7 +477,7 @@ public class GameData implements Serializable{
     }
     public boolean hasPoison(){
         for(int i = 0 ; i < player.spells.size() ; i++){
-            if(player.spells.get(i).equals("Poison")){
+            if(player.spells.get(i).getName().equals("Poison")){
                 return true;
             }
         }
