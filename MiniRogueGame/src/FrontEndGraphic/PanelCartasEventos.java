@@ -455,13 +455,13 @@ public class PanelCartasEventos extends JPanel implements Observer {
         add(button5,gridBag);
         
         //5
-//        if(game.getArena()!=2 || game.getArena()!=4 || game.getArena()!=7 ||game.getArena()!= 10|| game.getArena()!= 14 ){
-//             jLabel6.setVisible(false);
-//             button6.setVisible(false);
-//        }else{
-//            jLabel6.setVisible(true);
-//             button6.setVisible(true);
-//        }
+        if(game.getArena()!=2 || game.getArena()!=4 || game.getArena()!=7 ||game.getArena()!= 10|| game.getArena()!= 14 ){
+             jLabel6.setVisible(false);
+             button6.setVisible(false);
+        }else{
+            jLabel6.setVisible(true);
+             button6.setVisible(true);
+        }
         gridBag.anchor=GridBagConstraints.SOUTH;
         gridBag.gridx=4;
         gridBag.gridy=2;
