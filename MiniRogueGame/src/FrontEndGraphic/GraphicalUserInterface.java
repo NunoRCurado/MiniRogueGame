@@ -55,6 +55,8 @@ public class GraphicalUserInterface extends JFrame implements Observer{
     private PanelDungeon panelDungeon;
     private PanelRollDice panelRollDice;
     private PanelCartasEventos panelCartasEventos;
+    private PanelComprareVender panelComprareVender;
+    private PanelRest panelRest;
     
     
     
@@ -70,9 +72,8 @@ public class GraphicalUserInterface extends JFrame implements Observer{
     
     @Override
     public void update(Observable o, Object o1) {
-     if(!(game.getState() instanceof AwaitDiceOption && !(game.getState() instanceof AwaitRest) && !(game.getState() instanceof AwaitDiceRoll) && !(game.getState() instanceof AwaitBeginning))){
-        
-     }}
+     
+     }
     
    
     
@@ -144,8 +145,8 @@ public class GraphicalUserInterface extends JFrame implements Observer{
         });
         
         
-        setSize(500,1000);
-        setMinimumSize(new Dimension(500,1000));
+        setSize(1400,1000);
+        setMinimumSize(new Dimension(1400,1000));
         setVisible(true);
        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -162,6 +163,8 @@ public class GraphicalUserInterface extends JFrame implements Observer{
         panelDungeon = new PanelDungeon(game);
         panelRollDice = new PanelRollDice(game);
         panelCartasEventos = new PanelCartasEventos(game);
+        panelComprareVender = new PanelComprareVender(game);
+        panelRest = new PanelRest(game);
         
         
        // imageIcon = new ImageIcon(getClass().getResource("\\startcard.jpg"));
@@ -181,24 +184,42 @@ public class GraphicalUserInterface extends JFrame implements Observer{
                  gridBag.gridx=0;
                  gridBag.gridy=0;
                  gridBag.weighty=0.6;
-                 gridBag.weightx=0.5;
+                 gridBag.weightx=0.6;
                  cp.add(panelCharacterStats,gridBag);
                  
                  panelDungeon.setBorder(new LineBorder(Color.black));
                  gridBag.gridx=1;
                  gridBag.gridy=0;
                  gridBag.weighty=0.6;
-                 gridBag.weightx=0.5;
+                 gridBag.weightx=0.6;
                  cp.add(panelDungeon, gridBag);   
                  
                  
                  panelCartasEventos.setBorder(new LineBorder(Color.black));
                  gridBag.gridx=0;
                  gridBag.gridy=1;
-                 gridBag.weighty=0.3;
-                 gridBag.weightx=1;
-                 gridBag.gridwidth=2;
-                 cp.add(panelCartasEventos, gridBag);   
+                 gridBag.weighty=0.2;
+                 gridBag.weightx=0.7;
+                 cp.add(panelCartasEventos, gridBag);
+                 
+                 
+                 
+                 panelComprareVender.setBorder(new LineBorder(Color.black));
+                 gridBag.gridx=1;
+                 gridBag.gridy=1;
+                 gridBag.weighty=0.2;
+                 gridBag.weightx=0.2;
+                 cp.add(panelComprareVender, gridBag); 
+                // panelComprareVender.setVisible(false);
+                 
+                 panelRest.setBorder(new LineBorder(Color.black));
+                 gridBag.gridx=2;
+                 gridBag.gridy=1;
+                 gridBag.weighty=0.2;
+                 gridBag.weightx=0.1;
+                 cp.add(panelRest, gridBag);
+                 
+                 
                  
                  panelRollDice.setBorder(new LineBorder(Color.black));
                  gridBag.weighty=0.1;
@@ -209,7 +230,6 @@ public class GraphicalUserInterface extends JFrame implements Observer{
                  cp.add(panelRollDice, gridBag);   
     
                  setVisible(true);
-                
     }
    
 }

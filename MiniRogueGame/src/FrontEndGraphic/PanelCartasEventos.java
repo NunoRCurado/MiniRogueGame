@@ -40,6 +40,10 @@ public class PanelCartasEventos extends JPanel implements Observer {
     private JButton button4= new JButton("Select");
     private JButton button5= new JButton("Select");
     private JButton button6= new JButton("Select");
+    private JButton button7= new JButton("Choose");
+    private JButton button8= new JButton("Choose");
+    private JButton button9= new JButton("Choose");
+    private JButton button10= new JButton("Choose");
     
     
     private ImageIcon imageIcon = new ImageIcon(getClass().getResource("\\backCard.jpg"));
@@ -68,6 +72,49 @@ public class PanelCartasEventos extends JPanel implements Observer {
         setup();
         game.addObserver(this); 
         
+        
+        
+        button7.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String nome;
+                nome =  game.getCurrentDeck().get(1).getName();
+                game.resolveCard(nome);
+            }
+            
+        });
+        
+         button8.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String nome;
+                nome =  game.getCurrentDeck().get(2).getName();
+                game.resolveCard(nome);
+            }
+            
+        });
+         
+           button9.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String nome;
+                nome =  game.getCurrentDeck().get(4).getName();
+                game.resolveCard(nome);
+            }
+            
+        });
+           
+             button10.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String nome;
+                nome =  game.getCurrentDeck().get(5).getName();
+                game.resolveCard(nome);
+            }
+            
+        });
+         
+         
         
         button.addActionListener(new ActionListener() {
             @Override
@@ -135,7 +182,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
                        jLabel1.setIcon(imageIcon6);
                        break;
                }
-               game.resolveCard(nome);
+               
             }
         });
         
@@ -169,7 +216,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
                        jLabel2.setIcon(imageIcon6);
                        break;
                }
-                game.resolveCard(nome);
+                
             }
         });
         
@@ -237,7 +284,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
                        jLabel4.setIcon(imageIcon6);
                        break;
                }
-                game.resolveCard(nome);
+             
             }
         });
         
@@ -271,7 +318,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
                        jLabel5.setIcon(imageIcon6);
                        break;
                }
-                game.resolveCard(nome);
+                
             }
         });
         
@@ -330,6 +377,12 @@ public class PanelCartasEventos extends JPanel implements Observer {
         
     
         //2
+        
+        gridBag.anchor=GridBagConstraints.SOUTH;
+        gridBag.gridx=1;
+        gridBag.gridy=0;
+        add(button7,gridBag);
+        
         gridBag.anchor=GridBagConstraints.SOUTH;
         gridBag.gridx=1;
         gridBag.gridy=1;
@@ -344,11 +397,16 @@ public class PanelCartasEventos extends JPanel implements Observer {
         gridBag.anchor=GridBagConstraints.SOUTH;
         gridBag.gridx=1;
         gridBag.gridy=3;
+        add(button8,gridBag);
+        
+        gridBag.anchor=GridBagConstraints.SOUTH;
+        gridBag.gridx=1;
+        gridBag.gridy=4;
         add(jLabel2,gridBag);
         
         gridBag.anchor=GridBagConstraints.NORTH;
         gridBag.gridx=1;
-        gridBag.gridy=4;
+        gridBag.gridy=5;
         add(button2,gridBag);
         
         
@@ -365,6 +423,12 @@ public class PanelCartasEventos extends JPanel implements Observer {
         
         
         //4
+        
+        gridBag.anchor=GridBagConstraints.SOUTH;
+        gridBag.gridx=3;
+        gridBag.gridy=0;
+        add(button9,gridBag);
+        
         gridBag.anchor=GridBagConstraints.SOUTH;
         gridBag.gridx=3;
         gridBag.gridy=1;
@@ -378,21 +442,26 @@ public class PanelCartasEventos extends JPanel implements Observer {
         gridBag.anchor=GridBagConstraints.SOUTH;
         gridBag.gridx=3;
         gridBag.gridy=3;
+        add(button10,gridBag);
+        
+        gridBag.anchor=GridBagConstraints.SOUTH;
+        gridBag.gridx=3;
+        gridBag.gridy=4;
         add(jLabel5,gridBag);
         
         gridBag.anchor=GridBagConstraints.NORTH;
         gridBag.gridx=3;
-        gridBag.gridy=4;
+        gridBag.gridy=5;
         add(button5,gridBag);
         
         //5
-        if(game.getArena()!=2 || game.getArena()!=4 || game.getArena()!=7 ||game.getArena()!= 10|| game.getArena()!= 14 ){
-             jLabel6.setVisible(false);
-             button6.setVisible(false);
-        }else{
-            jLabel6.setVisible(true);
-             button6.setVisible(true);
-        }
+//        if(game.getArena()!=2 || game.getArena()!=4 || game.getArena()!=7 ||game.getArena()!= 10|| game.getArena()!= 14 ){
+//             jLabel6.setVisible(false);
+//             button6.setVisible(false);
+//        }else{
+//            jLabel6.setVisible(true);
+//             button6.setVisible(true);
+//        }
         gridBag.anchor=GridBagConstraints.SOUTH;
         gridBag.gridx=4;
         gridBag.gridy=2;

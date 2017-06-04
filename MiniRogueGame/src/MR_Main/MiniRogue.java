@@ -21,8 +21,8 @@ public class MiniRogue {
      */
     public static void main(String[] args){
         GraphicalUserInterface ui=new GraphicalUserInterface(new ObservableGame());
-       // TextUI tu = new TextUI(new MR_Game());
-       // tu.run();
+        //TextUI tu = new TextUI(new MR_Game());
+        //tu.run();
     }
     
     
