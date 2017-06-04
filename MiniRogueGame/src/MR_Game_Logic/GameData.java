@@ -160,6 +160,25 @@ public class GameData implements Serializable{
             return true;
     }
     
+    public void checkCardEndArenaGrafic(){
+        if (player.getFood() == 0) {
+            player.setHp(player.getHp() - 2);
+        } else {
+            player.setFood(player.getFood() - 1);
+        }
+        setArena(getArena() + 1);
+    }
+    
+    public void checkCardEndMonsterGrafic(){
+        if (player.getFood() == 0) {
+            player.setHp(player.getHp() - 2);
+        } else {
+            player.setFood(player.getFood() - 1);
+        }
+        setArena(getArena() + 1);
+        setLevel(getLevel() + 1);
+    }
+    
     public void checkCardEnd() {
         if (column == 2) {
             if(cardPosition == 1)
