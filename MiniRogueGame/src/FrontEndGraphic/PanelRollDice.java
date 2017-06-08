@@ -8,6 +8,7 @@ package FrontEndGraphic;
 import MR_Game_Logic.ObservableGame;
 import java.awt.Color;
 import java.awt.Event;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -35,6 +36,11 @@ public class PanelRollDice extends JPanel implements Observer{
     private JButton rodaDado2  = new JButton("Roda dado 2");
     private JButton rodaDado3 = new JButton("Roda dado 3");
     private JButton rodaDado4 = new JButton("Roda dado 4");
+    
+    String valorDado1 = "0";
+    String valorDado2= "0";
+    String valorDado3= "0";
+    String valorDado4= "0";
     
     public PanelRollDice(ObservableGame g){
         game= g;
@@ -104,27 +110,24 @@ public class PanelRollDice extends JPanel implements Observer{
 
    
      public void updateDices(){
-            String valorDado1 = Integer.toString(game.getPlayer().getDices().get(0).getRoll());
-            int teste = game.getPlayer().getDices().get(0).getRoll();
-            String valorDado2;
-            String valorDado3;
-            String valorDado4;
+            valorDado1 = Integer.toString(game.getPlayer().getDices().get(0).getRoll());
+          
             
             dado1.setText(valorDado1);
-            System.out.println("valor : " + teste);
+        
             if(game.getPlayer().getDices().size()>1){
                valorDado2 = Integer.toString(game.getPlayer().getDices().get(1).getRoll());
-               dado2.setText(valorDado1);
+               dado2.setText(valorDado2);
             }
                
             if(game.getPlayer().getDices().size()>2){
-               valorDado2 = Integer.toString(game.getPlayer().getDices().get(2).getRoll());
-               dado3.setText(valorDado1);
+               valorDado3 = Integer.toString(game.getPlayer().getDices().get(2).getRoll());
+               dado3.setText(valorDado3);
             }
                
             if(game.getPlayer().getDices().size()>3){
-               valorDado2 = Integer.toString(game.getPlayer().getDices().get(3).getRoll());
-               dado3.setText(valorDado1);
+               valorDado4 = Integer.toString(game.getPlayer().getDices().get(3).getRoll());
+               dado4.setText(valorDado4);
             }
             }
         
@@ -132,6 +135,17 @@ public class PanelRollDice extends JPanel implements Observer{
     @Override
     public void update(Observable o, Object o1) {
         updateDices();
+        repaint();
+    }
+    
+     @Override
+     public void paintComponent(Graphics g){
+         super.paintComponent(g);
+          dado1.setText(valorDado1);
+          dado2.setText(valorDado2);
+          dado3.setText(valorDado3);
+          dado4.setText(valorDado4);
+           
     }
    
     

@@ -5,6 +5,7 @@
  */
 package FrontEndGraphic;
 
+import MR_Game_Logic.Card;
 import MR_Game_Logic.ObservableGame;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -15,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import javax.imageio.ImageIO;
@@ -34,16 +36,18 @@ public class PanelCartasEventos extends JPanel implements Observer {
 
     private ObservableGame game;
     private JButton button = new JButton("Select");
-    private JButton button1 = new JButton("Select");
-    private JButton button2= new JButton("Select");
+    private JButton button1 = new JButton("Select"); //so roda
+    private JButton button2= new JButton("Select");//so roda
     private JButton button3= new JButton("Select");
-    private JButton button4= new JButton("Select");
-    private JButton button5= new JButton("Select");
+    private JButton button4= new JButton("Select");//so roda
+    private JButton button5= new JButton("Select");//so roda
     private JButton button6= new JButton("Select");
     private JButton button7= new JButton("Choose");
     private JButton button8= new JButton("Choose");
     private JButton button9= new JButton("Choose");
     private JButton button10= new JButton("Choose");
+    
+     private JButton nextArena= new JButton("Next");
     
     
     private ImageIcon imageIcon = new ImageIcon(getClass().getResource("\\backCard.jpg"));
@@ -63,6 +67,14 @@ public class PanelCartasEventos extends JPanel implements Observer {
     private JLabel  jLabel5= new JLabel(imageIcon);
     private JLabel  jLabel6= new JLabel(imageIcon);
     
+    private List<Card> deck;
+    private int arena;
+    private int cartasDefault;
+    private int cartasAfter;
+    private int arenalvl;
+    private int hp;
+  
+    
     
      
     
@@ -73,13 +85,28 @@ public class PanelCartasEventos extends JPanel implements Observer {
         game.addObserver(this); 
         
         
+        nextArena.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                  if(arena !=2 && arena!=4 && arena!=7 && arena!= 10 && arena!= 14 ){
+             jLabel6.setVisible(false);
+             button6.setVisible(false);
+        }else{
+            jLabel6.setVisible(true);
+             button6.setVisible(true);
+        }
+                setDrawEventosStandard();
+               
+            }
+        });
         
         button7.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String nome;
-                nome =  game.getCurrentDeck().get(1).getName();
+                nome =  deck.get(1).getName();
                 game.resolveCard(nome);
+                cartasAfter = 2;
             }
             
         });
@@ -88,8 +115,8 @@ public class PanelCartasEventos extends JPanel implements Observer {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String nome;
-                nome =  game.getCurrentDeck().get(2).getName();
-                game.resolveCard(nome);
+                nome =  deck.get(2).getName();
+                 cartasAfter = 2;
             }
             
         });
@@ -98,10 +125,15 @@ public class PanelCartasEventos extends JPanel implements Observer {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String nome;
-                nome =  game.getCurrentDeck().get(4).getName();
+                nome =  deck.get(4).getName();
                 game.resolveCard(nome);
-                if(game.getArena()!=2 || game.getArena()!=4 || game.getArena()!=7 || game.getArena()!=10 || game.getArena()!=14){
+                if(arena !=2 && arena!=4 && arena!=7 && arena!= 10 && arena!= 14 ){
+                    cartasAfter = 1;
                     game.checkCardEndArenaGrafic();
+                    
+                  
+                }else{
+                     cartasAfter = 2;
                 }
             }
             
@@ -111,10 +143,14 @@ public class PanelCartasEventos extends JPanel implements Observer {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String nome;
-                nome =  game.getCurrentDeck().get(5).getName();
+                nome =  deck.get(5).getName();
                 game.resolveCard(nome);
-                if(game.getArena()!=2 || game.getArena()!=4 || game.getArena()!=7 || game.getArena()!=10 || game.getArena()!=14){
+                if(arena !=2 && arena!=4 && arena!=7 && arena!= 10 && arena!= 14 ){
                     game.checkCardEndArenaGrafic();
+                    cartasAfter = 1;
+                    
+                }else{
+                     cartasAfter = 2;
                 }
             }
             
@@ -127,7 +163,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
             public void actionPerformed(ActionEvent e) {
                String nome;
                int numero;
-               nome =  game.getCurrentDeck().get(0).getName();
+               nome =  deck.get(0).getName();
                numero = drawCard(nome);
                switch(numero){
                    case 7:
@@ -153,6 +189,8 @@ public class PanelCartasEventos extends JPanel implements Observer {
                        break;
                }
                game.resolveCard(nome);
+               
+                cartasAfter = 2;
             }
         
         });
@@ -163,7 +201,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
                 
                 String nome;
                int numero;
-               nome =  game.getCurrentDeck().get(1).getName();
+               nome =  deck.get(1).getName();
                numero = drawCard(nome);
                switch(numero){
                    case 7:
@@ -197,7 +235,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
             public void actionPerformed(ActionEvent e) {
                 String nome;
                int numero;
-               nome =  game.getCurrentDeck().get(2).getName();
+               nome =  deck.get(2).getName();
                numero = drawCard(nome);
                switch(numero){
                    case 7:
@@ -231,7 +269,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
             public void actionPerformed(ActionEvent e) {
                 String nome;
                int numero;
-               nome =  game.getCurrentDeck().get(3).getName();
+               nome =  deck.get(3).getName();
                numero = drawCard(nome);
                switch(numero){
                    case 7:
@@ -257,6 +295,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
                        break;
                }
                 game.resolveCard(nome);
+                 cartasAfter = 2;
             }
         });
         
@@ -265,7 +304,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
             public void actionPerformed(ActionEvent e) {
                 String nome;
                int numero;
-               nome =  game.getCurrentDeck().get(4).getName();
+               nome =  deck.get(4).getName();
                numero = drawCard(nome);
                switch(numero){
                    case 7:
@@ -299,7 +338,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
             public void actionPerformed(ActionEvent e) {
                 String nome;
                int numero;
-               nome =  game.getCurrentDeck().get(5).getName();
+               nome =  deck.get(5).getName();
                numero = drawCard(nome);
                switch(numero){
                    case 7:
@@ -334,9 +373,11 @@ public class PanelCartasEventos extends JPanel implements Observer {
                 
                 String nome;
               
-               nome =  game.getCurrentDeck().get(6).getName();
+               nome =  deck.get(6).getName();
                jLabel6.setIcon(imageIcon1);
                game.resolveCard(nome);
+               cartasAfter = 1;
+              
                
             }
         });
@@ -344,7 +385,31 @@ public class PanelCartasEventos extends JPanel implements Observer {
    
     @Override
     public void update(Observable o, Object o1) {
-       
+       deck = game.getCurrentDeck();
+       arena = game.getArena();
+       cartasDefault = cartasAfter;
+     
+       System.out.println(cartasDefault);
+ 
+        repaint();
+    }
+    
+    @Override
+     public void paintComponent(Graphics g){
+         super.paintComponent(g);
+         
+         
+         if(arena !=2 && arena!=4 && arena!=7 && arena!= 10 && arena!= 14 ){
+             jLabel6.setVisible(false);
+             button6.setVisible(false);
+        }else{
+            jLabel6.setVisible(true);
+             button6.setVisible(true);
+        }
+         
+         if(cartasDefault == 1){
+             setDrawEventosStandard();
+         }
     }
 
     public void drawEventosStandard(){
@@ -359,11 +424,26 @@ public class PanelCartasEventos extends JPanel implements Observer {
         
         
     }
+    
+     public void setDrawEventosStandard(){
+        
+        jLabel.setIcon(imageIcon);
+        jLabel1.setIcon(imageIcon);
+        jLabel2.setIcon(imageIcon);
+        jLabel3.setIcon(imageIcon);
+        jLabel4.setIcon(imageIcon);
+        jLabel5.setIcon(imageIcon);
+        jLabel6.setIcon(imageIcon);
+        
+        
+    }
     public void setup() {
     
         
-        
-        //drawEventosStandard();
+        cartasDefault = 2;
+        cartasAfter= 2;
+  
+       
         
         
         setLayout(new GridBagLayout());
@@ -462,13 +542,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
         add(button5,gridBag);
         
         //5
-        if(game.getArena()!=2 || game.getArena()!=4 || game.getArena()!=7 ||game.getArena()!= 10|| game.getArena()!= 14 ){
-             jLabel6.setVisible(false);
-             button6.setVisible(false);
-        }else{
-            jLabel6.setVisible(true);
-             button6.setVisible(true);
-        }
+       
         gridBag.anchor=GridBagConstraints.SOUTH;
         gridBag.gridx=4;
         gridBag.gridy=2;
@@ -478,6 +552,11 @@ public class PanelCartasEventos extends JPanel implements Observer {
         gridBag.gridx=4;
         gridBag.gridy=3;
         add(button6,gridBag);
+        
+        
+        gridBag.gridx=2;
+        gridBag.gridy=6;
+        add(nextArena,gridBag);
    }
 
     public int drawCard(String carta){
