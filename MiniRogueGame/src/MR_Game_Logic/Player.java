@@ -77,7 +77,7 @@ public class Player implements Constants, Serializable{
                 this.name = name;
                 this.hp = 5;
                 this.armor = 1;
-                this.gold = 5;
+                this.gold = 5 + 10;
                 this.food = 6;
                 this.rank = 1;
                 this.xp = 0;
@@ -176,6 +176,15 @@ public class Player implements Constants, Serializable{
             }
         }
         return false;
+    }
+    
+    public int findSpellState(String spellName) {
+        for (int i = 0; i < this.spells.size(); i++) {
+            if (this.spells.get(i).getName().equalsIgnoreCase(spellName)) {
+                return i;
+            }
+        }
+        return -1;
     }
     
     public void removeSpell(String spellName){

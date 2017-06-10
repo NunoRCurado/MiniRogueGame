@@ -94,7 +94,7 @@ public class TextUI {
 
         while (true) {
             do {
-                System.out.println();
+                
                 System.out.println("1 - Set difficulty");
                 System.out.println("2 - Set the starting area");
                 System.out.println("3 - Start");
@@ -220,8 +220,10 @@ public class TextUI {
         String card = game.getDungeon().currentCard(game.getArena(), game.getLevel(), game.getArenaLevel());
         int column = game.getColumn();
         System.out.println(game.getUiText());
+        System.out.println(game.monsterHp());
         game.setUiText("");
         System.out.println(game.getPlayerStats());
+        System.out.println(game.getCurrentDeck().get(0).getName().toLowerCase() + "<- Carta 0" + game.getCurrentCard() + " carta Current");
         System.out.println("\nFlip next card ?");
         System.out.println("\n1 - Yes");
         System.out.println("\n2 - No");
@@ -310,6 +312,9 @@ public class TextUI {
         do {
             System.out.println(game.getUiText());
             System.out.println(game.getPlayerStats());
+            if(game.hasFireball()){
+                System.out.println("tem Fireball");
+            }
             System.out.println("Select Option: ");
             System.out.println("1 - Buy ");
             System.out.println("2 - Sell ");

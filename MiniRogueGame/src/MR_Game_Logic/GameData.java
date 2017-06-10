@@ -448,7 +448,13 @@ public class GameData implements Serializable{
     }
 
     public int monsterHp(){
-        return ((Monster) card).getHp();
+        Card cardMonster = null;
+        for(int i = 0; i < currentListArray().size() ; i++)
+            if(currentListArray().get(i).getName().equals("Monster") || currentListArray().get(i).getName().equals("Boss Monster")){
+                cardMonster = getDungeon().Card(arena, level, i);
+                return ((Monster) cardMonster).getHp();
+            }
+        return 0;
     }
     
     public boolean hasFireball(){

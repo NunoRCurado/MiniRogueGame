@@ -152,6 +152,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
                        jLabel.setIcon(imageIcon6);
                        break;
                }
+               
                game.resolveCard(nome);
             }
         

@@ -22,8 +22,22 @@ public class AwaitSpellOption extends StateAdapter {
     }
 
     @Override
-    public IStates setSpellOption(int option) {
+    public IStates setSpellOption(int option) { // 1-> Fireball  2-> Healing  3->Ice  4->poison
         List<Spells> spells = game.getPlayer().getSpells();
+        switch(option){
+            case 1 :
+                option = game.getPlayer().findSpellState("Fireball");
+                break;
+            case 2:
+                option = game.getPlayer().findSpellState("Healing");
+                break;
+            case 3:
+                option = game.getPlayer().findSpellState("Ice");
+                break;
+            case 4:
+                option = game.getPlayer().findSpellState("Poison");
+                break;
+        }
         if (option <= spells.size()) {
             String spellName = game.getPlayer().getSpells().get(option).getName();
             int playerDmg = game.getPlayer().getDmg();

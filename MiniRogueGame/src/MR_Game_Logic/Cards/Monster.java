@@ -19,6 +19,7 @@ public class Monster extends Card{
 
     public Monster(){
         this.name = "Monster";
+        this.hp = 0;
     }
     
     public Monster(int level, int area , int dice){
