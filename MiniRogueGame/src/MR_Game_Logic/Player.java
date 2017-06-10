@@ -27,6 +27,8 @@ public class Player implements Constants, Serializable{
     public List<Dice> dices;
     public String dicesString;
     public boolean poison = false;
+    public int roll1;
+    public int roll2;
     
     public Player(){
         
@@ -161,6 +163,24 @@ public class Player implements Constants, Serializable{
         this.dmg = dmg;
     }
 
+    public int getRoll1() {
+        return roll1;
+    }
+
+    public void setRoll1(int roll1) {
+        this.roll1 = roll1;
+    }
+
+    public int getRoll2() {
+        return roll2;
+    }
+
+    public void setRoll2(int roll2) {
+        this.roll2 = roll2;
+    }
+
+    
+    
     public List<Dice> getDices() {
         return dices;
     }
@@ -195,14 +215,6 @@ public class Player implements Constants, Serializable{
         }
     }
     
-    public int findSpellState(String spellName) {
-        for (int i = 0; i < this.spells.size(); i++) {
-            if (this.spells.get(i).getName().equalsIgnoreCase(spellName)) {
-                return i;
-            }
-        }
-        return -1;
-    }
     
     public String playerToString(){
        
