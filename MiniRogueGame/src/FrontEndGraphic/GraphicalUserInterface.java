@@ -57,6 +57,7 @@ public class GraphicalUserInterface extends JFrame implements Observer{
     private PanelCartasEventos panelCartasEventos;
     private PanelComprareVender panelComprareVender;
     private PanelRest panelRest;
+    private PanelCombat panelCombat;
     
     
     
@@ -166,6 +167,7 @@ public class GraphicalUserInterface extends JFrame implements Observer{
         panelCartasEventos = new PanelCartasEventos(game);
         panelComprareVender = new PanelComprareVender(game);
         panelRest = new PanelRest(game);
+        panelCombat = new PanelCombat(game);
         
         
        // imageIcon = new ImageIcon(getClass().getResource("\\startcard.jpg"));
@@ -203,7 +205,12 @@ public class GraphicalUserInterface extends JFrame implements Observer{
                  gridBag.weightx=0.7;
                  cp.add(panelCartasEventos, gridBag);
                  
-                 
+                 panelCombat.setBorder(new LineBorder(Color.black));
+                 gridBag.gridx=2;
+                 gridBag.gridy=0;
+                 gridBag.weighty=0.6;
+                 gridBag.weightx=0.4;
+                 cp.add(panelCombat, gridBag);
                  
                  panelComprareVender.setBorder(new LineBorder(Color.black));
                  gridBag.gridx=1;
@@ -216,7 +223,7 @@ public class GraphicalUserInterface extends JFrame implements Observer{
                  panelRest.setBorder(new LineBorder(Color.black));
                  gridBag.gridx=2;
                  gridBag.gridy=1;
-                 gridBag.weighty=0.2;
+                 gridBag.weighty=0.1;
                  gridBag.weightx=0.1;
                  cp.add(panelRest, gridBag);
                  

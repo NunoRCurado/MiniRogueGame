@@ -288,7 +288,7 @@ public class PanelCharacterStats extends JPanel implements Observer{
                y=39;
                 break;
         }
-        g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/30), (int) (r.height/30));
+       g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/30), (int) (r.height/30));
   
         switch (rank){
          

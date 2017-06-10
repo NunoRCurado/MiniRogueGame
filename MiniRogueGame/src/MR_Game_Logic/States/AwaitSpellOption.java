@@ -37,6 +37,8 @@ public class AwaitSpellOption extends StateAdapter {
             case 4:
                 option = game.getPlayer().findSpellState("Poison");
                 break;
+            case -1:
+                option = 5;
         }
         if (option <= spells.size()) {
             String spellName = game.getPlayer().getSpells().get(option).getName();

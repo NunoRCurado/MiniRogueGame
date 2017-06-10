@@ -114,6 +114,10 @@ public class ObservableGame extends Observable{
       
    }
       
+      public GameData getGameData() {
+        return g.getGameData();
+    }
+      
        public Player getPlayer()
     {
         return g.getGameData().getPlayer();

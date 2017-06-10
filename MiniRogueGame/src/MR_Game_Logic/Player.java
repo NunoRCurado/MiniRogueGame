@@ -195,6 +195,15 @@ public class Player implements Constants, Serializable{
         }
     }
     
+    public int findSpellState(String spellName) {
+        for (int i = 0; i < this.spells.size(); i++) {
+            if (this.spells.get(i).getName().equalsIgnoreCase(spellName)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
     public String playerToString(){
        
         String stats ="";
