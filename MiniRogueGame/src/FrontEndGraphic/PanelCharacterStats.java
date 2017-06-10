@@ -52,6 +52,7 @@ public class PanelCharacterStats extends JPanel implements Observer{
         boolean poison = game.hasPoison();
         boolean heal = game.hasHealling();
         double x = 0, y=0;
+         
         
         Graphics2D g2=(Graphics2D) g;
         g2.setColor(Color.blue);
@@ -60,203 +61,203 @@ public class PanelCharacterStats extends JPanel implements Observer{
 
         switch (hp){
             case 1:
-                x= 77;
-                y=206;
+                x= 79;
+                y=209;
                 break;
             case 2:
-                x= 77;
-                y=188;
+                 x= 79;
+                y=190;
                 break;
             case 3:
-                 x= 77;
-                y=170;
+                  x= 79;
+                y=172;
                 break;
             case 4:
-                 x= 77;
-                y=152;
+                 x= 79;
+                y=154;
                 break;
             case 5:
-                 x= 77;
-                y=134;
+                 x= 79;
+                y=136;
                 break;
             case 6:
-               x= 77;
-                y=115;
+               x= 79;
+                y=117;
                 break;
             case 7:
-                x= 77;
-                y=95;
+                x= 79;
+                y=97;
                 break;
             case 8:
-              x= 77;
-                y=75;
+              x= 79;
+                y=77;
                 break;
             case 9:
-                x= 77;
-                y=59;
+                 x= 79;
+                y=61;
                 break;
             case 10:
-                x= 77;
-                y=39;
+                x= 79;
+                y=41;
                 break;
             case 11:
                 x= 60;
-                y=206;
+                y=208;
                 break;
             case 12:
                 x= 60;
-                y=188;
+                y=190;
                 break;
             case 13:
                x= 60;
-               y=170;
+               y=172;
                 break;
             case 14:
                x= 60;
-                 y=152;
+                 y=154;
                 break;
             case 15:
                 x= 60;;
-                y=134;
+                y=136;
                 break;
             case 16:
                 x= 60;
-               y=115;
+               y=117;
                 break;
             case 17:
                 x= 60;;
-                y=95;
+                y=97;
                 break;
             case 18:
                 x= 60;
-                y=75;
+                y=77;
                 break;
             case 19:
                 x= 60;
-               y=59;
+               y=61;
                 break;
             case 20:
                 x= 60;
-                y=39;
+                y=41;
                 break;
         }
         g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/30), (int) (r.height/30));
-       
+     
         switch (gold){
             case 0:
-                 x= 113;
-                  y=226;
+                 x= 126;
+                  y=231;
                  break;
             case 1:
-                x= 113;
-                y=206;
+                 x= 126;
+                y=211;
                 break;
             case 2:
-                x= 113;
-                y=188;
+                 x= 126;
+                y=194;
                 break;
             case 3:
-                x= 113;
-                y=170;
+                 x= 126;
+                y=176;
                 break;
             case 4:
-                x= 113;
-                y=152;
+                 x= 126;
+                y=159;
                 break;
             case 5:
-                x= 113;
-                y=134;
+                 x= 126;
+                y=140;
                 break;
             case 6:
-                x= 113;
-                y=115;
+                 x= 126;
+                y=121;
                 break;
             case 7:
-                x= 113;
-                y=95;
+                x= 126;
+                y=100;
                 break;
             case 8:
-                x= 113;
-                y=75;
+                x= 126;
+                y=81;
                 break;
             case 9:
-                x= 113;
-                 y=59;
+                  x= 126;
+                 y=64;
                 break;
             case 10:
-                x= 113;
-               y=39;
+                 x= 126;
+               y=45;
                 break;
             case 11:
-               x= 96;
-                y=206;
+               x= 105;
+                y=212;
                 break;
             case 12:
-                x= 96;
-                y=188;
+                x= 105;
+                y=196;
                 break;
             case 13:
-                x= 96;
-               y=170;
+                x= 105;
+               y=176;
                 break;
             case 14:
-               x= 96;
-                y=152;
+             x= 105;
+                y=159;
                 break;
             case 15:
-              x= 96;
-                y=134;
+              x= 105;
+                y=140;
                 break;
             case 16:
-                x= 96;
-               y=115;
+               x= 105;
+               y=120;
                 break;
             case 17:
-                x= 96;
-                y=95;
+               x= 105;
+                y=100;
                 break;
             case 18:
-               x= 96;
-                y=75;
+               x= 105;
+                y=80;
                 break;
             case 19:
-                x= 96;
-                 y=59;
+              x= 105;
+                 y=65;
                 break;
             case 20:
-              x= 96;
-                y=39;
+            x= 105;
+                y=45;
                 break;
         }
         g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/30), (int) (r.height/30));
        
         switch (food){
             case 0:
-                  x= 133;
+                  x= 140;
                   y=152;
                  break;
             case 1:
-                 x= 133;
+                x= 140;
                  y=134;
                 break;
             case 2:
-                 x= 133;
+               x= 140;
                 y=115;
                 break;
             case 3:
-                x= 133;
+                x= 140;
                 y=95;
                 break;
             case 4:
-                x= 133;
+                x= 140;
                  y=75;
                 break;
             case 5:
-                x= 133;
+                x= 140;
                 y=59;
                 break;
              case 6:
-                 x= 133; 
+                x= 140;
                 y=39;
                 break;
         }
@@ -348,6 +349,7 @@ public class PanelCharacterStats extends JPanel implements Observer{
     @Override
     public void update(Observable o, Object o1) {
       repaint();
+    
     }
 
     private void setup() {
