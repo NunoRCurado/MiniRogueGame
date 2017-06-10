@@ -20,6 +20,8 @@ import java.util.List;
  */
 public class AwaitCardSelection extends StateAdapter{
 
+    
+    
     public AwaitCardSelection(GameData game) {
         super(game);
     }
@@ -220,10 +222,12 @@ public class AwaitCardSelection extends StateAdapter{
 //            game.getDice().roll();
 //            int rollDice = game.getDice().getRoll();
 //            game.setMonster(game.getLevel(), game.getArena(), rollDice);
+            
             return new AwaitDiceRoll(game);
         }
         if (card == "Boss Monster") {
 //            game.setCard(new Monster(game.getLevel()));
+          
             return new AwaitDiceRoll(game);
         }
         return this;

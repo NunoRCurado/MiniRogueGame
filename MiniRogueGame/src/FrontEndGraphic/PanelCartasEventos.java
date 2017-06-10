@@ -48,7 +48,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
     private JButton button10= new JButton("Choose");
     
      private JButton nextArena= new JButton("Next");
-    
+     private JButton actualiza= new JButton("actualiza");
     
     private ImageIcon imageIcon = new ImageIcon(getClass().getResource("\\backCard.jpg"));
     private ImageIcon imageIcon1 = new ImageIcon(getClass().getResource("\\bossmonster.jpg"));
@@ -85,17 +85,26 @@ public class PanelCartasEventos extends JPanel implements Observer {
         game.addObserver(this); 
         
         
+        actualiza.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               hp = game.monsterHp();
+            }
+            
+        });
         nextArena.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                  if(arena !=2 && arena!=4 && arena!=7 && arena!= 10 && arena!= 14 ){
+             if(arena !=2 && arena!=4 && arena!=7 && arena!= 10 && arena!= 14 ){
              jLabel6.setVisible(false);
              button6.setVisible(false);
         }else{
             jLabel6.setVisible(true);
              button6.setVisible(true);
+             setDrawEventosStandard();
         }
                 setDrawEventosStandard();
+             
                
             }
         });
@@ -161,6 +170,8 @@ public class PanelCartasEventos extends JPanel implements Observer {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+              
+                
                String nome;
                int numero;
                nome =  deck.get(0).getName();
@@ -192,8 +203,8 @@ public class PanelCartasEventos extends JPanel implements Observer {
                game.resolveCard(nome);
                
                 cartasAfter = 2;
+       
             }
-        
         });
         
         button1.addActionListener(new ActionListener() {
@@ -388,9 +399,9 @@ public class PanelCartasEventos extends JPanel implements Observer {
     public void update(Observable o, Object o1) {
        deck = game.getCurrentDeck();
        arena = game.getArena();
+       hp = game.monsterHp();
        cartasDefault = cartasAfter;
      
-       System.out.println(cartasDefault);
  
         repaint();
     }
@@ -440,7 +451,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
     }
     public void setup() {
     
-        
+        arena = game.getArena();
         cartasDefault = 2;
         cartasAfter= 2;
   
@@ -558,6 +569,9 @@ public class PanelCartasEventos extends JPanel implements Observer {
         gridBag.gridx=2;
         gridBag.gridy=6;
         add(nextArena,gridBag);
+        gridBag.gridx=1;
+        gridBag.gridy=6;
+        add(actualiza,gridBag);
    }
 
     public int drawCard(String carta){

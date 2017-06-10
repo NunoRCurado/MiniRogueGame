@@ -87,7 +87,7 @@ public class Player implements Constants, Serializable{
                 this.name = name;
                 this.hp = 5;
                 this.armor = 1;
-                this.gold = 5 + 10;
+                this.gold = 5;
                 this.food = 6;
                 this.rank = 1;
                 this.xp = 0;

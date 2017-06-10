@@ -51,7 +51,7 @@ public class PanelDungeon extends JPanel implements Observer{
          g.drawImage(image,0,0,243,340,null);
      
         int arena = game.getArena();
-       
+        hp=game.monsterHp();
         
    
         double x = 0, y=0;
@@ -197,61 +197,61 @@ public class PanelDungeon extends JPanel implements Observer{
         switch(arena){
             case 1:
                 x= 13;
-                y=98;
+                y=100;
                 break;
             case 2:
                 x= 33;
-                y=98;
+                y=100;
                 break;
             case 3:
                 x= 13;
-                y=128;
+                y=130;
                 break;
             case 4:
                  x= 33;
-                y=128;
+                y=130;
                 break;
             case 5:
                  x= 13;
-                 y=157;
+                 y=160;
                 break;
             case 6:
                x= 33;
-                y=157;
+                y=160;
                 break;
             case 7:
                 x= 53;
-                y=157;
+               y=160;
                
                 break;
             case 8:
                 x= 13;
-                y=186;
+                y=190;
                 break;
             case 9:
                 x= 33;
-                y=186;
+                y=190;
                 break;
             case 10:
                 x= 53;
-                y=186;
+                y=190;
                 break;
             case 11:
                 x= 13;
-                y=215;
+                y=219;
                 break;
             case 12:
                 x= 33;
-                y=215;
+                y=219;
                 break;
                 
                 case 13:
                 x= 53;
-                y=215;
+                y=219;
                 break;
                 case 14:
                 x= 71;
-                y=215;
+                y=219;
                 break;
         }
          g2.drawOval((int) ((x/383)*r.width), (int) ((y/274)*r.height), (int) (r.width/30), (int) (r.height/30));
@@ -269,7 +269,7 @@ public class PanelDungeon extends JPanel implements Observer{
     }
     @Override
     public void update(Observable o, Object o1) {
-        if(game.getCurrentCard().equals("monster")){
+        if(game.getCurrentCard().equals("Monster")){
              hp=game.monsterHp();
              
         }else if(game.getCurrentCard().equals("boss_monster")) {
@@ -287,6 +287,8 @@ public class PanelDungeon extends JPanel implements Observer{
         } catch (IOException ex) {
             System.out.println(ex);
         } 
+           
+         
     }
     
 }
