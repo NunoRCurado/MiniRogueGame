@@ -12,6 +12,7 @@ import MR_Game_Logic.Spell.Healing;
 import MR_Game_Logic.Spell.Ice;
 import MR_Game_Logic.Spell.Poison;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -25,19 +26,20 @@ public class AwaitCardSelection extends StateAdapter{
 
     @Override
     public IStates resolveCard(String card) {
+        List<Dice> dicesOut = game.getPlayer().getDicesJogo();
         if (card.equals("Trap")) {
             game.getDice().roll();
-            game.getPlayer().setRoll1(game.getDice().getRoll());
+            dicesOut.get(0).setRoll(game.getDice().getRoll());
             game.getDice().roll();
             game.setUiText(game.getDungeon().Card(game.getArena(), game.getLevel(), game.getCardPosition()).toString());
-            game.setUiText(game.getUiText() + "\nPrimeiro Dado: " + game.getPlayer().getRoll1());
-            game.getPlayer().setRoll2(game.getDice().getRoll());
+            game.setUiText(game.getUiText() + "\nPrimeiro Dado: " + dicesOut.get(0).getRoll());
+            dicesOut.get(1).setRoll(game.getDice().getRoll());
             game.setUiText(game.getUiText() + "\n");
-            game.setUiText(game.getUiText() + "Segundo Dado: " + game.getPlayer().getRoll2());
+            game.setUiText(game.getUiText() + "Segundo Dado: " + dicesOut.get(1).getRoll());
             game.setUiText(game.getUiText() + "\n");
             Player p = game.getPlayer();
-            if (!game.skillCheck(game.getPlayer().getRoll2())) {
-                switch (game.getPlayer().getRoll1()) {
+            if (!game.skillCheck(dicesOut.get(0).getRoll())) {
+                switch (dicesOut.get(1).getRoll()) {
                     case 1:
                         if (p.getFood() == 0) {
                             game.setUiText(game.getUiText() + "Ja nao tem comida para perder");
@@ -103,13 +105,13 @@ public class AwaitCardSelection extends StateAdapter{
         }
         if (card.equals("Treasure")) {
             game.getDice().roll();
-            game.getPlayer().setRoll1(game.getDice().getRoll());
+            dicesOut.get(0).setRoll(game.getDice().getRoll());
             game.getDice().roll();
             game.setUiText(game.getDungeon().Card(game.getArena(), game.getLevel(), game.getCardPosition()).toString());
-            game.setUiText(game.getUiText() + "\nPrimeiro Dado: " + game.getPlayer().getRoll1());
-            game.getPlayer().setRoll2(game.getDice().getRoll());
+            game.setUiText(game.getUiText() + "\nPrimeiro Dado: " + dicesOut.get(0).getRoll());
+            dicesOut.get(1).setRoll(game.getDice().getRoll());
             game.setUiText(game.getUiText() + "\n");
-            game.setUiText(game.getUiText() + "Segundo Dado: " + game.getPlayer().getRoll2());
+            game.setUiText(game.getUiText() + "Segundo Dado: " + dicesOut.get(1).getRoll());
             game.setUiText(game.getUiText() + "\n");
             Player p = game.getPlayer();
             if (game.isFight()) {
@@ -119,8 +121,8 @@ public class AwaitCardSelection extends StateAdapter{
                 game.setUiText(game.getUiText() + "Ganhou 1 de Gold");
                 p.setGold(p.getGold() + 1);
             }
-            if (game.getPlayer().getRoll1() >= 5) {
-                switch (game.getPlayer().getRoll2()) {
+            if (dicesOut.get(0).getRoll() >= 5) {
+                switch (dicesOut.get(1).getRoll()) {
                     case 1:
                         p.setArmor(p.getArmor() + 1);
                         game.setUiText(game.getUiText() + " e Ganhou 1 de Armor");
@@ -168,12 +170,12 @@ public class AwaitCardSelection extends StateAdapter{
 
         if (card.equals("Event")) {
             game.getDice().roll();
-            game.getPlayer().setRoll1(game.getDice().getRoll());
+            dicesOut.get(0).setRoll(game.getDice().getRoll());
             game.setUiText(game.getDungeon().Card(game.getArena(), game.getLevel(), game.getCardPosition()).toString());
-            game.setUiText(game.getUiText() + "\nPrimeiro Dado: " + game.getPlayer().getRoll1());
+            game.setUiText(game.getUiText() + "\nPrimeiro Dado: " + dicesOut.get(0).getRoll());
             game.setUiText(game.getUiText() + "\n");
             Player p = game.getPlayer();
-            switch (game.getPlayer().getRoll1()) {
+            switch (dicesOut.get(0).getRoll()) {
                 case 1:
                     p.setFood(p.getFood() + 1);
                     game.setUiText(game.getUiText() + "Ganhou 1 de Food");

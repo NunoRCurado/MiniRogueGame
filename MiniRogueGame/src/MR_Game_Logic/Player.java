@@ -25,10 +25,9 @@ public class Player implements Constants, Serializable{
     public String name;
     public int dmg;
     public List<Dice> dices;
+    public List<Dice> dicesJogo;
     public String dicesString;
     public boolean poison = false;
-    public int roll1;
-    public int roll2;
     
     public Player(){
         
@@ -46,6 +45,9 @@ public class Player implements Constants, Serializable{
                 this.xp = 0;
                 this.spells = new ArrayList<>();
                 this.dices = new ArrayList<>();
+                this.dicesJogo = new ArrayList<>();
+                this.dicesJogo.add(new Dice());
+                this.dicesJogo.add(new Dice());
                 this.dices.add(new Dice());
                 this.dmg = 0;
                 break;
@@ -60,6 +62,9 @@ public class Player implements Constants, Serializable{
                 this.spells = new ArrayList<>();
                 this.dices = new ArrayList<>();
                 this.dices.add(new Dice());
+                this.dicesJogo = new ArrayList<>();
+                this.dicesJogo.add(new Dice());
+                this.dicesJogo.add(new Dice());
                 this.dmg = 0;
                 break;
             case IMPOSSIBLE:
@@ -73,6 +78,9 @@ public class Player implements Constants, Serializable{
                 this.dices = new ArrayList<>();
                 this.dices.add(new Dice());
                 this.spells = new ArrayList<>();
+                this.dicesJogo = new ArrayList<>();
+                this.dicesJogo.add(new Dice());
+                this.dicesJogo.add(new Dice());
                 this.dmg = 0;
                 break;
             default: //CASUAL
@@ -85,6 +93,9 @@ public class Player implements Constants, Serializable{
                 this.xp = 0;
                 this.dices = new ArrayList<>();
                 this.dices.add(new Dice());
+                this.dicesJogo = new ArrayList<>();
+                this.dicesJogo.add(new Dice());
+                this.dicesJogo.add(new Dice());
                 this.spells = new ArrayList<>();
                 this.dmg = 0;
                 break;
@@ -163,23 +174,6 @@ public class Player implements Constants, Serializable{
         this.dmg = dmg;
     }
 
-    public int getRoll1() {
-        return roll1;
-    }
-
-    public void setRoll1(int roll1) {
-        this.roll1 = roll1;
-    }
-
-    public int getRoll2() {
-        return roll2;
-    }
-
-    public void setRoll2(int roll2) {
-        this.roll2 = roll2;
-    }
-
-    
     
     public List<Dice> getDices() {
         return dices;
@@ -188,6 +182,15 @@ public class Player implements Constants, Serializable{
     public void setDices(List<Dice> dices) {
         this.dices = dices;
     }
+    
+     public List<Dice> getDicesJogo() {
+        return dicesJogo;
+    }
+
+    public void setDicesJogo(List<Dice> dices) {
+        this.dicesJogo = dices;
+    }
+    
     
     public Boolean findSpell(String spellName) {
         for (int i = 0; i < this.spells.size(); i++) {
