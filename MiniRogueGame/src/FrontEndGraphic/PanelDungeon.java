@@ -32,7 +32,7 @@ public class PanelDungeon extends JPanel implements Observer{
      private String imageFile="\\dungeon.jpg";
     private BufferedImage image;
      private int hp = 0;
-     private int hpActual= 0;
+   
      
    
     
@@ -49,7 +49,7 @@ public class PanelDungeon extends JPanel implements Observer{
         
         super.paintComponent(g);
          g.drawImage(image,0,0,243,340,null);
-        hp = hpActual;
+     
         int arena = game.getArena();
        
         
@@ -269,14 +269,14 @@ public class PanelDungeon extends JPanel implements Observer{
     }
     @Override
     public void update(Observable o, Object o1) {
-        if(game.getCurrentCard() != "monster"){
-            System.out.println("monster hp: " + 0);
+        if(game.getCurrentCard().equals("monster")){
+             hp=game.monsterHp();
+             
+        }else if(game.getCurrentCard().equals("boss_monster")) {
+             hp=game.monsterHp();
         }else{
-            game.monsterHp();
-            System.out.println("monster hp: " + game.monsterHp());
-            hpActual=game.monsterHp();
+            hp = 0;
         }
-        
         repaint();
         
     }
