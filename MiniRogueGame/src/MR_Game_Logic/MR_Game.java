@@ -189,6 +189,14 @@ public class MR_Game implements Serializable
          gameData.checkCardEndMonsterGrafic();
      }
      
+     public void setMonster(){
+         gameData.setMonster();
+     }
+     
+     public void setBossMonster(){
+         gameData.setBossMonster();
+     }
+     
     // Methods that are intended to be used by the user interfaces and that are delegated in the current state of the finite state machine 
     
 

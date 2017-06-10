@@ -422,6 +422,31 @@ public class GameData implements Serializable{
         this.column = column;
     }
     
+    
+    
+    public void setMonster(){
+        getDice().roll();
+        int dice = getDice().getRoll();
+        int area = getArena();
+        int level = getLevel();
+        for(int i = 0; i < currentListArray().size(); i ++){
+            if(currentListArray().get(i).getName().matches("Monster")){
+                currentListArray().set(i, new Monster(level,area,dice));
+                return;
+            }
+        }
+    }
+    
+    public void setBossMonster(){
+        int level = getLevel();
+        for(int i = 0; i < currentListArray().size(); i ++){
+            if(currentListArray().get(i).getName().matches("Boss Monster")){
+                currentListArray().set(i, new Monster(level));
+                return;
+            }
+        }
+    }
+    
     public String getPlayerStats() {
         return playerStats;
     }

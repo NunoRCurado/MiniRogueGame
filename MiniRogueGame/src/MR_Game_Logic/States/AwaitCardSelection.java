@@ -217,13 +217,13 @@ public class AwaitCardSelection extends StateAdapter{
             return new AwaitTrading(game);
         }
         if (card.equals("Monster")) {
-            game.getDice().roll();
-            int rollDice = game.getDice().getRoll();
-            game.setCard(new Monster(game.getLevel(), game.getArena(), rollDice));
+//            game.getDice().roll();
+//            int rollDice = game.getDice().getRoll();
+//            game.setMonster(game.getLevel(), game.getArena(), rollDice);
             return new AwaitDiceRoll(game);
         }
         if (card == "Boss Monster") {
-            game.setCard(new Monster(game.getLevel()));
+//            game.setCard(new Monster(game.getLevel()));
             return new AwaitDiceRoll(game);
         }
         return this;
