@@ -85,10 +85,14 @@ public class PanelCartasEventos extends JPanel implements Observer {
         game.addObserver(this); 
         
         
+        
         actualiza.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
-               hp = game.monsterHp();
+                
+                    game.setMonster();
+                    game.setBossMonster();
+             
             }
             
         });
@@ -98,12 +102,13 @@ public class PanelCartasEventos extends JPanel implements Observer {
              if(arena !=2 && arena!=4 && arena!=7 && arena!= 10 && arena!= 14 ){
              jLabel6.setVisible(false);
              button6.setVisible(false);
+             setDrawEventosStandard();
         }else{
             jLabel6.setVisible(true);
              button6.setVisible(true);
              setDrawEventosStandard();
         }
-                setDrawEventosStandard();
+                
              
                
             }
@@ -125,6 +130,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
             public void actionPerformed(ActionEvent ae) {
                 String nome;
                 nome =  deck.get(2).getName();
+                game.resolveCard(nome);
                  cartasAfter = 2;
             }
             
@@ -139,6 +145,8 @@ public class PanelCartasEventos extends JPanel implements Observer {
                 if(arena !=2 && arena!=4 && arena!=7 && arena!= 10 && arena!= 14 ){
                     cartasAfter = 1;
                     game.checkCardEndArenaGrafic();
+                    game.setMonster();
+                    
                     
                   
                 }else{
@@ -156,6 +164,8 @@ public class PanelCartasEventos extends JPanel implements Observer {
                 game.resolveCard(nome);
                 if(arena !=2 && arena!=4 && arena!=7 && arena!= 10 && arena!= 14 ){
                     game.checkCardEndArenaGrafic();
+                    game.setMonster();
+                   
                     cartasAfter = 1;
                     
                 }else{
@@ -388,6 +398,8 @@ public class PanelCartasEventos extends JPanel implements Observer {
                nome =  deck.get(6).getName();
                jLabel6.setIcon(imageIcon1);
                game.resolveCard(nome);
+               game.checkCardEndArenaGrafic();
+               game.setMonster();
                cartasAfter = 1;
               
                
@@ -450,7 +462,8 @@ public class PanelCartasEventos extends JPanel implements Observer {
         
     }
     public void setup() {
-    
+     
+        
         arena = game.getArena();
         cartasDefault = 2;
         cartasAfter= 2;

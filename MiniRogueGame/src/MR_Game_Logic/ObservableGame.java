@@ -141,7 +141,14 @@ public class ObservableGame extends Observable{
         }
          g.getGameData().setArena(g.getGameData().getArena() + 1);
     }
+       
+        public void setMonster(){
+         g.getGameData().setMonster();
+     }
      
+         public void setBossMonster(){
+        g.getGameData().setBossMonster();
+     }
       
       public void startGame(){
           g.startGame();
