@@ -60,132 +60,132 @@ public class PanelDungeon extends JPanel implements Observer{
         g2.setColor(Color.blue);
         g2.setStroke(new BasicStroke(3));
        
-       
+       hp = 3;
         switch (hp){
             case 0:
-                x= 143;
-                y=224;
+                x= 149;
+                y=227;
                 break;
             case 1:
-                x= 143;
+                x= 149;
                 y=205;
                 break;
             case 2:
-                x= 143;
+                x= 149;
                 y=186;
                 break;
             case 3:
-                x= 143;
+                 x= 149;
                 y=165;
                 break;
             case 4:
-                 x= 143;
+                x= 149;
                  y=146;
                 break;
             case 5:
-                 x= 143;
+                 x= 149;
                  y=126;
                 break;
             case 6:
-                x= 143;
+                 x= 149;
                 y=106;
                 break;
             case 7:
-                x= 143;
+                 x= 149;
                  y=86;
                 break;
             case 8:
-                x= 143;
+                x= 149;
                 y=66;
                 break;
             case 9:
-                x= 143;
+                x= 149;
                  y=48;
                 break;
             case 10:
-                x= 143;
+                 x= 149;
                 y=28;
                 break;
             case 11:
-                x= 121;
+                x= 123;
                 y=205;
                 break;
             case 12:
-                x= 121;
+                x= 123;
                 y=186;
                 break;
                 
                 case 13:
-                    x= 121;
+                    x= 123;
                     y=165;
                 break;
                 case 14:
-                    x= 121;
+                    x= 123;
                     y=146;
                 break;
                 
                 case 15:
-                    x= 121;
+                    x= 123;
                     y=126;
                 break;
                 case 16:
-                    x= 121;
+                    x= 123;
                      y=106;
                 break;
                 case 17:
-                    x= 121;
+                    x= 123;
                     y=86;
                 break;
                 case 18:
-                    x= 121;
+                    x= 123;
                      y=66;
                 break;
                 case 19:
-                    x= 121;
+                    x= 123;
                     y=48;
                 break;
                 case 20:
-                    x= 121;
+                    x= 123;
                     y=28;
                 break;
                 case 21:
-                   x= 101;
+                   x= 103;
                     y=205;
                 break;
                 case 22:
-                    x= 101;
+                    x= 103;
                     y=186;
                 break;
                 case 23:
-                    x= 101;
+                    x= 103;
                     y=165;
                 break;
                 case 24:
-                    x= 101;
+                    x= 103;
                     y=146;
                 break;
                 case 25:
-                    x= 101;
+                    x= 103;
                     y=126;
                 break;
                 case 26:
-                    x= 101;
+                    x= 103;
                      y=106;
                 break;
                 case 27:
-                    x= 101;
+                    x= 103;
                     y=86;
                 break;
                 case 28:
-                    x= 101;
+                    x= 103;
                      y=66;
                 break;
                 case 29:
-                    x= 101;
+                    x= 103;
                     y=48;
                 break;
                 case 30:
-                    x= 101;
+                    x= 103;
                     y=28;
                 break;
    
