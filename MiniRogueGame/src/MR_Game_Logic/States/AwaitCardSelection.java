@@ -24,6 +24,7 @@ public class AwaitCardSelection extends StateAdapter{
     
     public AwaitCardSelection(GameData game) {
         super(game);
+        System.out.println("ENTREI NO CARD SELECTION");
     }
 
     @Override
@@ -103,7 +104,7 @@ public class AwaitCardSelection extends StateAdapter{
                 }
             }
             game.checkCardEnd();
-            return this;
+            return new AwaitCardSelection(game);
         }
         if (card.equals("Treasure")) {
             game.getDice().roll();
@@ -167,7 +168,7 @@ public class AwaitCardSelection extends StateAdapter{
                 }
             }
             game.checkCardEnd();
-            return this;
+            return new AwaitCardSelection(game);
         }
 
         if (card.equals("Event")) {
@@ -209,7 +210,7 @@ public class AwaitCardSelection extends StateAdapter{
                     return new AwaitDiceRoll(game);
             }
             game.checkCardEnd();
-            return this;
+            return new AwaitCardSelection(game);
         }
 
         if (card.equals("Resting")) {
@@ -219,10 +220,7 @@ public class AwaitCardSelection extends StateAdapter{
             return new AwaitTrading(game);
         }
         if (card.equals("Monster")) {
-//            game.getDice().roll();
-//            int rollDice = game.getDice().getRoll();
-//            game.setMonster(game.getLevel(), game.getArena(), rollDice);
-            
+
             return new AwaitDiceRoll(game);
         }
         if (card == "Boss Monster") {
