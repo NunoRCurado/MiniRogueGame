@@ -19,6 +19,7 @@ public class AwaitDiceRoll extends StateAdapter implements Constants {
 
     public AwaitDiceRoll(GameData g) {
         super(g);
+         System.out.println("cenas");
     }
 
     @Override

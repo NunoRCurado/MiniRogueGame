@@ -6,6 +6,7 @@
 package FrontEndGraphic;
 
 import MR_Game_Logic.ObservableGame;
+import MR_Game_Logic.States.AwaitDiceRoll;
 import java.awt.Color;
 import java.awt.Event;
 import java.awt.Graphics;
@@ -140,11 +141,30 @@ public class PanelRollDice extends JPanel implements Observer{
             }
             }
         
+     public void updateDicesCombat(){
+         
+            
+            valorDado1 = Integer.toString(game.getPlayer().getDices().get(0).getRoll());
+          
+            
+            dado1.setText(valorDado1);
+        
+            
+     }
 
     @Override
     public void update(Observable o, Object o1) {
-        updateDices();
+        
+        
+      if(!(game.getState() instanceof AwaitDiceRoll)){
+          updateDices();
         repaint();
+    
+    }else{
+        updateDicesCombat();
+        repaint();
+        
+      }
     }
     
      @Override

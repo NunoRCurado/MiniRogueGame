@@ -24,6 +24,7 @@ public class AwaitCardSelection extends StateAdapter{
     
     public AwaitCardSelection(GameData game) {
         super(game);
+        System.out.println("card select");
     }
 
     @Override
@@ -103,7 +104,7 @@ public class AwaitCardSelection extends StateAdapter{
                 }
             }
             game.checkCardEnd();
-            return this;
+            return new AwaitCardSelection(game);
         }
         if (card.equals("Treasure")) {
             game.getDice().roll();
@@ -167,7 +168,7 @@ public class AwaitCardSelection extends StateAdapter{
                 }
             }
             game.checkCardEnd();
-            return this;
+            return new AwaitCardSelection(game);
         }
 
         if (card.equals("Event")) {
@@ -209,7 +210,7 @@ public class AwaitCardSelection extends StateAdapter{
                     return new AwaitDiceRoll(game);
             }
             game.checkCardEnd();
-            return this;
+            return new AwaitCardSelection(game);
         }
 
         if (card.equals("Resting")) {
@@ -222,7 +223,7 @@ public class AwaitCardSelection extends StateAdapter{
 //            game.getDice().roll();
 //            int rollDice = game.getDice().getRoll();
 //            game.setMonster(game.getLevel(), game.getArena(), rollDice);
-            
+            System.out.println("cenasMonstro");
             return new AwaitDiceRoll(game);
         }
         if (card == "Boss Monster") {
@@ -230,6 +231,6 @@ public class AwaitCardSelection extends StateAdapter{
           
             return new AwaitDiceRoll(game);
         }
-        return this;
+        return new AwaitCardSelection(game);
     }
 }
