@@ -220,7 +220,7 @@ public class AwaitCardSelection extends StateAdapter{
             return new AwaitTrading(game);
         }
         if (card.equals("Monster")) {
-
+            System.out.println("cenasMonstro");
             return new AwaitDiceRoll(game);
         }
         if (card == "Boss Monster") {
@@ -228,6 +228,6 @@ public class AwaitCardSelection extends StateAdapter{
           
             return new AwaitDiceRoll(game);
         }
-        return this;
+        return new AwaitCardSelection(game);
     }
 }

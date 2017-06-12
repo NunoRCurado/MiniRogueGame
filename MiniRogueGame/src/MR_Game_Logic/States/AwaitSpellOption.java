@@ -19,6 +19,7 @@ public class AwaitSpellOption extends StateAdapter {
 
     public AwaitSpellOption(GameData g) {
         super(g);
+        System.out.println("Spells state");
     }
 
     @Override

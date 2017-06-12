@@ -16,6 +16,9 @@ public class AwaitDiceOption extends StateAdapter implements Constants{
     
     public AwaitDiceOption(GameData g) {
         super(g);
+        System.out.println("teste check option");
+        System.out.println("teste check option" + game.getCurrentCard());
+
     }
     
     //Falta fazer Feats
@@ -25,7 +28,7 @@ public class AwaitDiceOption extends StateAdapter implements Constants{
         if(game.getPlayer().isPoison()){
             game.getPlayer().setDmg(playerDmg + 5);
         }
-        int monsterHp = game.monsterHp();//((Monster)game.getCard()).getHp(); 
+        int monsterHp = ((Monster)game.getCard()).getHp(); 
         List<Dice> dicesOut = game.getPlayer().getDices();
         for (int i = 0; i < game.getNumDices(); i++) {
                 if (dicesOut.get(i).getStatus() == true) {
