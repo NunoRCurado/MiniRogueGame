@@ -189,6 +189,10 @@ public class MR_Game implements Serializable
          gameData.checkCardEndMonsterGrafic();
      }
      
+     public void setCardPosition(){
+         gameData.setCardPosition(gameData.getCardPosition() + 1);
+     }
+     
      public void setMonster(){
          gameData.setMonster();
      }

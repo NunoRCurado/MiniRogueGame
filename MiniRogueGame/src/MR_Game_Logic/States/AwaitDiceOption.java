@@ -16,8 +16,8 @@ public class AwaitDiceOption extends StateAdapter implements Constants{
     
     public AwaitDiceOption(GameData g) {
         super(g);
-        System.out.println("teste check option");
-        System.out.println("teste check option" + game.getCurrentCard());
+        System.out.println("AwaitDiceOption");
+        
 
     }
     
@@ -38,7 +38,6 @@ public class AwaitDiceOption extends StateAdapter implements Constants{
                 }
             }
         if( playerDmg >= monsterHp){
-            //getGame().setUiText("O seu dano e de: " + playerDmg);
             game.getPlayer().setDmg(0);
             game.getPlayer().setPoison(false);
             game.setUiText(game.getUiText() + "\nMatou o monstro");
@@ -49,6 +48,7 @@ public class AwaitDiceOption extends StateAdapter implements Constants{
             game.checkCardEnd();
             return new AwaitCardSelection(game);
         }
+
         return new AwaitSpellOption(game);
     }
     

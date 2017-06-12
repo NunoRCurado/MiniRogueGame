@@ -399,7 +399,7 @@ public class GameData implements Serializable{
     }
 
     public String getCurrentCard() {
-        return currentCard;
+        return currentCard = getDungeon().currentCard(arena, level, cardPosition);
     }
 
     public void setCurrentCard(String currentCard) {
@@ -407,7 +407,7 @@ public class GameData implements Serializable{
     }
 
     public Card getCard() {
-        return card;
+        return card = getDungeon().Card(arena, level, cardPosition);
     }
 
     public void setCard(Card card) {

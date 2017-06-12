@@ -7,6 +7,7 @@ package FrontEndGraphic;
 
 import MR_Game_Logic.Card;
 import MR_Game_Logic.ObservableGame;
+import MR_Game_Logic.States.AwaitDiceRoll;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -129,6 +130,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String nome;
+                game.setCardPosition();
                 nome =  deck.get(2).getName();
                 game.resolveCard(nome);
                  cartasAfter = 2;
@@ -144,7 +146,6 @@ public class PanelCartasEventos extends JPanel implements Observer {
                 game.resolveCard(nome);
                 if(arena !=2 && arena!=4 && arena!=7 && arena!= 10 && arena!= 14 ){
                     cartasAfter = 2;
-                    game.checkCardEndArenaGrafic();
                     game.setMonster();
                     
                     
@@ -160,10 +161,10 @@ public class PanelCartasEventos extends JPanel implements Observer {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String nome;
+                game.setCardPosition();
                 nome =  deck.get(5).getName();
                 game.resolveCard(nome);
                 if(arena !=2 && arena!=4 && arena!=7 && arena!= 10 && arena!= 14 ){
-                    game.checkCardEndArenaGrafic();
                     game.setMonster();
                    
                     cartasAfter = 2;
@@ -398,7 +399,6 @@ public class PanelCartasEventos extends JPanel implements Observer {
                nome =  deck.get(6).getName();
                jLabel6.setIcon(imageIcon1);
                game.resolveCard(nome);
-               game.checkCardEndArenaGrafic();
                cartasAfter = 1;
               
                
@@ -412,6 +412,9 @@ public class PanelCartasEventos extends JPanel implements Observer {
         if(arena ==2 || arena==4 || arena==7 || arena== 10 || arena== 14 ){
              game.setBossMonster();
          }
+        if(game.getState() instanceof AwaitDiceRoll){
+            game.rollDice();
+        }
        deck = game.getCurrentDeck();
        arena = game.getArena();
        hp = game.monsterHp();
@@ -593,7 +596,7 @@ public class PanelCartasEventos extends JPanel implements Observer {
             return 6;
         
     }else if(carta.equals("Monster")){
-        System.out.println("carta : " + game.getCurrentCard());
+        //System.out.println("carta : " + game.getCurrentCard());
         return 5;
         
     }else if(carta.equals("Merchant")){

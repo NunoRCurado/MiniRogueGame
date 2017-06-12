@@ -24,7 +24,6 @@ public class AwaitCardSelection extends StateAdapter{
     
     public AwaitCardSelection(GameData game) {
         super(game);
-        System.out.println("ENTREI NO CARD SELECTION");
     }
 
     @Override
@@ -220,12 +219,9 @@ public class AwaitCardSelection extends StateAdapter{
             return new AwaitTrading(game);
         }
         if (card.equals("Monster")) {
-            System.out.println("cenasMonstro");
             return new AwaitDiceRoll(game);
         }
         if (card == "Boss Monster") {
-//            game.setCard(new Monster(game.getLevel()));
-          
             return new AwaitDiceRoll(game);
         }
         return new AwaitCardSelection(game);

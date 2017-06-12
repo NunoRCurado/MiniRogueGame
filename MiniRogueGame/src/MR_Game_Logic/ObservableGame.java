@@ -118,6 +118,10 @@ public class ObservableGame extends Observable{
         return g.getGameData();
     }
       
+      public void setCardPosition(){
+          g.setCardPosition();
+      }
+      
        public Player getPlayer()
     {
         return g.getGameData().getPlayer();
